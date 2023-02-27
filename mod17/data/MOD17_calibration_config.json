@@ -1,0 +1,38 @@
+{
+  "description": "Calibration against MERRA-2 1980-2000 synthetic year and using priors with: Fixed froot_leaf_ratio, SLA based on carbon units",
+  "BPLUT": {
+    "GPP": "/home/arthur.endsley/src/mod17/lib/python/mod17/data/MOD17_BPLUT_CX.X_MERRA_NASA.csv",
+    "NPP": "/home/arthur.endsley/DATA/20220503_MOD17_GPP_recal_BPLUT.csv"
+  },
+  "data": {
+    "file": "/anx_lagr4/MODIS_VIIRS/calibration/VIIRS_MOD16_MOD17_tower_site_drivers_v9.h5",
+    "sites_blacklisted": [
+        "CN-Do1", "CN-Do2", "CN-Do3", "IT-Vig", "NL-Hor", "US-ORv", "US-WPT"
+    ]
+  },
+  "optimization": {
+    "backend_template": "/home/arthur.endsley/20221027_MOD17_%s_calibration_PFT%d.nc4",
+    "prior": "/usr/local/dev/mod17/lib/python/mod17/data/MOD17_BPLUT_prior_20221027.json",
+    "chains": 3,
+    "draws": 100000,
+    "tune": "scaling",
+    "scaling": 1e-3,
+    "objective": "RMSE",
+    "bounds": {
+      "LUE_max": [0, 0.005],
+      "tmin0": [-35, 0],
+      "tmin1": [0, 25],
+      "vpd0": [0, 1000],
+      "vpd1": [1000, 8000],
+      "SLA": [1, 200],
+      "Q10": [0, 10],
+      "Q10_froot": [0, 10],
+      "Q10_livewood": [0, 10],
+      "froot_leaf_ratio": [0, 4],
+      "livewood_leaf_ratio": [0.01, 1.00],
+      "leaf_mr_base": [0, 0.1],
+      "froot_mr_base": [0, 0.1],
+      "livewood_mr_base": [0, 0.1]
+    }
+  }
+}

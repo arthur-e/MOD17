@@ -1,0 +1,21 @@
+UMD_VEG_LC                      ENF=0    EBF=1    DNF=2    DBF=3     MF=4 CShrub=5 OShrub=6 WSavannas=7 Savannas=8  Grass=9  Crop=10
+LUEmax(KgC/m^2/d/MJ)         0.001211 0.001405 0.001227 0.001526 0.001226 0.001495 0.001027    0.001498   0.001454 0.001215 0.001300
+Tmin_min(C)                     -8.00    -8.00    -8.00    -6.00    -7.00    -8.00    -8.00       -8.00      -8.00    -8.00    -8.00
+Tmin_max(C)                      8.31     9.09    10.44     9.94     9.50     8.61     8.80       11.39      11.39    12.02    12.02
+VPD_min(Pa)                     650.0   1000.0    650.0    650.0    650.0    650.0    650.0       650.0      650.0    650.0    650.0
+VPD_max(Pa)                    3000.0   4000.0   3500.0   2900.0   2900.0   4300.0   4400.0      3500.0     3600.0   4200.0   4500.0
+SLA(LAI/KgC)                     15.0     26.9     16.9     24.7     22.6      9.4     12.0        28.8       28.9     38.0     38.0
+Q10(unitless)                     2.0      2.0      2.0      2.0      2.0      2.0      2.0         2.0        2.0      2.0      2.0
+froot_leaf_ratio                  1.2      1.1      1.7      1.1      1.1      1.0      1.3         1.8        1.8      2.6      2.0
+livewood_leaf_ratio             0.182    0.162    0.165    0.203    0.203    0.079    0.040       0.091      0.051    0.000    0.000
+leaf_mr_base(Kgc/KgC/d)       0.00604  0.00604  0.00815  0.00778  0.00778  0.00869  0.00519     0.00869    0.00869   0.0098   0.0098
+froot_mr_base(Kgc/KgC/d)      0.00519  0.00519  0.00519  0.00519  0.00519  0.00519  0.00519     0.00519    0.00519  0.00819  0.00819
+livewood_mr_base(Kgc/KgC/d)   0.00397  0.00397  0.00397  0.00371  0.00371  0.00436  0.00218     0.00312    0.00100  0.00000  0.00000
+
+*** Recalibrated by Maosheng Zhao before March 31st, 2009. Version is the improved Collection5.1 ***
+*** Note not add extra spaces between variable names and parentheses, otherwise it will be messed up when used by MOD17 program ***
+Below is the mean GPP and NPP from 2000 to 2006 estimated from 0.25 degree tuned BPLUT system of the C5.1, which will be used to
+tune new version of the global MOD17. The tuning tools are MOD17_improved_main_code_GEO.c and mean_GPP_NPP_tune_BPLUT.c
+UMD_VEG_LC          ENF=0    EBF=1    DNF=2    DBF=3     MF=4 CShrub=5 OShrub=6 WSavannas=7 Savannas=8  Grass=9  Crop=10
+GPP(gC/m^2/yr)     877.10  2702.62   727.21  1339.93  1133.22   812.04   308.83     1368.90   1208.90    393.25   884.11
+NPP(gC/m^2/yr)     478.49  1175.45   343.55   622.79   604.82   381.50   160.14      673.06    594.73    205.86   486.46
