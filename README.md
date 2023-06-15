@@ -1,3 +1,5 @@
+[![DOI](https://zenodo.org/badge/607343238.svg)](https://zenodo.org/badge/latestdoi/607343238)
+
 MODIS MOD17 Terrestrial Productivity Algorithm
 ==============================================
 
@@ -6,7 +8,7 @@ The MODIS MOD17 algorithm provided the first global, continuous, weekly estimate
 MOD17 consists of three potentially independent sub-models:
 
 - 8-day gross primary productivity (GPP)
-- 8-day net photosynthesis (PSN$_{\mathrm{net}}$)
+- 8-day net photosynthesis
 - Annual net primary productivity (NPP)
 
 8-day composite products are given the designation MOD17A2H, for Terra MODIS, or MYD17A2H, for Aqua MODIS. Annual products, including annual GPP (the sum of one year's 8-day GPP composites), are carried by MOD17A3H (or MYD17A3H). The new VIIRS products would be designated VNP17A2H and VNP17A3H. GPP is calculated using a classic light-use efficiency (LUE) approach (Running et al. 2004, Yuan et al. 2014, Madani et al. 2017), where the carbon (C) uptake by plants is assumed to be proportional to canopy absorbed photosynthetically active radiation (APAR) under prevailing daytime environmental conditions for diel or longer time scales. Low temperatures or high vapor pressure deficit (VPD) reduce the efficiency of photosynthetic C uptake, thus, MOD17 GPP is described as a product of APAR, the light-use efficiency under optimal conditions ($\varepsilon_{\mathrm{max}}$), and environmental scalars.
@@ -61,6 +63,8 @@ gpp = model.daily_gpp(*drivers)
 docs/examples/MOD17_GPP_forward_run_Collection6-1.py
 ```
 
+And download the following driver dataset: [http://doi.org/10.5281/zenodo.7682806](http://doi.org/10.5281/zenodo.7682806)
+
 **To calibrate the GPP model from the command line**
 
 ```sh
@@ -78,7 +82,13 @@ python calibration.py export-bplut output.csv --burn=1000 --thin=10
 Citation
 --------
 
-**If using this software, please cite the following paper:**
+**If using this software, please refer to the DOI:**
+
+```
+10.5281/zenodo.8045097
+```
+
+**And cite the following paper:**
 
 Endsley, K.A., M. Zhao, J.S. Kimball, S. Devadiga. In Review. Continuity of global MODIS terrestrial primary productivity estimates in the VIIRS era using model-data fusion. *Journal of Geophysical Research: Biogeosciences.*
 

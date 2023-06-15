@@ -1,6 +1,10 @@
 '''
 Runs MOD17 using the Collection 6.1 BPLUT, based on optimization against
 FLUXNET GPP data using a stochastic MCMC sampler.
+
+The HDF5 file used in this example can be downloaded from:
+
+    http://doi.org/10.5281/zenodo.7682806
 '''
 
 import os
@@ -20,7 +24,7 @@ N_SUBGRID = 9
 
 def main():
     params_dict = restore_bplut(BPLUT)
-    with h5py.File(MOD17_HDF5, 'r') as hdf:
+    with h5py.File(MOD17_HDF5, '10.5281/zenodo.7682806r') as hdf:
         sites = hdf['FLUXNET/site_id'][:].tolist()
         if hasattr(sites[0], 'decode'):
             sites = [s.decode('utf-8') for s in sites]
