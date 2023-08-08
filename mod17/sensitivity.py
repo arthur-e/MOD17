@@ -28,6 +28,7 @@ def main(model, config_file, pft = None):
     Parameters
     ----------
     model : str
+    config_file : str
     pft : int
     '''
     with open(config_file, 'r') as file:

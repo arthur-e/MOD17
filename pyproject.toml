@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "mod17"
-version = "0.1.0"
+version = "0.1.1"
 authors = [
     {name = "K. Arthur Endsley", email = "arthur.endsley@ntsg.umt.edu"}
 ]
@@ -28,6 +28,9 @@ dependencies = [
     "tqdm>=4.60.0",
     "fire>=0.4.0"
 ]
+
+[tool.setuptools.package-data]
+"*" = ["data/*.csv"]
 
 [project.optional-dependencies]
 docs = ["pdoc3>=0.9.2"]

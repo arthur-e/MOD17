@@ -131,8 +131,9 @@ class MOD17(object):
             r_m = mr_leaf[i] + mr_froot[i] + mr_livewood[i]
             # GPP - R_M
             diff[i] =  np.where(years == each_year, gpp, 0).sum(axis = 0) - r_m
-        # Annual growth respiration is assumed to be 20% of (GPP - R_M); see
-        #   Figure 1 of MOD17 User Guide
+        # Annual growth respiration is assumed to be 25% of (GPP - R_M); see
+        #   Figure 1 of MOD17 User Guide; the User Guide is TOO CUTE about
+        #   derivation; 0.8 == (1/1.25), hence the "25%" figure
         return np.where(diff < 0, 0, 0.8 * diff)
 
     @staticmethod
