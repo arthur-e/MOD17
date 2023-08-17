@@ -6,7 +6,7 @@ of the required model parameters. The required input driver datasets are:
     e.g., from MERRA-2 `T10M`
 - Daily minimum air temperature at 10-m height (deg C),
     e.g., from MERRA-2 `T10M`
-- Incident photosynthetically active radiation (PAR) (MJ m$^{-2}$ day$^{-1}$),
+- Incident photosynthetically active radiation (PAR) [MJ m-2 day-1),
     e.g., from MERRA-2 `SWGDN`; see also `MOD17.par()`
 - Vapor pressure deficit (VPD) (Pa), e.g., from MERRA-2 `QV10M`, `T10M`, `PS`;
     see also `MOD17.vpd()`
@@ -308,10 +308,10 @@ class MOD17(object):
             [\mathrm{PAR}]\times [\mathrm{fPAR}]
         $$
 
-        Where $T_{min}$ is the minimum daily temperature, $V$ is the daytime
-        vapor pressure deficit (VPD), PAR is daily photosynthetically active
-        radiation, fPAR is the fraction of PAR absorbed by the canopy, and
-        $\varepsilon$ is the intrinsic (or maximum) light-use efficiency.
+        Where \(T_{min}\) is the minimum daily temperature, \(V\) is the
+        daytime vapor pressure deficit (VPD), PAR is daily photosynthetically
+        active radiation, fPAR is the fraction of PAR absorbed by the canopy,
+        and \(\varepsilon\) is the intrinsic (or maximum) light-use efficiency.
 
         Parameters
         ----------
@@ -337,15 +337,15 @@ class MOD17(object):
         r'''
         Daily maintenance respiration for leaves and fine roots.
 
-        Maintenance respiration ($r_m$) for leaves or fine roots is given:
+        Maintenance respiration, \(r_m\), for leaves or fine roots is given:
 
         $$
-        $r_m$ = m \times r_0 \times q^{\frac{T - 20}{10}}
+        r_m = m \times r_0 \times q^{\frac{T - 20}{10}}
         $$
 
-        Where $m$ is either the leaf mass or fine root mass; $r_0$ is the rate
+        Where \(m\) is either the leaf mass or fine root mass; \(r_0\) is the rate
         of maintenance respiration per unit leaf carbon (per day, at 20
-        degrees C); and $q$ is the Q10 factor.
+        degrees C); and \(q\) is the Q10 factor.
 
         NOTE: For fine roots and live wood, Q10 is a constant value of 2.0.
         For leaves, the temperature-acclimated Q10 equation of Tjoelker et al.
@@ -357,7 +357,7 @@ class MOD17(object):
 
         The "net photosynthesis" quantity in MOD17, even though it is a bit
         misleading (it does not account for growth respiration and livewood
-        $r_m$) can then be calculated as GPP less the maintenance respiration
+        \(r_m\) can then be calculated as GPP less the maintenance respiration
         of leaves and fine roots:
 
         $$

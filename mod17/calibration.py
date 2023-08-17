@@ -26,7 +26,9 @@ eliminate autocorrelation, e.g., in Python:
 
 A thinned posterior can be exported from the command line:
 
-    $ python calibration.py export-bplut output.csv --burn=1000 --thin=10
+```py
+$ python calibration.py export-bplut output.csv --burn=1000 --thin=10
+```
 
 References:
 

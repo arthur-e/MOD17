@@ -3,7 +3,7 @@ MODIS sinusoidal projection forward and backward coordinate transformations,
 courtesy of Giglio et al. (2018), Collection 6 MODIS Burned Area Product
 User's Guide, Version 1, Appendix B:
 
-    https://modis-fire.umd.edu/files/MODIS_C6_BA_User_Guide_1.2.pdf
+- https://modis-fire.umd.edu/files/MODIS_C6_BA_User_Guide_1.2.pdf
 '''
 
 import h5py
