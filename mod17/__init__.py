@@ -1,5 +1,15 @@
-'''
-The MOD17 Daily GPP and Annual GPP algorithm.
+r'''
+The MOD17 Daily GPP and Annual GPP algorithm. See `MOD17` for a discussion
+of the required model parameters. The required input driver datasets are:
+
+- Daily mean air temperature at 10-meter height (deg C),
+    e.g., from MERRA-2 `T10M`
+- Daily minimum air temperature at 10-m height (deg C),
+    e.g., from MERRA-2 `T10M`
+- Incident photosynthetically active radiation (PAR) (MJ m$^{-2}$ day$^{-1}$),
+    e.g., from MERRA-2 `SWGDN`; see also `MOD17.par()`
+- Vapor pressure deficit (VPD) (Pa), e.g., from MERRA-2 `QV10M`, `T10M`, `PS`;
+    see also `MOD17.vpd()`
 
 Note that there are two hidden methods of the MOD17 class:
 
