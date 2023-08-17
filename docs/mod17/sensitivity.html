@@ -1,0 +1,826 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>mod17.sensitivity API documentation</title>
+<meta name="description" content="Performs the Sobol&#39; sensitivity analysis for the MOD17 GPP and NPP models …" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS_CHTML" integrity="sha256-kZafAc6mZvK3W3v1pHOcUix30OHQN6pU/NO2oFkqZVw=" crossorigin></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>mod17.sensitivity</code></h1>
+</header>
+<section id="section-intro">
+<p>Performs the Sobol' sensitivity analysis for the MOD17 GPP and NPP models.</p>
+<p>It's not clear that treating driver data as parameters is appropriate, here,
+given that the NSE is calculated based on observed fluxes.</p>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">&#39;&#39;&#39;
+Performs the Sobol&#39; sensitivity analysis for the MOD17 GPP and NPP models.
+
+It&#39;s not clear that treating driver data as parameters is appropriate, here,
+given that the NSE is calculated based on observed fluxes.
+&#39;&#39;&#39;
+
+import json
+import os
+import warnings
+import numpy as np
+import h5py
+import mod17
+from tqdm import tqdm
+from mod17 import MOD17
+from mod17.utils import restore_bplut, pft_dominant
+from mod17.science import nash_sutcliffe
+from SALib.sample import saltelli
+from SALib.analyze import sobol
+
+OUTPUT_TPL = &#39;/home/arthur.endsley/MOD17_sensitivity_%s_analysis.json&#39;
+
+
+def main(model, config_file, pft = None):
+    &#39;&#39;&#39;
+    Conducts the Sobol&#39; sensitivity analysis for the GPP, NPP models.
+
+    Parameters
+    ----------
+    model : str
+    config_file : str
+    pft : int
+    &#39;&#39;&#39;
+    with open(config_file, &#39;r&#39;) as file:
+        config = json.load(file)
+    if model.lower() == &#39;gpp&#39;:
+        saltelli_gpp(config, pft)
+    elif model.lower() == &#39;npp&#39;:
+        saltelli_npp(config, pft)
+    elif model.lower() == &#39;npp2&#39;:
+        saltelli_npp_and_gpp(config, pft)
+    else:
+        raise ValueError(&#39;Did not recognize model &#34;%s&#34;&#39; % model)
+
+
+def saltelli_gpp(config, pft = None):
+    &#39;&#39;&#39;
+    Sensitivity analysis for the GPP model.
+
+    Parameters
+    ----------
+    pft : int
+    &#39;&#39;&#39;
+    drivers, gpp = load_gpp_data(config, None, pft, validation_mask_only = True)
+    params = MOD17.required_parameters[0:5]
+    problem = {
+        &#39;num_vars&#39;: len(params),
+        &#39;names&#39;: params,
+        &#39;bounds&#39;: [
+            config[&#39;optimization&#39;][&#39;bounds&#39;][p]
+            for p in params
+        ]
+    }
+    # NOTE: Number of samples must be a power of 2
+    param_sweep = saltelli.sample(problem, 256)
+    Y = np.zeros([param_sweep.shape[0]])
+    for i, X in enumerate(tqdm(param_sweep)):
+        yhat = MOD17._gpp(X, *drivers[0:4])
+        Y[i] = nash_sutcliffe(yhat, gpp, norm = True)
+    metrics = sobol.analyze(problem, Y)
+    name = &#39;GPP&#39; if pft is None else &#39;GPP-PFT%d&#39; % pft
+    with open(OUTPUT_TPL % name, &#39;w&#39;) as file:
+        json.dump(dict([(k, v.tolist()) for k, v in metrics.items()]), file)
+
+
+def saltelli_npp(config, pft = None):
+    &#39;&#39;&#39;
+    Sensitivity analysis for the NPP model.
+
+    Parameters
+    ----------
+    pft : int
+    &#39;&#39;&#39;
+    # Now for NPP; we have to load the BPLUT with the static parameters
+    bplut = restore_bplut(config[&#39;BPLUT&#39;][&#39;NPP&#39;])
+    gpp_params = [
+        np.nanmean(bplut[p]) for p in MOD17.required_parameters[0:5]
+    ]
+    drivers, npp = load_npp_data(config, None, pft)
+    params = MOD17.required_parameters[5:]
+    if pft in (10, 12):
+        params = list(set(params).difference(
+            (&#39;Q10_livewood&#39;, &#39;livewood_leaf_ratio&#39;, &#39;livewood_mr_base&#39;)))
+    problem = {
+        &#39;num_vars&#39;: len(params),
+        &#39;names&#39;: params,
+        &#39;bounds&#39;: [
+            config[&#39;optimization&#39;][&#39;bounds&#39;][p] for p in params
+        ]
+    }
+    # NOTE: Number of samples must be a power of 2
+    samples = 4096 if pft == 3 else 1024
+    samples = 2048 if pft in (10, 12) else samples
+    param_sweep = saltelli.sample(problem, samples)
+    Y = np.zeros([param_sweep.shape[0]])
+    # Index the livewood parameters
+    idx = np.array([
+        MOD17.required_parameters[5:].index(p)
+        for p in (&#39;Q10_livewood&#39;, &#39;livewood_leaf_ratio&#39;, &#39;livewood_mr_base&#39;)
+    ])
+    # There is no generalizable way to index and insert the livewood
+    #   parameters because one of them comes at the end of the array and
+    #   np.insert() will not work in that case; so, let&#39;s assert we have the
+    #   right indices and make this part hard-coded
+    assert (idx == [1,4,7]).all()
+    for i, X in enumerate(tqdm(param_sweep)):
+        if pft in (10, 12):
+            # Even more confusingly, have to increment each successive index
+            #   because of the progressive insertion
+            X0 = X.copy()
+            for j in idx:
+                X = np.insert(X, j, 0)
+        yhat = MOD17._npp(np.array([*gpp_params, *X]), *drivers)
+        Y[i] = nash_sutcliffe(yhat, npp, norm = True)
+    metrics = sobol.analyze(problem, Y)
+    name = &#39;NPP&#39; if pft is None else &#39;NPP-PFT%d&#39; % pft
+    with open(OUTPUT_TPL % name, &#39;w&#39;) as file:
+        if pft in (10, 12):
+            output = dict()
+            for key, value in metrics.items():
+                for j in idx:
+                    value = np.insert(value, j, 0)
+                output[key] = value.tolist()
+        else:
+            output = dict([(k, v.tolist()) for k, v in metrics.items()])
+        json.dump(output, file)
+
+
+def saltelli_npp_and_gpp(config, pft = None):
+    &#39;&#39;&#39;
+    Sensitivity analysis for the NPP model, including the GPP parameters
+    in the analysis.
+
+    Parameters
+    ----------
+    pft : int
+    &#39;&#39;&#39;
+    # Now for NPP; we have to load the BPLUT with the static parameters
+    bplut = restore_bplut(config[&#39;BPLUT&#39;][&#39;NPP&#39;])
+    print(&#39;Loading data...&#39;)
+    drivers, npp = load_npp_data(config, None, pft)
+    print(&#39;Setting up experiments...&#39;)
+    params = MOD17.required_parameters
+    if pft in (10, 12):
+        params = list(set(params).difference(
+            (&#39;Q10_livewood&#39;, &#39;livewood_leaf_ratio&#39;, &#39;livewood_mr_base&#39;)))
+    problem = {
+        &#39;num_vars&#39;: len(params),
+        &#39;names&#39;: params,
+        &#39;bounds&#39;: [
+            config[&#39;optimization&#39;][&#39;bounds&#39;][p] for p in params
+        ]
+    }
+    # NOTE: Number of samples must be a power of 2
+    samples = 2048
+    if pft is not None:
+        samples = 4096 if pft == 3 else 1024
+        samples = 2048 if pft in (10, 12) else samples
+    param_sweep = saltelli.sample(problem, samples)
+    Y = np.zeros([param_sweep.shape[0]])
+    # Index the livewood parameters
+    idx = np.array([
+        MOD17.required_parameters[5:].index(p)
+        for p in (&#39;Q10_livewood&#39;, &#39;livewood_leaf_ratio&#39;, &#39;livewood_mr_base&#39;)
+    ])
+    # There is no generalizable way to index and insert the livewood
+    #   parameters because one of them comes at the end of the array and
+    #   np.insert() will not work in that case; so, let&#39;s assert we have the
+    #   right indices and make this part hard-coded
+    assert (idx == [1,4,7]).all()
+    for i, X in enumerate(tqdm(param_sweep)):
+        if pft in (10, 12):
+            # Even more confusingly, have to increment each successive index
+            #   because of the progressive insertion
+            X0 = X.copy()
+            for j in idx:
+                X = np.insert(X, j, 0)
+        yhat = MOD17._npp(X, *drivers)
+        Y[i] = nash_sutcliffe(yhat, npp, norm = True)
+    metrics = sobol.analyze(problem, Y)
+    name = &#39;NPP&#39; if pft is None else &#39;NPP-PFT%d&#39; % pft
+    with open(OUTPUT_TPL % name, &#39;w&#39;) as file:
+        if pft in (10, 12):
+            output = dict()
+            for key, value in metrics.items():
+                for j in idx:
+                    value = np.insert(value, j, 0)
+                output[key] = value.tolist()
+        else:
+            output = dict([(k, v.tolist()) for k, v in metrics.items()])
+        json.dump(output, file)
+
+
+def load_gpp_data(
+        config, filename = None, pft = None, subgrid = False, verbose = True,
+        validation_mask_only = False):
+    &#39;&#39;&#39;
+    Loads the data required for running a sensitivity analysis on the
+    MOD17 GPP model.
+
+    Parameters
+    ----------
+    config : dict
+    filename : str or None
+    pft : int
+    subgrid : bool
+    verbose : bool
+    validation_mask_only : bool
+
+    Returns
+    -------
+    tuple
+        A 3-element tuple: A sequence of driver datasets (first element) and
+        the array of valid GPP observations (second element), and the mask
+    &#39;&#39;&#39;
+    if verbose:
+        print(&#39;Loading GPP datasets...&#39;)
+    if filename is None:
+        filename = config[&#39;data&#39;][&#39;file&#39;]
+    with h5py.File(filename, &#39;r&#39;) as hdf:
+        sites = hdf[&#39;FLUXNET/site_id&#39;][:].tolist()
+        if hasattr(sites[0], &#39;decode&#39;):
+            sites = [s.decode(&#39;utf-8&#39;) for s in sites]
+        # NOTE: Converting from Kelvin to Celsius
+        tday = hdf[&#39;MERRA2/T10M_daytime&#39;][:] - 273.15
+        qv10m = hdf[&#39;MERRA2/QV10M_daytime&#39;][:]
+        ps = hdf[&#39;MERRA2/PS_daytime&#39;][:]
+        drivers = [ # fPAR, Tmin, VPD, PAR, LAI, Tmean, years
+            hdf[&#39;MODIS/MOD15A2HGF_fPAR_interp&#39;][:],
+            hdf[&#39;MERRA2/Tmin&#39;][:]  - 273.15,
+            MOD17.vpd(qv10m, ps, tday),
+            MOD17.par(hdf[&#39;MERRA2/SWGDN&#39;][:]),
+        ]
+        observed_gpp = hdf[&#39;FLUXNET/GPP&#39;][:]
+        is_test = hdf[&#39;FLUXNET/validation_mask&#39;][:].sum(axis = 0).astype(bool)
+        if pft is not None:
+            blacklist = config[&#39;data&#39;][&#39;sites_blacklisted&#39;]
+            pft_map = pft_dominant(hdf[&#39;state/PFT&#39;][:], site_list = sites)
+            pft_mask = np.logical_and(pft_map == pft, ~np.in1d(sites, blacklist))
+            drivers = [d[:,pft_mask] for d in drivers]
+            observed_gpp = observed_gpp[:,pft_mask]
+    # Set negative VPD to zero
+    drivers[2] = np.where(drivers[2] &lt; 0, 0, drivers[2])
+    # Convert fPAR from (%) to [0,1]
+    if subgrid:
+        drivers[0] = drivers[0] * 0.01
+    else:
+        # Average over the subgrid
+        drivers[0] = np.nanmean(drivers[0], axis = -1) * 0.01
+    # Speed things up by focusing only on data points where valid data exist
+    mask = ~np.isnan(observed_gpp)
+    if validation_mask_only:
+        # Stratify the data using the validation mask so that an equal number
+        #   of samples from each PFT are used
+        mask = np.logical_and(is_test, mask)
+    drivers = [d[mask] for d in drivers]
+    return (drivers, observed_gpp[mask], mask)
+
+
+def load_npp_data(
+        config, filename = None, pft = None, subgrid = False, verbose = True):
+    &#39;&#39;&#39;
+    Loads the data required for running a sensitivity analysis on the
+    MOD17 NPP model.
+
+    Parameters
+    ----------
+    config : dict
+    filename : str
+    pft : int
+    subgrid : bool
+    verbose : bool
+
+    Returns
+    -------
+    tuple
+        A 2-element tuple: A sequence of driver datasets (first element) and
+        the array of valid NPP observations (second element)
+    &#39;&#39;&#39;
+    if verbose:
+        print(&#39;Loading NPP datasets...&#39;)
+    if filename is None:
+        filename = config[&#39;data&#39;][&#39;file&#39;]
+    with h5py.File(filename, &#39;r&#39;) as hdf:
+        sites = hdf[&#39;NPP/site_id&#39;][:].tolist()
+        if hasattr(sites[0], &#39;decode&#39;):
+            sites = [s.decode(&#39;utf-8&#39;) for s in sites]
+        # NOTE: Converting from Kelvin to Celsius
+        tday = hdf[&#39;NPP/surface_met_MERRA2/T10M_daytime&#39;][:] - 273.15
+        qv10m = hdf[&#39;NPP/surface_met_MERRA2/QV10M_daytime&#39;][:]
+        ps = hdf[&#39;NPP/surface_met_MERRA2/PS_daytime&#39;][:]
+        drivers = [ # fPAR, Tmin, VPD, PAR, LAI, Tmean, years
+            hdf[&#39;NPP/MOD15A2H_fPAR_clim_filt&#39;][:],
+            hdf[&#39;NPP/surface_met_MERRA2/Tmin&#39;][:]  - 273.15,
+            MOD17.vpd(qv10m, ps, tday),
+            MOD17.par(hdf[&#39;NPP/surface_met_MERRA2/SWGDN&#39;][:]),
+            hdf[&#39;NPP/MOD15A2H_LAI_clim_filt&#39;][:],
+            hdf[&#39;NPP/surface_met_MERRA2/T10M&#39;][:] - 273.15,
+            np.full(ps.shape, 1) # i.e., A 365-day climatological year (&#34;Year 1&#34;)
+        ]
+        observed_npp = hdf[&#39;NPP/NPP_total&#39;][:]
+        if pft is not None:
+            blacklist = config[&#39;data&#39;][&#39;sites_blacklisted&#39;]
+            pft_map = hdf[&#39;NPP/PFT&#39;][:]
+            drivers = [d[:,pft_map == pft] for d in drivers]
+            observed_npp = observed_npp[pft_map == pft]
+    # Set negative VPD to zero
+    drivers[2] = np.where(drivers[2] &lt; 0, 0, drivers[2])
+    # Convert fPAR from (%) to [0,1] and re-scale LAI; reshape fPAR and LAI
+    drivers[0] = np.nanmean(drivers[0], axis = -1) * 0.01
+    drivers[4] = np.nanmean(drivers[4], axis = -1) * 0.1
+    return (drivers, observed_npp)
+
+
+if __name__ == &#39;__main__&#39;:
+    import fire
+    with warnings.catch_warnings():
+        warnings.simplefilter(&#39;ignore&#39;)
+        fire.Fire(main)</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="mod17.sensitivity.load_gpp_data"><code class="name flex">
+<span>def <span class="ident">load_gpp_data</span></span>(<span>config, filename=None, pft=None, subgrid=False, verbose=True, validation_mask_only=False)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Loads the data required for running a sensitivity analysis on the
+MOD17 GPP model.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>config</code></strong> :&ensp;<code>dict</code></dt>
+<dd>&nbsp;</dd>
+<dt><strong><code>filename</code></strong> :&ensp;<code>str</code> or <code>None</code></dt>
+<dd>&nbsp;</dd>
+<dt><strong><code>pft</code></strong> :&ensp;<code>int</code></dt>
+<dd>&nbsp;</dd>
+<dt><strong><code>subgrid</code></strong> :&ensp;<code>bool</code></dt>
+<dd>&nbsp;</dd>
+<dt><strong><code>verbose</code></strong> :&ensp;<code>bool</code></dt>
+<dd>&nbsp;</dd>
+<dt><strong><code>validation_mask_only</code></strong> :&ensp;<code>bool</code></dt>
+<dd>&nbsp;</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>tuple</code></dt>
+<dd>A 3-element tuple: A sequence of driver datasets (first element) and
+the array of valid GPP observations (second element), and the mask</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def load_gpp_data(
+        config, filename = None, pft = None, subgrid = False, verbose = True,
+        validation_mask_only = False):
+    &#39;&#39;&#39;
+    Loads the data required for running a sensitivity analysis on the
+    MOD17 GPP model.
+
+    Parameters
+    ----------
+    config : dict
+    filename : str or None
+    pft : int
+    subgrid : bool
+    verbose : bool
+    validation_mask_only : bool
+
+    Returns
+    -------
+    tuple
+        A 3-element tuple: A sequence of driver datasets (first element) and
+        the array of valid GPP observations (second element), and the mask
+    &#39;&#39;&#39;
+    if verbose:
+        print(&#39;Loading GPP datasets...&#39;)
+    if filename is None:
+        filename = config[&#39;data&#39;][&#39;file&#39;]
+    with h5py.File(filename, &#39;r&#39;) as hdf:
+        sites = hdf[&#39;FLUXNET/site_id&#39;][:].tolist()
+        if hasattr(sites[0], &#39;decode&#39;):
+            sites = [s.decode(&#39;utf-8&#39;) for s in sites]
+        # NOTE: Converting from Kelvin to Celsius
+        tday = hdf[&#39;MERRA2/T10M_daytime&#39;][:] - 273.15
+        qv10m = hdf[&#39;MERRA2/QV10M_daytime&#39;][:]
+        ps = hdf[&#39;MERRA2/PS_daytime&#39;][:]
+        drivers = [ # fPAR, Tmin, VPD, PAR, LAI, Tmean, years
+            hdf[&#39;MODIS/MOD15A2HGF_fPAR_interp&#39;][:],
+            hdf[&#39;MERRA2/Tmin&#39;][:]  - 273.15,
+            MOD17.vpd(qv10m, ps, tday),
+            MOD17.par(hdf[&#39;MERRA2/SWGDN&#39;][:]),
+        ]
+        observed_gpp = hdf[&#39;FLUXNET/GPP&#39;][:]
+        is_test = hdf[&#39;FLUXNET/validation_mask&#39;][:].sum(axis = 0).astype(bool)
+        if pft is not None:
+            blacklist = config[&#39;data&#39;][&#39;sites_blacklisted&#39;]
+            pft_map = pft_dominant(hdf[&#39;state/PFT&#39;][:], site_list = sites)
+            pft_mask = np.logical_and(pft_map == pft, ~np.in1d(sites, blacklist))
+            drivers = [d[:,pft_mask] for d in drivers]
+            observed_gpp = observed_gpp[:,pft_mask]
+    # Set negative VPD to zero
+    drivers[2] = np.where(drivers[2] &lt; 0, 0, drivers[2])
+    # Convert fPAR from (%) to [0,1]
+    if subgrid:
+        drivers[0] = drivers[0] * 0.01
+    else:
+        # Average over the subgrid
+        drivers[0] = np.nanmean(drivers[0], axis = -1) * 0.01
+    # Speed things up by focusing only on data points where valid data exist
+    mask = ~np.isnan(observed_gpp)
+    if validation_mask_only:
+        # Stratify the data using the validation mask so that an equal number
+        #   of samples from each PFT are used
+        mask = np.logical_and(is_test, mask)
+    drivers = [d[mask] for d in drivers]
+    return (drivers, observed_gpp[mask], mask)</code></pre>
+</details>
+</dd>
+<dt id="mod17.sensitivity.load_npp_data"><code class="name flex">
+<span>def <span class="ident">load_npp_data</span></span>(<span>config, filename=None, pft=None, subgrid=False, verbose=True)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Loads the data required for running a sensitivity analysis on the
+MOD17 NPP model.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>config</code></strong> :&ensp;<code>dict</code></dt>
+<dd>&nbsp;</dd>
+<dt><strong><code>filename</code></strong> :&ensp;<code>str</code></dt>
+<dd>&nbsp;</dd>
+<dt><strong><code>pft</code></strong> :&ensp;<code>int</code></dt>
+<dd>&nbsp;</dd>
+<dt><strong><code>subgrid</code></strong> :&ensp;<code>bool</code></dt>
+<dd>&nbsp;</dd>
+<dt><strong><code>verbose</code></strong> :&ensp;<code>bool</code></dt>
+<dd>&nbsp;</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>tuple</code></dt>
+<dd>A 2-element tuple: A sequence of driver datasets (first element) and
+the array of valid NPP observations (second element)</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def load_npp_data(
+        config, filename = None, pft = None, subgrid = False, verbose = True):
+    &#39;&#39;&#39;
+    Loads the data required for running a sensitivity analysis on the
+    MOD17 NPP model.
+
+    Parameters
+    ----------
+    config : dict
+    filename : str
+    pft : int
+    subgrid : bool
+    verbose : bool
+
+    Returns
+    -------
+    tuple
+        A 2-element tuple: A sequence of driver datasets (first element) and
+        the array of valid NPP observations (second element)
+    &#39;&#39;&#39;
+    if verbose:
+        print(&#39;Loading NPP datasets...&#39;)
+    if filename is None:
+        filename = config[&#39;data&#39;][&#39;file&#39;]
+    with h5py.File(filename, &#39;r&#39;) as hdf:
+        sites = hdf[&#39;NPP/site_id&#39;][:].tolist()
+        if hasattr(sites[0], &#39;decode&#39;):
+            sites = [s.decode(&#39;utf-8&#39;) for s in sites]
+        # NOTE: Converting from Kelvin to Celsius
+        tday = hdf[&#39;NPP/surface_met_MERRA2/T10M_daytime&#39;][:] - 273.15
+        qv10m = hdf[&#39;NPP/surface_met_MERRA2/QV10M_daytime&#39;][:]
+        ps = hdf[&#39;NPP/surface_met_MERRA2/PS_daytime&#39;][:]
+        drivers = [ # fPAR, Tmin, VPD, PAR, LAI, Tmean, years
+            hdf[&#39;NPP/MOD15A2H_fPAR_clim_filt&#39;][:],
+            hdf[&#39;NPP/surface_met_MERRA2/Tmin&#39;][:]  - 273.15,
+            MOD17.vpd(qv10m, ps, tday),
+            MOD17.par(hdf[&#39;NPP/surface_met_MERRA2/SWGDN&#39;][:]),
+            hdf[&#39;NPP/MOD15A2H_LAI_clim_filt&#39;][:],
+            hdf[&#39;NPP/surface_met_MERRA2/T10M&#39;][:] - 273.15,
+            np.full(ps.shape, 1) # i.e., A 365-day climatological year (&#34;Year 1&#34;)
+        ]
+        observed_npp = hdf[&#39;NPP/NPP_total&#39;][:]
+        if pft is not None:
+            blacklist = config[&#39;data&#39;][&#39;sites_blacklisted&#39;]
+            pft_map = hdf[&#39;NPP/PFT&#39;][:]
+            drivers = [d[:,pft_map == pft] for d in drivers]
+            observed_npp = observed_npp[pft_map == pft]
+    # Set negative VPD to zero
+    drivers[2] = np.where(drivers[2] &lt; 0, 0, drivers[2])
+    # Convert fPAR from (%) to [0,1] and re-scale LAI; reshape fPAR and LAI
+    drivers[0] = np.nanmean(drivers[0], axis = -1) * 0.01
+    drivers[4] = np.nanmean(drivers[4], axis = -1) * 0.1
+    return (drivers, observed_npp)</code></pre>
+</details>
+</dd>
+<dt id="mod17.sensitivity.main"><code class="name flex">
+<span>def <span class="ident">main</span></span>(<span>model, config_file, pft=None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Conducts the Sobol' sensitivity analysis for the GPP, NPP models.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>model</code></strong> :&ensp;<code>str</code></dt>
+<dd>&nbsp;</dd>
+<dt><strong><code>config_file</code></strong> :&ensp;<code>str</code></dt>
+<dd>&nbsp;</dd>
+<dt><strong><code>pft</code></strong> :&ensp;<code>int</code></dt>
+<dd>&nbsp;</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def main(model, config_file, pft = None):
+    &#39;&#39;&#39;
+    Conducts the Sobol&#39; sensitivity analysis for the GPP, NPP models.
+
+    Parameters
+    ----------
+    model : str
+    config_file : str
+    pft : int
+    &#39;&#39;&#39;
+    with open(config_file, &#39;r&#39;) as file:
+        config = json.load(file)
+    if model.lower() == &#39;gpp&#39;:
+        saltelli_gpp(config, pft)
+    elif model.lower() == &#39;npp&#39;:
+        saltelli_npp(config, pft)
+    elif model.lower() == &#39;npp2&#39;:
+        saltelli_npp_and_gpp(config, pft)
+    else:
+        raise ValueError(&#39;Did not recognize model &#34;%s&#34;&#39; % model)</code></pre>
+</details>
+</dd>
+<dt id="mod17.sensitivity.saltelli_gpp"><code class="name flex">
+<span>def <span class="ident">saltelli_gpp</span></span>(<span>config, pft=None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Sensitivity analysis for the GPP model.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>pft</code></strong> :&ensp;<code>int</code></dt>
+<dd>&nbsp;</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def saltelli_gpp(config, pft = None):
+    &#39;&#39;&#39;
+    Sensitivity analysis for the GPP model.
+
+    Parameters
+    ----------
+    pft : int
+    &#39;&#39;&#39;
+    drivers, gpp = load_gpp_data(config, None, pft, validation_mask_only = True)
+    params = MOD17.required_parameters[0:5]
+    problem = {
+        &#39;num_vars&#39;: len(params),
+        &#39;names&#39;: params,
+        &#39;bounds&#39;: [
+            config[&#39;optimization&#39;][&#39;bounds&#39;][p]
+            for p in params
+        ]
+    }
+    # NOTE: Number of samples must be a power of 2
+    param_sweep = saltelli.sample(problem, 256)
+    Y = np.zeros([param_sweep.shape[0]])
+    for i, X in enumerate(tqdm(param_sweep)):
+        yhat = MOD17._gpp(X, *drivers[0:4])
+        Y[i] = nash_sutcliffe(yhat, gpp, norm = True)
+    metrics = sobol.analyze(problem, Y)
+    name = &#39;GPP&#39; if pft is None else &#39;GPP-PFT%d&#39; % pft
+    with open(OUTPUT_TPL % name, &#39;w&#39;) as file:
+        json.dump(dict([(k, v.tolist()) for k, v in metrics.items()]), file)</code></pre>
+</details>
+</dd>
+<dt id="mod17.sensitivity.saltelli_npp"><code class="name flex">
+<span>def <span class="ident">saltelli_npp</span></span>(<span>config, pft=None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Sensitivity analysis for the NPP model.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>pft</code></strong> :&ensp;<code>int</code></dt>
+<dd>&nbsp;</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def saltelli_npp(config, pft = None):
+    &#39;&#39;&#39;
+    Sensitivity analysis for the NPP model.
+
+    Parameters
+    ----------
+    pft : int
+    &#39;&#39;&#39;
+    # Now for NPP; we have to load the BPLUT with the static parameters
+    bplut = restore_bplut(config[&#39;BPLUT&#39;][&#39;NPP&#39;])
+    gpp_params = [
+        np.nanmean(bplut[p]) for p in MOD17.required_parameters[0:5]
+    ]
+    drivers, npp = load_npp_data(config, None, pft)
+    params = MOD17.required_parameters[5:]
+    if pft in (10, 12):
+        params = list(set(params).difference(
+            (&#39;Q10_livewood&#39;, &#39;livewood_leaf_ratio&#39;, &#39;livewood_mr_base&#39;)))
+    problem = {
+        &#39;num_vars&#39;: len(params),
+        &#39;names&#39;: params,
+        &#39;bounds&#39;: [
+            config[&#39;optimization&#39;][&#39;bounds&#39;][p] for p in params
+        ]
+    }
+    # NOTE: Number of samples must be a power of 2
+    samples = 4096 if pft == 3 else 1024
+    samples = 2048 if pft in (10, 12) else samples
+    param_sweep = saltelli.sample(problem, samples)
+    Y = np.zeros([param_sweep.shape[0]])
+    # Index the livewood parameters
+    idx = np.array([
+        MOD17.required_parameters[5:].index(p)
+        for p in (&#39;Q10_livewood&#39;, &#39;livewood_leaf_ratio&#39;, &#39;livewood_mr_base&#39;)
+    ])
+    # There is no generalizable way to index and insert the livewood
+    #   parameters because one of them comes at the end of the array and
+    #   np.insert() will not work in that case; so, let&#39;s assert we have the
+    #   right indices and make this part hard-coded
+    assert (idx == [1,4,7]).all()
+    for i, X in enumerate(tqdm(param_sweep)):
+        if pft in (10, 12):
+            # Even more confusingly, have to increment each successive index
+            #   because of the progressive insertion
+            X0 = X.copy()
+            for j in idx:
+                X = np.insert(X, j, 0)
+        yhat = MOD17._npp(np.array([*gpp_params, *X]), *drivers)
+        Y[i] = nash_sutcliffe(yhat, npp, norm = True)
+    metrics = sobol.analyze(problem, Y)
+    name = &#39;NPP&#39; if pft is None else &#39;NPP-PFT%d&#39; % pft
+    with open(OUTPUT_TPL % name, &#39;w&#39;) as file:
+        if pft in (10, 12):
+            output = dict()
+            for key, value in metrics.items():
+                for j in idx:
+                    value = np.insert(value, j, 0)
+                output[key] = value.tolist()
+        else:
+            output = dict([(k, v.tolist()) for k, v in metrics.items()])
+        json.dump(output, file)</code></pre>
+</details>
+</dd>
+<dt id="mod17.sensitivity.saltelli_npp_and_gpp"><code class="name flex">
+<span>def <span class="ident">saltelli_npp_and_gpp</span></span>(<span>config, pft=None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Sensitivity analysis for the NPP model, including the GPP parameters
+in the analysis.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>pft</code></strong> :&ensp;<code>int</code></dt>
+<dd>&nbsp;</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def saltelli_npp_and_gpp(config, pft = None):
+    &#39;&#39;&#39;
+    Sensitivity analysis for the NPP model, including the GPP parameters
+    in the analysis.
+
+    Parameters
+    ----------
+    pft : int
+    &#39;&#39;&#39;
+    # Now for NPP; we have to load the BPLUT with the static parameters
+    bplut = restore_bplut(config[&#39;BPLUT&#39;][&#39;NPP&#39;])
+    print(&#39;Loading data...&#39;)
+    drivers, npp = load_npp_data(config, None, pft)
+    print(&#39;Setting up experiments...&#39;)
+    params = MOD17.required_parameters
+    if pft in (10, 12):
+        params = list(set(params).difference(
+            (&#39;Q10_livewood&#39;, &#39;livewood_leaf_ratio&#39;, &#39;livewood_mr_base&#39;)))
+    problem = {
+        &#39;num_vars&#39;: len(params),
+        &#39;names&#39;: params,
+        &#39;bounds&#39;: [
+            config[&#39;optimization&#39;][&#39;bounds&#39;][p] for p in params
+        ]
+    }
+    # NOTE: Number of samples must be a power of 2
+    samples = 2048
+    if pft is not None:
+        samples = 4096 if pft == 3 else 1024
+        samples = 2048 if pft in (10, 12) else samples
+    param_sweep = saltelli.sample(problem, samples)
+    Y = np.zeros([param_sweep.shape[0]])
+    # Index the livewood parameters
+    idx = np.array([
+        MOD17.required_parameters[5:].index(p)
+        for p in (&#39;Q10_livewood&#39;, &#39;livewood_leaf_ratio&#39;, &#39;livewood_mr_base&#39;)
+    ])
+    # There is no generalizable way to index and insert the livewood
+    #   parameters because one of them comes at the end of the array and
+    #   np.insert() will not work in that case; so, let&#39;s assert we have the
+    #   right indices and make this part hard-coded
+    assert (idx == [1,4,7]).all()
+    for i, X in enumerate(tqdm(param_sweep)):
+        if pft in (10, 12):
+            # Even more confusingly, have to increment each successive index
+            #   because of the progressive insertion
+            X0 = X.copy()
+            for j in idx:
+                X = np.insert(X, j, 0)
+        yhat = MOD17._npp(X, *drivers)
+        Y[i] = nash_sutcliffe(yhat, npp, norm = True)
+    metrics = sobol.analyze(problem, Y)
+    name = &#39;NPP&#39; if pft is None else &#39;NPP-PFT%d&#39; % pft
+    with open(OUTPUT_TPL % name, &#39;w&#39;) as file:
+        if pft in (10, 12):
+            output = dict()
+            for key, value in metrics.items():
+                for j in idx:
+                    value = np.insert(value, j, 0)
+                output[key] = value.tolist()
+        else:
+            output = dict([(k, v.tolist()) for k, v in metrics.items()])
+        json.dump(output, file)</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="mod17" href="index.html">mod17</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="mod17.sensitivity.load_gpp_data" href="#mod17.sensitivity.load_gpp_data">load_gpp_data</a></code></li>
+<li><code><a title="mod17.sensitivity.load_npp_data" href="#mod17.sensitivity.load_npp_data">load_npp_data</a></code></li>
+<li><code><a title="mod17.sensitivity.main" href="#mod17.sensitivity.main">main</a></code></li>
+<li><code><a title="mod17.sensitivity.saltelli_gpp" href="#mod17.sensitivity.saltelli_gpp">saltelli_gpp</a></code></li>
+<li><code><a title="mod17.sensitivity.saltelli_npp" href="#mod17.sensitivity.saltelli_npp">saltelli_npp</a></code></li>
+<li><code><a title="mod17.sensitivity.saltelli_npp_and_gpp" href="#mod17.sensitivity.saltelli_npp_and_gpp">saltelli_npp_and_gpp</a></code></li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,1460 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>mod17.utils API documentation</title>
+<meta name="description" content="Utilities related to the MOD17 algorithm." />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS_CHTML" integrity="sha256-kZafAc6mZvK3W3v1pHOcUix30OHQN6pU/NO2oFkqZVw=" crossorigin></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>mod17.utils</code></h1>
+</header>
+<section id="section-intro">
+<p>Utilities related to the MOD17 algorithm.</p>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">&#39;&#39;&#39;
+Utilities related to the MOD17 algorithm.
+&#39;&#39;&#39;
+
+import csv
+import os
+import numpy as np
+import pandas as pd
+import mod17
+from collections import Counter
+from typing import Callable, Sequence, Union, BinaryIO
+from pandas._typing import FilePath, ReadCsvBuffer
+
+BPLUT_FIELD_LOOKUP = {
+    &#39;LUEmax(KgC/m^2/d/MJ)&#39;: &#39;LUE_max&#39;,
+    &#39;Tmin_min(C)&#39;: &#39;tmin0&#39;,
+    &#39;Tmin_max(C)&#39;: &#39;tmin1&#39;,
+    &#39;VPD_min(Pa)&#39;: &#39;vpd0&#39;,
+    &#39;VPD_max(Pa)&#39;: &#39;vpd1&#39;,
+    &#39;SLA(LAI/KgC)&#39;: &#39;SLA&#39;,
+    &#39;Q10(unitless)&#39;: &#39;Q10&#39;,
+    &#39;Q10_livewood(unitless)&#39;: &#39;Q10_livewood&#39;,
+    &#39;Q10_froot(unitless)&#39;: &#39;Q10_froot&#39;,
+    &#39;froot_leaf_ratio&#39;: &#39;froot_leaf_ratio&#39;,
+    &#39;livewood_leaf_ratio&#39;: &#39;livewood_leaf_ratio&#39;,
+    &#39;leaf_mr_base(Kgc/KgC/d)&#39;: &#39;leaf_mr_base&#39;,
+    &#39;froot_mr_base(Kgc/KgC/d)&#39;: &#39;froot_mr_base&#39;,
+    &#39;livewood_mr_base(Kgc/KgC/d)&#39;: &#39;livewood_mr_base&#39;,
+}
+
+def dec2bin_unpack(x: np.ndarray) -&gt; np.ndarray:
+    &#39;&#39;&#39;
+    Unpacks an arbitrary decimal NumPy array into a binary representation
+    along a new axis. Assumes decimal digits are on the interval [0, 255],
+    i.e., that only 8-bit representations are needed.
+
+    Parameters
+    ----------
+    x : numpy.ndarray
+
+    Returns
+    -------
+    numpy.ndarray
+    &#39;&#39;&#39;
+    # Make sure the bit representation is enumerated along a new axis, the
+    #   very last axis
+    axis = x.ndim
+    # unpackbits() returns the bit representation in big-endian order, so we
+    #   flip the array (with -8) to get litte-endian order
+    return np.unpackbits(x[...,None], axis = axis)[...,-8:]
+
+
+def haversine(p1: Sequence, p2: Sequence, radius: float = 6371e3) -&gt; float:
+    &#39;&#39;&#39;
+    Haversine formula for great circle distance, in meters. Accurate for
+    points separated near and far but for small distances the accuracy is
+    improved by providing a different radius of the sphere, say 6356.7523 km
+    for polar regions or 6378.1370 km for equatorial regions. Default is the
+    mean earth radius.
+
+    NOTE: Distance returned is in the same units as radius.
+
+    Parameters
+    ----------
+    p1 : tuple or list
+        Sequence of two floats, longitude and latitude, respectively
+    p2 : tuple or list
+        Same as p1 but for the second point
+    radius : int or float
+        Radius of the sphere to use in distance calculation
+        (Default: 6,371,000 meters)
+
+    Returns
+    -------
+    float
+    &#39;&#39;&#39;
+    x1, y1 = map(np.deg2rad, p1)
+    x2, y2 = map(np.deg2rad, p2)
+    dphi = np.abs(y2 - y1) # Difference in latitude
+    dlambda = np.abs(x2 - x1) # Difference in longitude
+    angle = 2 * np.arcsin(np.sqrt(np.add(
+        np.power(np.sin(dphi / 2), 2),
+        np.cos(y1) * np.cos(y2) * np.power(np.sin(dlambda / 2), 2)
+    )))
+    return float(angle * radius)
+
+
+def mod15a2h_qc_fail(x: np.ndarray) -&gt; np.ndarray:
+    &#39;&#39;&#39;
+    Returns pass/fail for QC flags based on the L4C fPAR QC protocol for the
+    `FparLai_QC` band: Bad pixels have either `1` in the first bit (&#34;Pixel not
+    produced at all&#34;) or anything other than `00` (&#34;clear&#34;) in bits 3-4.
+    Output array is True wherever the array fails QC criteria. Compare to:
+
+        np.vectorize(lambda v: v[0] == 1 or v[3:5] != &#39;00&#39;)
+
+    Parameters
+    ----------
+    x : numpy.ndarray
+        Array where the last axis enumerates the unpacked bits
+        (ones and zeros)
+
+    Returns
+    -------
+    numpy.ndarray
+        Boolean array with True wherever QC criteria are failed
+    &#39;&#39;&#39;
+    y = dec2bin_unpack(x)
+    # Emit 1 = FAIL if these two bits are not == &#34;00&#34;
+    c1 = y[...,3:5].sum(axis = -1).astype(np.uint8)
+    # Emit 1 = FAIL if 1st bit == 1 (&#34;Pixel not produced at all&#34;)
+    c2 = y[...,0]
+    # Intermediate arrays are 1 = FAIL, 0 = PASS
+    return (c1 + c2) &gt; 0
+
+
+def pft_dominant(
+        pft_map: np.ndarray, site_list: list = None,
+        valid_pft: list = mod17.PFT_VALID):
+    &#39;&#39;&#39;
+    Returns the dominant PFT type, based on the PFT mode among the sub-grid
+    for each site. Note that this is specific to the MOD17 calibration/
+    validation (Cal/Val) protocol, i.e., two sites are always classified as
+    Deciduous Needleleaf (PFT 3):
+
+        CA-SF2
+        CA-SF3
+
+    Three other sites (CN-Do1, CN-Do3, US-WPT) are classified by the PI as
+    wetlands, which is not supported, nor are their MCD12Q1 classifications.
+
+    Three other sites have hard-coded PFT classes because they are in urban
+    areas (PFT 13):
+
+        IT-Vig: Re-classified to PFT 4 (as reported by PI)
+        NL-Hor: Re-classified to PFT 10 (as reported by PI)
+        SE-Abi: Re-classified to PFT 4 (as reported by PI)
+
+    At US-ORv, it&#39;s clearly a wetland but there is a lot of closed canopy of
+    indeterminate composition.
+
+    Parameters
+    ----------
+    pft_map : numpy.ndarray
+        (N x M) array of PFT classes, where N is the number of sites and
+        M is the number of sub-grid cells (N PFT classes are returned)
+    site_list : list
+        (Optional) List of the site names; must be provided to get PFT
+        classes that accurately match the Cal/Val protocol
+    valid_pft : list
+        (Optional) List of valid PFT classes (Default: `mod17.PFT_VALID`)
+
+    Returns
+    -------
+    numpy.ndarray
+        An (N,) array of the dominant PFT classes
+    &#39;&#39;&#39;
+    pft_dom = np.zeros(pft_map.shape[0], dtype = np.float32)
+    for i in range(0, pft_map.shape[0]):
+        try:
+            pft_dom[i] = Counter(
+                list(filter(lambda x: x in valid_pft, pft_map[i])))\
+                .most_common()[0][0]
+        except:
+            # Skip those sites that have no valid PFTs
+            continue
+    if site_list is not None:
+        # Fill in the PI-reported PFT for troublesome sites
+        pft_dom[197] = 4
+        pft_dom[209] = 10
+        pft_dom[234] = 4
+        # Fill in black-listed sites
+        idx = [
+            site_list.index(sid)
+            for sid in (&#39;CN-Do1&#39;, &#39;CN-Do3&#39;, &#39;US-WPT&#39;, &#39;US-ORv&#39;)
+        ]
+        pft_dom[idx] = np.nan
+        # For PFT==3 (DNF) use pre-determined locations
+        idx = [site_list.index(sid) for sid in (&#39;CA-SF2&#39;, &#39;CA-SF3&#39;)]
+        pft_dom[idx] = 3
+        # For PFT==6 (CSH) use sites with any amount of CSH pixels
+        idx = np.argwhere(
+            np.sum(pft_map == 6, axis = 1) &gt; 0).ravel()
+        pft_dom[idx] = 6
+    return pft_dom
+
+
+def pft_remap(
+        pft_map: np.ndarray, site_list: list = None,
+        valid_pft: list = mod17.PFT_VALID):
+    &#39;&#39;&#39;
+    Returns a map of PFTs that is consistent with the model&#39;s approved PFT
+    classes. Note that this is specific to the MOD17 calibration/
+    validation (Cal/Val) protocol, i.e., two sites are always classified as
+    Deciduous Needleleaf (PFT 3):
+
+        CA-SF2
+        CA-SF3
+
+    Three other sites have hard-coded PFT classes because they are in urban
+    areas (PFT 13):
+
+        IT-Vig: Re-classified to PFT 4 (as reported by PI)
+        NL-Hor: Re-classified to PFT 10 (as reported by PI)
+        SE-Abi: Re-classified to PFT 4 (as reported by PI)
+
+    PFT classes that are not recognized in the MOD17 model are mapped to 0,
+    which is not used in the model.
+
+    Parameters
+    ----------
+    pft_map : numpy.ndarray
+        (N x M) array of PFT classes, where N is the number of sites and
+        M is the number of sub-grid cells (N PFT classes are returned)
+    site_list : list
+        (Optional) List of the site names; must be provided to get PFT
+        classes that accurately match the Cal/Val protocol
+    valid_pft : list
+        (Optional) List of valid PFT classes (Default: `mod17.PFT_VALID`)
+
+    Returns
+    -------
+    numpy.ndarray
+        An (N,M) array of the model-consistent PFT classes
+    &#39;&#39;&#39;
+    output_map = pft_map.copy()
+    if site_list is not None:
+        # Fill in the PI-reported PFT for troublesome sites
+        output_map[197] = 4
+        output_map[209] = 10
+        output_map[234] = 4
+        # For PFT==3, DNF, use pre-determined locations
+        idx = [site_list.index(sid) for sid in (&#39;CA-SF2&#39;, &#39;CA-SF3&#39;)]
+        output_map[idx] = 3
+    output_map[output_map  &gt; 12] = 0
+    output_map[output_map == 11] = 0
+    return output_map
+
+
+def restore_bplut(path_or_buffer: Union[BinaryIO, str]) -&gt; dict:
+    &#39;&#39;&#39;
+    NOTE: I manually exported Maosheng&#39;s fixed-width version (fixed-width
+    files are a crime) to CSV for easier handling.
+
+    Parameters
+    ----------
+    path_or_buffer : str or buffer
+        File path or buffer representing the BPLUT to be read
+
+    Returns
+    -------
+    dict
+    &#39;&#39;&#39;
+    # Remaps Maosheng&#39;s PFT order to the actual PFT code from MCD12Q1
+    #   LC_Type2
+    pft_lookup = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12]
+    data = pd.read_csv(path_or_buffer)
+    # Create a dictionary with an array for every key
+    output = dict([
+        (k, np.full((13,), np.nan))
+        for k in BPLUT_FIELD_LOOKUP.values()
+    ])
+    # Assumes the first column indexes the parameter/ field names
+    field_index = data.columns[0]
+    pft_index = list(data.columns)
+    pft_index.remove(field_index)
+    for k, key in enumerate(data[field_index]):
+        values = data.loc[data[field_index] == key, pft_index].values.ravel()
+        output[BPLUT_FIELD_LOOKUP[key]][pft_lookup] = values
+    return output
+
+
+def write_bplut(params_dict: dict, output_path: str):
+    &#39;&#39;&#39;
+    Writes a BPLUT parameters dictionary to an output CSV file.
+
+    Parameters
+    ----------
+    params_dict : dict
+    output_path : str
+        The output CSV file path
+    &#39;&#39;&#39;
+    template = os.path.join(
+        os.path.dirname(mod17.__file__), &#39;data/MOD17_BPLUT_C5.1_MERRA_NASA.csv&#39;)
+    with open(template, &#39;r&#39;) as file:
+        reader = csv.reader(file)
+        for line in reader:
+            if reader.line_num &gt; 1:
+                break
+            header = line
+    with open(output_path, &#39;w&#39;) as file:
+        writer = csv.writer(file)
+        writer.writerow(header)
+        for name, key in BPLUT_FIELD_LOOKUP.items():
+            values = []
+            for pft in mod17.PFT_VALID:
+                values.append(params_dict[key][pft])
+            writer.writerow((name, *values))
+
+
+def rmsd(
+        params: Sequence, func: Callable = None, observed: Sequence = None,
+        drivers: Sequence = None) -&gt; float:
+    &#39;&#39;&#39;
+    The root-mean scquared deviation. This function is intended to be used
+    in a multiprocessing context (with functools.partial()).
+
+    Parameters
+    ----------
+    params : Sequence
+        Sequence of expected model parameters
+    func : Callable
+        The function to call to generate predicted values; function should
+        expect to receive positional arguments, the first being a sequence
+        of model parameters and every subsequent argument an input array
+    observed : Sequence
+        The oberved values
+    drivers : Sequence
+        Sequence of expected model drivers
+
+    Returns
+    -------
+    float
+    &#39;&#39;&#39;
+    predicted = func(params, *drivers)
+    return np.sqrt(np.nanmean((predicted - observed) ** 2))
+
+
+def sites_by_record_length(
+        array: np.ndarray, dates: np.ndarray, pft_map: np.ndarray,
+        sites: np.ndarray, n_returned: int = 5, cutoff: float = 0.97,
+        pft_passed: Sequence = None) -&gt; tuple:
+    &#39;&#39;&#39;
+    Ranks sites by the total number of site-years with valid data. Returns
+    a tuple of (sites, site-years) where sites is the top `n_returned` site
+    names with the longest site-year record; site-years is a same-length
+    sequence of randomly chosen years, ordered by highest proportion of valid
+    data within the year.
+
+    Parameters
+    ----------
+    array : numpy.ndarray
+        The data record, a (T x N) array for N sites
+    dates : numpy.ndarray
+        (T x 3) array of Year, Month, Day for each time step; years must be
+        consecutive
+    pft_map : numpy.ndarray
+        The map of PFTs, a (N,) array for N sites with a subgrid of M cells
+    sites : numpy.ndarray
+        (N,) array of site labels
+    n_returned : int
+        Number of unique sites to return for each PFT
+    cutoff : float
+        (Optional) A cutoff for the proportion of valid data required in each
+        year; i.e., site-years with a proportion below this cutoff are ignored
+        when tallying sites by total number of site-years
+    pft_passed : Sequence
+        (Optional) A sequence of PFT codes for which the `cutoff` will not be
+        applied; instead, any site-year proportion above 0 will be considered;
+        if None, the `cutoff` is applied to all PFTs (Default: None)
+
+    Returns
+    -------
+    tuple
+        A 2-element tuple of (sites, site-years); each is a (P x Z)
+        `numpy.ndarray` where P is the number of unique PFTs and Z is the
+        `n_returned`
+    &#39;&#39;&#39;
+    assert array.shape[0] == dates.shape[0],\
+        &#39;Data array and dates array should have the same number of time points&#39;
+    assert array.shape[1] == pft_map.shape[0],\
+        &#39;Data array and PFT map should have the same number of sites&#39;
+    all_years = np.unique(dates[:,0])
+    site_years = np.zeros((len(all_years), pft_map.shape[0]))
+    for y, year in enumerate(all_years.ravel()):
+        # Count the number of days with valid data in each year; normalize by
+        #   the total number of days in the year (366 for leap years)
+        dmax = 366 if year % 4 == 0 else 365
+        site_years[y,:] = (
+            dmax - np.isnan(array[dates[:,0] == year]).sum(axis = 0)) / dmax
+    # Ignore site-year proportions below the cutoff
+    _site_years = site_years.copy()
+    site_years = np.where(site_years &lt; cutoff, 0, site_years)
+    # For simplicity, we copy the data from the original site_years array to
+    #   the new one for those PFTs that we don&#39;t want to apply a cutoff to
+    if pft_passed is not None:
+        mask = np.repeat(pft_map[None,:], len(all_years), axis = 0)
+        for each_pft in pft_passed:
+            site_years[mask == each_pft] = _site_years[mask == each_pft]
+    # Tally the total &#34;site-years&#34; for each site
+    site_years_sum = site_years.sum(axis = 0)
+    # Get a list of unique PFTs
+    all_pft = np.unique(pft_map[~np.isnan(pft_map)]).tolist()
+    all_pft.sort()
+    results_sites = np.chararray(
+        (len(all_pft), n_returned), itemsize = 6, unicode = True)
+    results = np.zeros((len(all_pft), n_returned), dtype = np.int32)
+    for p, pft in enumerate(all_pft):
+        # Sort the site-year data by number of site-years
+        site_max = site_years_sum[pft_map == pft]
+        top = sites[pft_map == pft][np.argsort(site_max)][::-1]
+        if top.size &lt; n_returned:
+            results_sites[p,0:top.size] = top
+        else:
+            results_sites[p,:] = top[0:n_returned]
+        # Indices of those top sites...
+        idx = np.argwhere(np.in1d(sites, top[0:n_returned])).ravel()
+        # Choose a random year in the top n_returned years, unless it is
+        #   PFT 3, in which case we just take the best site-year available
+        _cutoff = 0 if pft in pft_passed else cutoff
+        choices = [
+            all_years[site_years[:,idx][:,i] &gt; _cutoff]
+            for i in range(0, len(idx))
+        ]
+        # Shuffle the years within each site
+        for c in choices:
+            np.random.shuffle(c)
+        results[p,0:len(idx)] = [c[0] for c in choices[0:len(idx)]]
+    return (results_sites, results)
+
+
+def report(hdf, by_pft: bool = False):
+    &#39;&#39;&#39;
+    Check that we have everything needed to calibrate MOD17 and print the
+    report to the screen
+
+    Parameters
+    ----------
+    hdf : h5py.File
+    by_pft : bool
+    &#39;&#39;&#39;
+    NPP_KEYS = (&#39;MOD15A2H_fPAR_clim&#39;, &#39;MOD15A2H_LAI_clim&#39;, &#39;NPP_total_filled&#39;)
+    MERRA2_KEYS = (
+        &#39;LWGNT&#39;, &#39;LWGNT_daytime&#39;, &#39;LWGNT_nighttime&#39;, &#39;PS&#39;, &#39;PS_daytime&#39;,
+        &#39;PS_nighttime&#39;, &#39;QV10M&#39;, &#39;QV10M_daytime&#39;, &#39;QV10M_nighttime&#39;, &#39;SWGDN&#39;,
+        &#39;SWGDN_daytime&#39;, &#39;SWGDN_nighttime&#39;, &#39;SWGNT&#39;, &#39;SWGNT_daytime&#39;,
+        &#39;SWGNT_nighttime&#39;, &#39;T10M&#39;, &#39;T10M_daytime&#39;, &#39;T10M_nighttime&#39;, &#39;Tmin&#39;)
+
+    def find(hdf, prefix, key, pad = 10, mask = None):
+        &#39;Find a key, print the report&#39;
+        try:
+            field = &#39;%s/%s&#39; % (prefix, key)
+            pretty = (&#39;&#34;%s&#34;&#39; % key).ljust(pad)
+            if mask is None:
+                print_stats(hdf[field][:], pad, pretty)
+            else:
+                shp = hdf[field].shape
+                if len(shp) == 1:
+                    print_stats(hdf[field][mask], pad, pretty)
+                if len(shp) == 2:
+                    print_stats(hdf[field][:,mask], pad, pretty)
+                elif len(shp) == 3:
+                    print_stats(hdf[field][:,mask,:], pad, pretty)
+        except KeyError:
+            pretty = (&#39;&#34;%s&#34;&#39; % key).ljust(pad)
+            print(&#39;-- MISSING %s&#39; % pretty)
+
+    def print_stats(data, pad, pretty):
+        shp = &#39; x &#39;.join(map(str, data.shape))
+        shp = (&#39;[%s]&#39; % shp).ljust(pad + 7)
+        stats = tuple(summarize(data))
+        stats_pretty = &#39;&#39;
+        if stats[0] is not None:
+            stats_pretty = &#39;[%.2f, %.2f] (%.2f)&#39; % (stats[0], stats[2], stats[1])
+            if len(key) &lt; 10:
+                print(&#39;-- Found %s %s %s&#39; % (pretty, shp, stats_pretty))
+            else:
+                print(&#39;-- Found %s&#39; % pretty)
+                print(&#39;%s%s %s&#39; % (&#39;&#39;.rjust(pad + 10), shp, stats_pretty))
+
+    def summarize(data, nodata = -9999):
+        &#39;Get summary statistics for a field&#39;
+        if str(data.dtype).startswith(&#39;int&#39;):
+            return (None for i in range(0, 3))
+        data[data == -9999] = np.nan
+        return (
+            getattr(np, f)(data) for f in (&#39;nanmin&#39;, &#39;nanmean&#39;, &#39;nanmax&#39;)
+        )
+
+    print(&#39;\nMOD17: Checking for required driver variables...&#39;)
+    enum = range(0, 1) if not by_pft else (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12)
+    pft_map = None
+    for i in enum:
+        if by_pft:
+            pft_map = np.arange(0, hdf[&#39;NPP/PFT&#39;].size)[hdf[&#39;NPP/PFT&#39;][:] == i]
+            print(&#39;\n--------------------&#39;)
+            print(&#39;\n-- PFT == %d&#39; % i)
+        for key in NPP_KEYS:
+            find(hdf, &#39;NPP&#39;, key, mask = pft_map)
+        for key in MERRA2_KEYS:
+            find(hdf, &#39;NPP/surface_met_MERRA2&#39;, key, mask = pft_map)
+    print(&#39;&#39;)
+
+
+def vnp15a2h_qc_fail(x):
+    &#39;&#39;&#39;
+    Returns pass/fail for QC flags based on the L4C fPAR QC protocol for the
+    `FparLai_QC` band: Bad pixels have either `11` in the first two bits
+    (&#34;Fill Value&#34;) or anything other than `0` in the 3rd least-significant
+    bits, which combines &#34;Pixel not produced at all&#34;. For example, see decimal
+    number 80:
+
+        0101|0|000 where &#34;000&#34; is the combined (Fill bit | Retrieval quality)
+
+    Parameters
+    ----------
+    x : numpy.ndarray
+        Unsigned, 8-bit integer array
+
+    Returns
+    -------
+    numpy.ndarray
+        Boolean array
+    &#39;&#39;&#39;
+    y = dec2bin_unpack(x)
+    # Emit 1 = FAIL if sum(&#34;11&#34;) == 2; &#34;BiomeType&#34; == &#34;Filled Value&#34;
+    c1 = np.where(y[...,0:2].sum(axis = -1) == 2, 1, 0).astype(np.uint8)
+    # Emit 1 = FAIL if 3rd bit == 1; &#34;SCF_QC&#34; == &#34;Pixel not produced at all&#34;
+    c2 = y[...,5]
+    # Intermediate arrays are 1 = FAIL, 0 = PASS
+    return (c1 + c2) &gt; 0
+
+
+def vnp15a2h_cloud_fail(x):
+    &#39;&#39;&#39;
+    Returns pass/fail for QC flags based on the L4C fPAR QC protocol for the
+    `FparExtra_QC` band (cloud QC band): Bad pixels have anything OTHER THAN
+    `1` second least-significant bit; `00` and `01` being acceptable cloud QC
+    flags (&#34;Confident clear&#34; and &#34;Probably clear&#34;, respectively).
+
+    Parameters
+    ----------
+    x : numpy.ndarray
+        Unsigned, 8-bit integer array
+
+    Returns
+    -------
+    numpy.ndarray
+        Boolean array
+    &#39;&#39;&#39;
+    y = dec2bin_unpack(x)
+    return y[...,-2] &gt; 0</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="mod17.utils.dec2bin_unpack"><code class="name flex">
+<span>def <span class="ident">dec2bin_unpack</span></span>(<span>x: numpy.ndarray) ‑> numpy.ndarray</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Unpacks an arbitrary decimal NumPy array into a binary representation
+along a new axis. Assumes decimal digits are on the interval [0, 255],
+i.e., that only 8-bit representations are needed.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>x</code></strong> :&ensp;<code>numpy.ndarray</code></dt>
+<dd>&nbsp;</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>numpy.ndarray</code></dt>
+<dd>&nbsp;</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def dec2bin_unpack(x: np.ndarray) -&gt; np.ndarray:
+    &#39;&#39;&#39;
+    Unpacks an arbitrary decimal NumPy array into a binary representation
+    along a new axis. Assumes decimal digits are on the interval [0, 255],
+    i.e., that only 8-bit representations are needed.
+
+    Parameters
+    ----------
+    x : numpy.ndarray
+
+    Returns
+    -------
+    numpy.ndarray
+    &#39;&#39;&#39;
+    # Make sure the bit representation is enumerated along a new axis, the
+    #   very last axis
+    axis = x.ndim
+    # unpackbits() returns the bit representation in big-endian order, so we
+    #   flip the array (with -8) to get litte-endian order
+    return np.unpackbits(x[...,None], axis = axis)[...,-8:]</code></pre>
+</details>
+</dd>
+<dt id="mod17.utils.haversine"><code class="name flex">
+<span>def <span class="ident">haversine</span></span>(<span>p1: Sequence[+T_co], p2: Sequence[+T_co], radius: float = 6371000.0) ‑> float</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Haversine formula for great circle distance, in meters. Accurate for
+points separated near and far but for small distances the accuracy is
+improved by providing a different radius of the sphere, say 6356.7523 km
+for polar regions or 6378.1370 km for equatorial regions. Default is the
+mean earth radius.</p>
+<p>NOTE: Distance returned is in the same units as radius.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>p1</code></strong> :&ensp;<code>tuple</code> or <code>list</code></dt>
+<dd>Sequence of two floats, longitude and latitude, respectively</dd>
+<dt><strong><code>p2</code></strong> :&ensp;<code>tuple</code> or <code>list</code></dt>
+<dd>Same as p1 but for the second point</dd>
+<dt><strong><code>radius</code></strong> :&ensp;<code>int</code> or <code>float</code></dt>
+<dd>Radius of the sphere to use in distance calculation
+(Default: 6,371,000 meters)</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>float</code></dt>
+<dd>&nbsp;</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def haversine(p1: Sequence, p2: Sequence, radius: float = 6371e3) -&gt; float:
+    &#39;&#39;&#39;
+    Haversine formula for great circle distance, in meters. Accurate for
+    points separated near and far but for small distances the accuracy is
+    improved by providing a different radius of the sphere, say 6356.7523 km
+    for polar regions or 6378.1370 km for equatorial regions. Default is the
+    mean earth radius.
+
+    NOTE: Distance returned is in the same units as radius.
+
+    Parameters
+    ----------
+    p1 : tuple or list
+        Sequence of two floats, longitude and latitude, respectively
+    p2 : tuple or list
+        Same as p1 but for the second point
+    radius : int or float
+        Radius of the sphere to use in distance calculation
+        (Default: 6,371,000 meters)
+
+    Returns
+    -------
+    float
+    &#39;&#39;&#39;
+    x1, y1 = map(np.deg2rad, p1)
+    x2, y2 = map(np.deg2rad, p2)
+    dphi = np.abs(y2 - y1) # Difference in latitude
+    dlambda = np.abs(x2 - x1) # Difference in longitude
+    angle = 2 * np.arcsin(np.sqrt(np.add(
+        np.power(np.sin(dphi / 2), 2),
+        np.cos(y1) * np.cos(y2) * np.power(np.sin(dlambda / 2), 2)
+    )))
+    return float(angle * radius)</code></pre>
+</details>
+</dd>
+<dt id="mod17.utils.mod15a2h_qc_fail"><code class="name flex">
+<span>def <span class="ident">mod15a2h_qc_fail</span></span>(<span>x: numpy.ndarray) ‑> numpy.ndarray</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Returns pass/fail for QC flags based on the L4C fPAR QC protocol for the
+<code>FparLai_QC</code> band: Bad pixels have either <code>1</code> in the first bit ("Pixel not
+produced at all") or anything other than <code>00</code> ("clear") in bits 3-4.
+Output array is True wherever the array fails QC criteria. Compare to:</p>
+<pre><code>np.vectorize(lambda v: v[0] == 1 or v[3:5] != '00')
+</code></pre>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>x</code></strong> :&ensp;<code>numpy.ndarray</code></dt>
+<dd>Array where the last axis enumerates the unpacked bits
+(ones and zeros)</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>numpy.ndarray</code></dt>
+<dd>Boolean array with True wherever QC criteria are failed</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def mod15a2h_qc_fail(x: np.ndarray) -&gt; np.ndarray:
+    &#39;&#39;&#39;
+    Returns pass/fail for QC flags based on the L4C fPAR QC protocol for the
+    `FparLai_QC` band: Bad pixels have either `1` in the first bit (&#34;Pixel not
+    produced at all&#34;) or anything other than `00` (&#34;clear&#34;) in bits 3-4.
+    Output array is True wherever the array fails QC criteria. Compare to:
+
+        np.vectorize(lambda v: v[0] == 1 or v[3:5] != &#39;00&#39;)
+
+    Parameters
+    ----------
+    x : numpy.ndarray
+        Array where the last axis enumerates the unpacked bits
+        (ones and zeros)
+
+    Returns
+    -------
+    numpy.ndarray
+        Boolean array with True wherever QC criteria are failed
+    &#39;&#39;&#39;
+    y = dec2bin_unpack(x)
+    # Emit 1 = FAIL if these two bits are not == &#34;00&#34;
+    c1 = y[...,3:5].sum(axis = -1).astype(np.uint8)
+    # Emit 1 = FAIL if 1st bit == 1 (&#34;Pixel not produced at all&#34;)
+    c2 = y[...,0]
+    # Intermediate arrays are 1 = FAIL, 0 = PASS
+    return (c1 + c2) &gt; 0</code></pre>
+</details>
+</dd>
+<dt id="mod17.utils.pft_dominant"><code class="name flex">
+<span>def <span class="ident">pft_dominant</span></span>(<span>pft_map: numpy.ndarray, site_list: list = None, valid_pft: list = (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12))</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Returns the dominant PFT type, based on the PFT mode among the sub-grid
+for each site. Note that this is specific to the MOD17 calibration/
+validation (Cal/Val) protocol, i.e., two sites are always classified as
+Deciduous Needleleaf (PFT 3):</p>
+<pre><code>CA-SF2
+CA-SF3
+</code></pre>
+<p>Three other sites (CN-Do1, CN-Do3, US-WPT) are classified by the PI as
+wetlands, which is not supported, nor are their MCD12Q1 classifications.</p>
+<p>Three other sites have hard-coded PFT classes because they are in urban
+areas (PFT 13):</p>
+<pre><code>IT-Vig: Re-classified to PFT 4 (as reported by PI)
+NL-Hor: Re-classified to PFT 10 (as reported by PI)
+SE-Abi: Re-classified to PFT 4 (as reported by PI)
+</code></pre>
+<p>At US-ORv, it's clearly a wetland but there is a lot of closed canopy of
+indeterminate composition.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>pft_map</code></strong> :&ensp;<code>numpy.ndarray</code></dt>
+<dd>(N x M) array of PFT classes, where N is the number of sites and
+M is the number of sub-grid cells (N PFT classes are returned)</dd>
+<dt><strong><code>site_list</code></strong> :&ensp;<code>list</code></dt>
+<dd>(Optional) List of the site names; must be provided to get PFT
+classes that accurately match the Cal/Val protocol</dd>
+<dt><strong><code>valid_pft</code></strong> :&ensp;<code>list</code></dt>
+<dd>(Optional) List of valid PFT classes (Default: <code>mod17.PFT_VALID</code>)</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>numpy.ndarray</code></dt>
+<dd>An (N,) array of the dominant PFT classes</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def pft_dominant(
+        pft_map: np.ndarray, site_list: list = None,
+        valid_pft: list = mod17.PFT_VALID):
+    &#39;&#39;&#39;
+    Returns the dominant PFT type, based on the PFT mode among the sub-grid
+    for each site. Note that this is specific to the MOD17 calibration/
+    validation (Cal/Val) protocol, i.e., two sites are always classified as
+    Deciduous Needleleaf (PFT 3):
+
+        CA-SF2
+        CA-SF3
+
+    Three other sites (CN-Do1, CN-Do3, US-WPT) are classified by the PI as
+    wetlands, which is not supported, nor are their MCD12Q1 classifications.
+
+    Three other sites have hard-coded PFT classes because they are in urban
+    areas (PFT 13):
+
+        IT-Vig: Re-classified to PFT 4 (as reported by PI)
+        NL-Hor: Re-classified to PFT 10 (as reported by PI)
+        SE-Abi: Re-classified to PFT 4 (as reported by PI)
+
+    At US-ORv, it&#39;s clearly a wetland but there is a lot of closed canopy of
+    indeterminate composition.
+
+    Parameters
+    ----------
+    pft_map : numpy.ndarray
+        (N x M) array of PFT classes, where N is the number of sites and
+        M is the number of sub-grid cells (N PFT classes are returned)
+    site_list : list
+        (Optional) List of the site names; must be provided to get PFT
+        classes that accurately match the Cal/Val protocol
+    valid_pft : list
+        (Optional) List of valid PFT classes (Default: `mod17.PFT_VALID`)
+
+    Returns
+    -------
+    numpy.ndarray
+        An (N,) array of the dominant PFT classes
+    &#39;&#39;&#39;
+    pft_dom = np.zeros(pft_map.shape[0], dtype = np.float32)
+    for i in range(0, pft_map.shape[0]):
+        try:
+            pft_dom[i] = Counter(
+                list(filter(lambda x: x in valid_pft, pft_map[i])))\
+                .most_common()[0][0]
+        except:
+            # Skip those sites that have no valid PFTs
+            continue
+    if site_list is not None:
+        # Fill in the PI-reported PFT for troublesome sites
+        pft_dom[197] = 4
+        pft_dom[209] = 10
+        pft_dom[234] = 4
+        # Fill in black-listed sites
+        idx = [
+            site_list.index(sid)
+            for sid in (&#39;CN-Do1&#39;, &#39;CN-Do3&#39;, &#39;US-WPT&#39;, &#39;US-ORv&#39;)
+        ]
+        pft_dom[idx] = np.nan
+        # For PFT==3 (DNF) use pre-determined locations
+        idx = [site_list.index(sid) for sid in (&#39;CA-SF2&#39;, &#39;CA-SF3&#39;)]
+        pft_dom[idx] = 3
+        # For PFT==6 (CSH) use sites with any amount of CSH pixels
+        idx = np.argwhere(
+            np.sum(pft_map == 6, axis = 1) &gt; 0).ravel()
+        pft_dom[idx] = 6
+    return pft_dom</code></pre>
+</details>
+</dd>
+<dt id="mod17.utils.pft_remap"><code class="name flex">
+<span>def <span class="ident">pft_remap</span></span>(<span>pft_map: numpy.ndarray, site_list: list = None, valid_pft: list = (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12))</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Returns a map of PFTs that is consistent with the model's approved PFT
+classes. Note that this is specific to the MOD17 calibration/
+validation (Cal/Val) protocol, i.e., two sites are always classified as
+Deciduous Needleleaf (PFT 3):</p>
+<pre><code>CA-SF2
+CA-SF3
+</code></pre>
+<p>Three other sites have hard-coded PFT classes because they are in urban
+areas (PFT 13):</p>
+<pre><code>IT-Vig: Re-classified to PFT 4 (as reported by PI)
+NL-Hor: Re-classified to PFT 10 (as reported by PI)
+SE-Abi: Re-classified to PFT 4 (as reported by PI)
+</code></pre>
+<p>PFT classes that are not recognized in the MOD17 model are mapped to 0,
+which is not used in the model.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>pft_map</code></strong> :&ensp;<code>numpy.ndarray</code></dt>
+<dd>(N x M) array of PFT classes, where N is the number of sites and
+M is the number of sub-grid cells (N PFT classes are returned)</dd>
+<dt><strong><code>site_list</code></strong> :&ensp;<code>list</code></dt>
+<dd>(Optional) List of the site names; must be provided to get PFT
+classes that accurately match the Cal/Val protocol</dd>
+<dt><strong><code>valid_pft</code></strong> :&ensp;<code>list</code></dt>
+<dd>(Optional) List of valid PFT classes (Default: <code>mod17.PFT_VALID</code>)</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>numpy.ndarray</code></dt>
+<dd>An (N,M) array of the model-consistent PFT classes</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def pft_remap(
+        pft_map: np.ndarray, site_list: list = None,
+        valid_pft: list = mod17.PFT_VALID):
+    &#39;&#39;&#39;
+    Returns a map of PFTs that is consistent with the model&#39;s approved PFT
+    classes. Note that this is specific to the MOD17 calibration/
+    validation (Cal/Val) protocol, i.e., two sites are always classified as
+    Deciduous Needleleaf (PFT 3):
+
+        CA-SF2
+        CA-SF3
+
+    Three other sites have hard-coded PFT classes because they are in urban
+    areas (PFT 13):
+
+        IT-Vig: Re-classified to PFT 4 (as reported by PI)
+        NL-Hor: Re-classified to PFT 10 (as reported by PI)
+        SE-Abi: Re-classified to PFT 4 (as reported by PI)
+
+    PFT classes that are not recognized in the MOD17 model are mapped to 0,
+    which is not used in the model.
+
+    Parameters
+    ----------
+    pft_map : numpy.ndarray
+        (N x M) array of PFT classes, where N is the number of sites and
+        M is the number of sub-grid cells (N PFT classes are returned)
+    site_list : list
+        (Optional) List of the site names; must be provided to get PFT
+        classes that accurately match the Cal/Val protocol
+    valid_pft : list
+        (Optional) List of valid PFT classes (Default: `mod17.PFT_VALID`)
+
+    Returns
+    -------
+    numpy.ndarray
+        An (N,M) array of the model-consistent PFT classes
+    &#39;&#39;&#39;
+    output_map = pft_map.copy()
+    if site_list is not None:
+        # Fill in the PI-reported PFT for troublesome sites
+        output_map[197] = 4
+        output_map[209] = 10
+        output_map[234] = 4
+        # For PFT==3, DNF, use pre-determined locations
+        idx = [site_list.index(sid) for sid in (&#39;CA-SF2&#39;, &#39;CA-SF3&#39;)]
+        output_map[idx] = 3
+    output_map[output_map  &gt; 12] = 0
+    output_map[output_map == 11] = 0
+    return output_map</code></pre>
+</details>
+</dd>
+<dt id="mod17.utils.report"><code class="name flex">
+<span>def <span class="ident">report</span></span>(<span>hdf, by_pft: bool = False)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Check that we have everything needed to calibrate MOD17 and print the
+report to the screen</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>hdf</code></strong> :&ensp;<code>h5py.File</code></dt>
+<dd>&nbsp;</dd>
+<dt><strong><code>by_pft</code></strong> :&ensp;<code>bool</code></dt>
+<dd>&nbsp;</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def report(hdf, by_pft: bool = False):
+    &#39;&#39;&#39;
+    Check that we have everything needed to calibrate MOD17 and print the
+    report to the screen
+
+    Parameters
+    ----------
+    hdf : h5py.File
+    by_pft : bool
+    &#39;&#39;&#39;
+    NPP_KEYS = (&#39;MOD15A2H_fPAR_clim&#39;, &#39;MOD15A2H_LAI_clim&#39;, &#39;NPP_total_filled&#39;)
+    MERRA2_KEYS = (
+        &#39;LWGNT&#39;, &#39;LWGNT_daytime&#39;, &#39;LWGNT_nighttime&#39;, &#39;PS&#39;, &#39;PS_daytime&#39;,
+        &#39;PS_nighttime&#39;, &#39;QV10M&#39;, &#39;QV10M_daytime&#39;, &#39;QV10M_nighttime&#39;, &#39;SWGDN&#39;,
+        &#39;SWGDN_daytime&#39;, &#39;SWGDN_nighttime&#39;, &#39;SWGNT&#39;, &#39;SWGNT_daytime&#39;,
+        &#39;SWGNT_nighttime&#39;, &#39;T10M&#39;, &#39;T10M_daytime&#39;, &#39;T10M_nighttime&#39;, &#39;Tmin&#39;)
+
+    def find(hdf, prefix, key, pad = 10, mask = None):
+        &#39;Find a key, print the report&#39;
+        try:
+            field = &#39;%s/%s&#39; % (prefix, key)
+            pretty = (&#39;&#34;%s&#34;&#39; % key).ljust(pad)
+            if mask is None:
+                print_stats(hdf[field][:], pad, pretty)
+            else:
+                shp = hdf[field].shape
+                if len(shp) == 1:
+                    print_stats(hdf[field][mask], pad, pretty)
+                if len(shp) == 2:
+                    print_stats(hdf[field][:,mask], pad, pretty)
+                elif len(shp) == 3:
+                    print_stats(hdf[field][:,mask,:], pad, pretty)
+        except KeyError:
+            pretty = (&#39;&#34;%s&#34;&#39; % key).ljust(pad)
+            print(&#39;-- MISSING %s&#39; % pretty)
+
+    def print_stats(data, pad, pretty):
+        shp = &#39; x &#39;.join(map(str, data.shape))
+        shp = (&#39;[%s]&#39; % shp).ljust(pad + 7)
+        stats = tuple(summarize(data))
+        stats_pretty = &#39;&#39;
+        if stats[0] is not None:
+            stats_pretty = &#39;[%.2f, %.2f] (%.2f)&#39; % (stats[0], stats[2], stats[1])
+            if len(key) &lt; 10:
+                print(&#39;-- Found %s %s %s&#39; % (pretty, shp, stats_pretty))
+            else:
+                print(&#39;-- Found %s&#39; % pretty)
+                print(&#39;%s%s %s&#39; % (&#39;&#39;.rjust(pad + 10), shp, stats_pretty))
+
+    def summarize(data, nodata = -9999):
+        &#39;Get summary statistics for a field&#39;
+        if str(data.dtype).startswith(&#39;int&#39;):
+            return (None for i in range(0, 3))
+        data[data == -9999] = np.nan
+        return (
+            getattr(np, f)(data) for f in (&#39;nanmin&#39;, &#39;nanmean&#39;, &#39;nanmax&#39;)
+        )
+
+    print(&#39;\nMOD17: Checking for required driver variables...&#39;)
+    enum = range(0, 1) if not by_pft else (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12)
+    pft_map = None
+    for i in enum:
+        if by_pft:
+            pft_map = np.arange(0, hdf[&#39;NPP/PFT&#39;].size)[hdf[&#39;NPP/PFT&#39;][:] == i]
+            print(&#39;\n--------------------&#39;)
+            print(&#39;\n-- PFT == %d&#39; % i)
+        for key in NPP_KEYS:
+            find(hdf, &#39;NPP&#39;, key, mask = pft_map)
+        for key in MERRA2_KEYS:
+            find(hdf, &#39;NPP/surface_met_MERRA2&#39;, key, mask = pft_map)
+    print(&#39;&#39;)</code></pre>
+</details>
+</dd>
+<dt id="mod17.utils.restore_bplut"><code class="name flex">
+<span>def <span class="ident">restore_bplut</span></span>(<span>path_or_buffer: Union[BinaryIO, str]) ‑> dict</span>
+</code></dt>
+<dd>
+<div class="desc"><p>NOTE: I manually exported Maosheng's fixed-width version (fixed-width
+files are a crime) to CSV for easier handling.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>path_or_buffer</code></strong> :&ensp;<code>str</code> or <code>buffer</code></dt>
+<dd>File path or buffer representing the BPLUT to be read</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>dict</code></dt>
+<dd>&nbsp;</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def restore_bplut(path_or_buffer: Union[BinaryIO, str]) -&gt; dict:
+    &#39;&#39;&#39;
+    NOTE: I manually exported Maosheng&#39;s fixed-width version (fixed-width
+    files are a crime) to CSV for easier handling.
+
+    Parameters
+    ----------
+    path_or_buffer : str or buffer
+        File path or buffer representing the BPLUT to be read
+
+    Returns
+    -------
+    dict
+    &#39;&#39;&#39;
+    # Remaps Maosheng&#39;s PFT order to the actual PFT code from MCD12Q1
+    #   LC_Type2
+    pft_lookup = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12]
+    data = pd.read_csv(path_or_buffer)
+    # Create a dictionary with an array for every key
+    output = dict([
+        (k, np.full((13,), np.nan))
+        for k in BPLUT_FIELD_LOOKUP.values()
+    ])
+    # Assumes the first column indexes the parameter/ field names
+    field_index = data.columns[0]
+    pft_index = list(data.columns)
+    pft_index.remove(field_index)
+    for k, key in enumerate(data[field_index]):
+        values = data.loc[data[field_index] == key, pft_index].values.ravel()
+        output[BPLUT_FIELD_LOOKUP[key]][pft_lookup] = values
+    return output</code></pre>
+</details>
+</dd>
+<dt id="mod17.utils.rmsd"><code class="name flex">
+<span>def <span class="ident">rmsd</span></span>(<span>params: Sequence[+T_co], func: Callable = None, observed: Sequence[+T_co] = None, drivers: Sequence[+T_co] = None) ‑> float</span>
+</code></dt>
+<dd>
+<div class="desc"><p>The root-mean scquared deviation. This function is intended to be used
+in a multiprocessing context (with functools.partial()).</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>params</code></strong> :&ensp;<code>Sequence</code></dt>
+<dd>Sequence of expected model parameters</dd>
+<dt><strong><code>func</code></strong> :&ensp;<code>Callable</code></dt>
+<dd>The function to call to generate predicted values; function should
+expect to receive positional arguments, the first being a sequence
+of model parameters and every subsequent argument an input array</dd>
+<dt><strong><code>observed</code></strong> :&ensp;<code>Sequence</code></dt>
+<dd>The oberved values</dd>
+<dt><strong><code>drivers</code></strong> :&ensp;<code>Sequence</code></dt>
+<dd>Sequence of expected model drivers</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>float</code></dt>
+<dd>&nbsp;</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def rmsd(
+        params: Sequence, func: Callable = None, observed: Sequence = None,
+        drivers: Sequence = None) -&gt; float:
+    &#39;&#39;&#39;
+    The root-mean scquared deviation. This function is intended to be used
+    in a multiprocessing context (with functools.partial()).
+
+    Parameters
+    ----------
+    params : Sequence
+        Sequence of expected model parameters
+    func : Callable
+        The function to call to generate predicted values; function should
+        expect to receive positional arguments, the first being a sequence
+        of model parameters and every subsequent argument an input array
+    observed : Sequence
+        The oberved values
+    drivers : Sequence
+        Sequence of expected model drivers
+
+    Returns
+    -------
+    float
+    &#39;&#39;&#39;
+    predicted = func(params, *drivers)
+    return np.sqrt(np.nanmean((predicted - observed) ** 2))</code></pre>
+</details>
+</dd>
+<dt id="mod17.utils.sites_by_record_length"><code class="name flex">
+<span>def <span class="ident">sites_by_record_length</span></span>(<span>array: numpy.ndarray, dates: numpy.ndarray, pft_map: numpy.ndarray, sites: numpy.ndarray, n_returned: int = 5, cutoff: float = 0.97, pft_passed: Sequence[+T_co] = None) ‑> tuple</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Ranks sites by the total number of site-years with valid data. Returns
+a tuple of (sites, site-years) where sites is the top <code>n_returned</code> site
+names with the longest site-year record; site-years is a same-length
+sequence of randomly chosen years, ordered by highest proportion of valid
+data within the year.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>array</code></strong> :&ensp;<code>numpy.ndarray</code></dt>
+<dd>The data record, a (T x N) array for N sites</dd>
+<dt><strong><code>dates</code></strong> :&ensp;<code>numpy.ndarray</code></dt>
+<dd>(T x 3) array of Year, Month, Day for each time step; years must be
+consecutive</dd>
+<dt><strong><code>pft_map</code></strong> :&ensp;<code>numpy.ndarray</code></dt>
+<dd>The map of PFTs, a (N,) array for N sites with a subgrid of M cells</dd>
+<dt><strong><code>sites</code></strong> :&ensp;<code>numpy.ndarray</code></dt>
+<dd>(N,) array of site labels</dd>
+<dt><strong><code>n_returned</code></strong> :&ensp;<code>int</code></dt>
+<dd>Number of unique sites to return for each PFT</dd>
+<dt><strong><code>cutoff</code></strong> :&ensp;<code>float</code></dt>
+<dd>(Optional) A cutoff for the proportion of valid data required in each
+year; i.e., site-years with a proportion below this cutoff are ignored
+when tallying sites by total number of site-years</dd>
+<dt><strong><code>pft_passed</code></strong> :&ensp;<code>Sequence</code></dt>
+<dd>(Optional) A sequence of PFT codes for which the <code>cutoff</code> will not be
+applied; instead, any site-year proportion above 0 will be considered;
+if None, the <code>cutoff</code> is applied to all PFTs (Default: None)</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>tuple</code></dt>
+<dd>A 2-element tuple of (sites, site-years); each is a (P x Z)
+<code>numpy.ndarray</code> where P is the number of unique PFTs and Z is the
+<code>n_returned</code></dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def sites_by_record_length(
+        array: np.ndarray, dates: np.ndarray, pft_map: np.ndarray,
+        sites: np.ndarray, n_returned: int = 5, cutoff: float = 0.97,
+        pft_passed: Sequence = None) -&gt; tuple:
+    &#39;&#39;&#39;
+    Ranks sites by the total number of site-years with valid data. Returns
+    a tuple of (sites, site-years) where sites is the top `n_returned` site
+    names with the longest site-year record; site-years is a same-length
+    sequence of randomly chosen years, ordered by highest proportion of valid
+    data within the year.
+
+    Parameters
+    ----------
+    array : numpy.ndarray
+        The data record, a (T x N) array for N sites
+    dates : numpy.ndarray
+        (T x 3) array of Year, Month, Day for each time step; years must be
+        consecutive
+    pft_map : numpy.ndarray
+        The map of PFTs, a (N,) array for N sites with a subgrid of M cells
+    sites : numpy.ndarray
+        (N,) array of site labels
+    n_returned : int
+        Number of unique sites to return for each PFT
+    cutoff : float
+        (Optional) A cutoff for the proportion of valid data required in each
+        year; i.e., site-years with a proportion below this cutoff are ignored
+        when tallying sites by total number of site-years
+    pft_passed : Sequence
+        (Optional) A sequence of PFT codes for which the `cutoff` will not be
+        applied; instead, any site-year proportion above 0 will be considered;
+        if None, the `cutoff` is applied to all PFTs (Default: None)
+
+    Returns
+    -------
+    tuple
+        A 2-element tuple of (sites, site-years); each is a (P x Z)
+        `numpy.ndarray` where P is the number of unique PFTs and Z is the
+        `n_returned`
+    &#39;&#39;&#39;
+    assert array.shape[0] == dates.shape[0],\
+        &#39;Data array and dates array should have the same number of time points&#39;
+    assert array.shape[1] == pft_map.shape[0],\
+        &#39;Data array and PFT map should have the same number of sites&#39;
+    all_years = np.unique(dates[:,0])
+    site_years = np.zeros((len(all_years), pft_map.shape[0]))
+    for y, year in enumerate(all_years.ravel()):
+        # Count the number of days with valid data in each year; normalize by
+        #   the total number of days in the year (366 for leap years)
+        dmax = 366 if year % 4 == 0 else 365
+        site_years[y,:] = (
+            dmax - np.isnan(array[dates[:,0] == year]).sum(axis = 0)) / dmax
+    # Ignore site-year proportions below the cutoff
+    _site_years = site_years.copy()
+    site_years = np.where(site_years &lt; cutoff, 0, site_years)
+    # For simplicity, we copy the data from the original site_years array to
+    #   the new one for those PFTs that we don&#39;t want to apply a cutoff to
+    if pft_passed is not None:
+        mask = np.repeat(pft_map[None,:], len(all_years), axis = 0)
+        for each_pft in pft_passed:
+            site_years[mask == each_pft] = _site_years[mask == each_pft]
+    # Tally the total &#34;site-years&#34; for each site
+    site_years_sum = site_years.sum(axis = 0)
+    # Get a list of unique PFTs
+    all_pft = np.unique(pft_map[~np.isnan(pft_map)]).tolist()
+    all_pft.sort()
+    results_sites = np.chararray(
+        (len(all_pft), n_returned), itemsize = 6, unicode = True)
+    results = np.zeros((len(all_pft), n_returned), dtype = np.int32)
+    for p, pft in enumerate(all_pft):
+        # Sort the site-year data by number of site-years
+        site_max = site_years_sum[pft_map == pft]
+        top = sites[pft_map == pft][np.argsort(site_max)][::-1]
+        if top.size &lt; n_returned:
+            results_sites[p,0:top.size] = top
+        else:
+            results_sites[p,:] = top[0:n_returned]
+        # Indices of those top sites...
+        idx = np.argwhere(np.in1d(sites, top[0:n_returned])).ravel()
+        # Choose a random year in the top n_returned years, unless it is
+        #   PFT 3, in which case we just take the best site-year available
+        _cutoff = 0 if pft in pft_passed else cutoff
+        choices = [
+            all_years[site_years[:,idx][:,i] &gt; _cutoff]
+            for i in range(0, len(idx))
+        ]
+        # Shuffle the years within each site
+        for c in choices:
+            np.random.shuffle(c)
+        results[p,0:len(idx)] = [c[0] for c in choices[0:len(idx)]]
+    return (results_sites, results)</code></pre>
+</details>
+</dd>
+<dt id="mod17.utils.vnp15a2h_cloud_fail"><code class="name flex">
+<span>def <span class="ident">vnp15a2h_cloud_fail</span></span>(<span>x)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Returns pass/fail for QC flags based on the L4C fPAR QC protocol for the
+<code>FparExtra_QC</code> band (cloud QC band): Bad pixels have anything OTHER THAN
+<code>1</code> second least-significant bit; <code>00</code> and <code>01</code> being acceptable cloud QC
+flags ("Confident clear" and "Probably clear", respectively).</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>x</code></strong> :&ensp;<code>numpy.ndarray</code></dt>
+<dd>Unsigned, 8-bit integer array</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>numpy.ndarray</code></dt>
+<dd>Boolean array</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def vnp15a2h_cloud_fail(x):
+    &#39;&#39;&#39;
+    Returns pass/fail for QC flags based on the L4C fPAR QC protocol for the
+    `FparExtra_QC` band (cloud QC band): Bad pixels have anything OTHER THAN
+    `1` second least-significant bit; `00` and `01` being acceptable cloud QC
+    flags (&#34;Confident clear&#34; and &#34;Probably clear&#34;, respectively).
+
+    Parameters
+    ----------
+    x : numpy.ndarray
+        Unsigned, 8-bit integer array
+
+    Returns
+    -------
+    numpy.ndarray
+        Boolean array
+    &#39;&#39;&#39;
+    y = dec2bin_unpack(x)
+    return y[...,-2] &gt; 0</code></pre>
+</details>
+</dd>
+<dt id="mod17.utils.vnp15a2h_qc_fail"><code class="name flex">
+<span>def <span class="ident">vnp15a2h_qc_fail</span></span>(<span>x)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Returns pass/fail for QC flags based on the L4C fPAR QC protocol for the
+<code>FparLai_QC</code> band: Bad pixels have either <code>11</code> in the first two bits
+("Fill Value") or anything other than <code>0</code> in the 3rd least-significant
+bits, which combines "Pixel not produced at all". For example, see decimal
+number 80:</p>
+<pre><code>0101|0|000 where "000" is the combined (Fill bit | Retrieval quality)
+</code></pre>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>x</code></strong> :&ensp;<code>numpy.ndarray</code></dt>
+<dd>Unsigned, 8-bit integer array</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>numpy.ndarray</code></dt>
+<dd>Boolean array</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def vnp15a2h_qc_fail(x):
+    &#39;&#39;&#39;
+    Returns pass/fail for QC flags based on the L4C fPAR QC protocol for the
+    `FparLai_QC` band: Bad pixels have either `11` in the first two bits
+    (&#34;Fill Value&#34;) or anything other than `0` in the 3rd least-significant
+    bits, which combines &#34;Pixel not produced at all&#34;. For example, see decimal
+    number 80:
+
+        0101|0|000 where &#34;000&#34; is the combined (Fill bit | Retrieval quality)
+
+    Parameters
+    ----------
+    x : numpy.ndarray
+        Unsigned, 8-bit integer array
+
+    Returns
+    -------
+    numpy.ndarray
+        Boolean array
+    &#39;&#39;&#39;
+    y = dec2bin_unpack(x)
+    # Emit 1 = FAIL if sum(&#34;11&#34;) == 2; &#34;BiomeType&#34; == &#34;Filled Value&#34;
+    c1 = np.where(y[...,0:2].sum(axis = -1) == 2, 1, 0).astype(np.uint8)
+    # Emit 1 = FAIL if 3rd bit == 1; &#34;SCF_QC&#34; == &#34;Pixel not produced at all&#34;
+    c2 = y[...,5]
+    # Intermediate arrays are 1 = FAIL, 0 = PASS
+    return (c1 + c2) &gt; 0</code></pre>
+</details>
+</dd>
+<dt id="mod17.utils.write_bplut"><code class="name flex">
+<span>def <span class="ident">write_bplut</span></span>(<span>params_dict: dict, output_path: str)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Writes a BPLUT parameters dictionary to an output CSV file.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>params_dict</code></strong> :&ensp;<code>dict</code></dt>
+<dd>&nbsp;</dd>
+<dt><strong><code>output_path</code></strong> :&ensp;<code>str</code></dt>
+<dd>The output CSV file path</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def write_bplut(params_dict: dict, output_path: str):
+    &#39;&#39;&#39;
+    Writes a BPLUT parameters dictionary to an output CSV file.
+
+    Parameters
+    ----------
+    params_dict : dict
+    output_path : str
+        The output CSV file path
+    &#39;&#39;&#39;
+    template = os.path.join(
+        os.path.dirname(mod17.__file__), &#39;data/MOD17_BPLUT_C5.1_MERRA_NASA.csv&#39;)
+    with open(template, &#39;r&#39;) as file:
+        reader = csv.reader(file)
+        for line in reader:
+            if reader.line_num &gt; 1:
+                break
+            header = line
+    with open(output_path, &#39;w&#39;) as file:
+        writer = csv.writer(file)
+        writer.writerow(header)
+        for name, key in BPLUT_FIELD_LOOKUP.items():
+            values = []
+            for pft in mod17.PFT_VALID:
+                values.append(params_dict[key][pft])
+            writer.writerow((name, *values))</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="mod17" href="index.html">mod17</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="mod17.utils.dec2bin_unpack" href="#mod17.utils.dec2bin_unpack">dec2bin_unpack</a></code></li>
+<li><code><a title="mod17.utils.haversine" href="#mod17.utils.haversine">haversine</a></code></li>
+<li><code><a title="mod17.utils.mod15a2h_qc_fail" href="#mod17.utils.mod15a2h_qc_fail">mod15a2h_qc_fail</a></code></li>
+<li><code><a title="mod17.utils.pft_dominant" href="#mod17.utils.pft_dominant">pft_dominant</a></code></li>
+<li><code><a title="mod17.utils.pft_remap" href="#mod17.utils.pft_remap">pft_remap</a></code></li>
+<li><code><a title="mod17.utils.report" href="#mod17.utils.report">report</a></code></li>
+<li><code><a title="mod17.utils.restore_bplut" href="#mod17.utils.restore_bplut">restore_bplut</a></code></li>
+<li><code><a title="mod17.utils.rmsd" href="#mod17.utils.rmsd">rmsd</a></code></li>
+<li><code><a title="mod17.utils.sites_by_record_length" href="#mod17.utils.sites_by_record_length">sites_by_record_length</a></code></li>
+<li><code><a title="mod17.utils.vnp15a2h_cloud_fail" href="#mod17.utils.vnp15a2h_cloud_fail">vnp15a2h_cloud_fail</a></code></li>
+<li><code><a title="mod17.utils.vnp15a2h_qc_fail" href="#mod17.utils.vnp15a2h_qc_fail">vnp15a2h_qc_fail</a></code></li>
+<li><code><a title="mod17.utils.write_bplut" href="#mod17.utils.write_bplut">write_bplut</a></code></li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>

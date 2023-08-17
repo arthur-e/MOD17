@@ -1,0 +1,1419 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>mod17.viirs API documentation</title>
+<meta name="description" content="Calibration of MOD17 against a representative, global eddy covariance (EC)
+flux tower network. The model calibration is based on Markov-Chain Monte
+…" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS_CHTML" integrity="sha256-kZafAc6mZvK3W3v1pHOcUix30OHQN6pU/NO2oFkqZVw=" crossorigin></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>mod17.viirs</code></h1>
+</header>
+<section id="section-intro">
+<p>Calibration of MOD17 against a representative, global eddy covariance (EC)
+flux tower network. The model calibration is based on Markov-Chain Monte
+Carlo (MCMC). This module is for calibrating using VIIRS reflectance, fPAR,
+and LAI data, specifically.</p>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">&#39;&#39;&#39;
+Calibration of MOD17 against a representative, global eddy covariance (EC)
+flux tower network. The model calibration is based on Markov-Chain Monte
+Carlo (MCMC). This module is for calibrating using VIIRS reflectance, fPAR,
+and LAI data, specifically.
+&#39;&#39;&#39;
+
+import datetime
+import json
+import os
+import warnings
+import numpy as np
+import h5py
+import arviz as az
+import pymc as pm
+import aesara.tensor as at
+import mod17
+from numbers import Number
+from typing import Callable, Sequence
+from pathlib import Path
+from matplotlib import pyplot
+from mod17 import MOD17, PFT_VALID
+from mod17.utils import pft_dominant, restore_bplut, write_bplut
+from mod17.calibration import BlackBoxLikelihood, MOD17StochasticSampler, CalibrationAPI
+
+MOD17_DIR = os.path.dirname(mod17.__file__)
+# This matplotlib setting prevents labels from overplotting
+pyplot.rcParams[&#39;figure.constrained_layout.use&#39;] = True
+
+
+class VNP17StochasticSampler(MOD17StochasticSampler):
+    &#39;&#39;&#39;
+    A Markov Chain-Monte Carlo (MCMC) sampler for MOD17. The specific sampler
+    used is the Differential Evolution (DE) MCMC algorithm described by
+    Ter Braak (2008), though the implementation is specific to the PyMC3
+    library.
+
+    Considerations:
+
+    1. Tower GPP is censored when values are &lt; 0 or when APAR is
+        &lt; 0.1 MJ m-2 d-1.
+
+    Parameters
+    ----------
+    config : dict
+        Dictionary of configuration parameters
+    model : Callable
+        The function to call (with driver data and parameters); this function
+        should take driver data as positional arguments and the model
+        parameters as a `*Sequence`; it should require no external state.
+    observed : Sequence
+        Sequence of observed values that will be used to calibrate the model;
+        i.e., model is scored by how close its predicted values are to the
+        observed values
+    params_dict : dict or None
+        Dictionary of model parameters, to be used as initial values and as
+        the basis for constructing a new dictionary of optimized parameters
+    backend : str or None
+        Path to a NetCDF4 file backend (Default: None)
+    weights : Sequence or None
+        Optional sequence of weights applied to the model residuals (as in
+        weighted least squares)
+    &#39;&#39;&#39;
+    # NOTE: This is different than for mod17.MOD17 because we haven&#39;t yet
+    #   figured out how the respiration terms are calculated
+    required_parameters = {
+        &#39;GPP&#39;: [&#39;LUE_max&#39;, &#39;tmin0&#39;, &#39;tmin1&#39;, &#39;vpd0&#39;, &#39;vpd1&#39;],
+        &#39;NPP&#39;: MOD17.required_parameters
+    }
+    required_drivers = {
+        &#39;GPP&#39;: [&#39;fPAR&#39;, &#39;Tmin&#39;, &#39;VPD&#39;, &#39;PAR&#39;],
+        &#39;NPP&#39;: [&#39;fPAR&#39;, &#39;Tmin&#39;, &#39;VPD&#39;, &#39;PAR&#39;, &#39;LAI&#39;, &#39;Tmean&#39;, &#39;years&#39;]
+    }
+
+    def compile_gpp_model(
+            self, observed: Sequence, drivers: Sequence) -&gt; pm.Model:
+        &#39;&#39;&#39;
+        Creates a new GPP model based on the prior distribution. Model can be
+        re-compiled multiple times, e.g., for cross validation.
+
+        Parameters
+        ----------
+        observed : Sequence
+            Sequence of observed values that will be used to calibrate the model;
+            i.e., model is scored by how close its predicted values are to the
+            observed values
+        drivers : list or tuple
+            Sequence of driver datasets to be supplied, in order, to the
+            model&#39;s run function
+
+        Returns
+        -------
+        pm.Model
+        &#39;&#39;&#39;
+        # Define the objective/ likelihood function
+        log_likelihood = BlackBoxLikelihood(
+            self.model, observed, x = drivers, weights = self.weights)
+        # With this context manager, &#34;all PyMC3 objects introduced in the indented
+        #   code block...are added to the model behind the scenes.&#34;
+        with pm.Model() as model:
+            # (Stochstic) Priors for unknown model parameters
+            LUE_max = pm.TruncatedNormal(&#39;LUE_max&#39;,
+                **self.prior[&#39;LUE_max&#39;], **self.bounds[&#39;LUE_max&#39;])
+            # NOTE: All environmental scalars are fixed at their updated
+            #   MOD17 values
+            tmin0 = self.params[&#39;tmin0&#39;]
+            tmin1 = self.params[&#39;tmin1&#39;]
+            vpd0 = self.params[&#39;vpd0&#39;]
+            vpd1 = self.params[&#39;vpd1&#39;]
+            # Convert model parameters to a tensor vector
+            params_list = [LUE_max, tmin0, tmin1, vpd0, vpd1]
+            params = at.as_tensor_variable(params_list)
+            # Key step: Define the log-likelihood as an added potential
+            pm.Potential(&#39;likelihood&#39;, log_likelihood(params))
+        return model
+
+    def compile_npp_model(
+            self, observed: Sequence, drivers: Sequence) -&gt; pm.Model:
+        &#39;&#39;&#39;
+        Creates a new NPP model based on the prior distribution. Model can be
+        re-compiled multiple times, e.g., for cross validation.
+
+        Parameters
+        ----------
+        observed : Sequence
+            Sequence of observed values that will be used to calibrate the model;
+            i.e., model is scored by how close its predicted values are to the
+            observed values
+        drivers : list or tuple
+            Sequence of driver datasets to be supplied, in order, to the
+            model&#39;s run function
+
+        Returns
+        -------
+        pm.Model
+        &#39;&#39;&#39;
+        # Define the objective/ likelihood function
+        log_likelihood = BlackBoxLikelihood(
+            self.model, observed, x = drivers, weights = self.weights)
+        # With this context manager, &#34;all PyMC3 objects introduced in the indented
+        #   code block...are added to the model behind the scenes.&#34;
+        with pm.Model() as model:
+            # Setting GPP parameters that are known
+            LUE_max = self.params[&#39;LUE_max&#39;]
+            tmin0   = self.params[&#39;tmin0&#39;]
+            tmin1   = self.params[&#39;tmin1&#39;]
+            vpd0    = self.params[&#39;vpd0&#39;]
+            vpd1    = self.params[&#39;vpd1&#39;]
+            # SLA fixed at prior mean
+            SLA = np.exp(self.prior[&#39;SLA&#39;][&#39;mu&#39;])
+            # Allometry ratios prescribe narrow range around Collection 6.1 values
+            froot_leaf_ratio = pm.Triangular(
+                &#39;froot_leaf_ratio&#39;, **self.prior[&#39;froot_leaf_ratio&#39;])
+            Q10_froot = pm.TruncatedNormal(
+                &#39;Q10_froot&#39;, **self.prior[&#39;Q10_froot&#39;], **self.bounds[&#39;Q10&#39;])
+            leaf_mr_base = pm.LogNormal(
+                &#39;leaf_mr_base&#39;, **self.prior[&#39;leaf_mr_base&#39;])
+            froot_mr_base = pm.LogNormal(
+                &#39;froot_mr_base&#39;, **self.prior[&#39;froot_mr_base&#39;])
+            # For GRS and CRO, livewood mass and respiration are zero
+            if list(self.prior[&#39;livewood_mr_base&#39;].values()) == [0, 0]:
+                livewood_leaf_ratio = 0
+                livewood_mr_base = 0
+                Q10_livewood = 0
+            else:
+                livewood_leaf_ratio = pm.Triangular(
+                    &#39;livewood_leaf_ratio&#39;, **self.prior[&#39;livewood_leaf_ratio&#39;])
+                livewood_mr_base = pm.LogNormal(
+                    &#39;livewood_mr_base&#39;, **self.prior[&#39;livewood_mr_base&#39;])
+                Q10_livewood = pm.TruncatedNormal(
+                    &#39;Q10_livewood&#39;, **self.prior[&#39;Q10_livewood&#39;],
+                    **self.bounds[&#39;Q10&#39;])
+            # Convert model parameters to a tensor vector
+            params_list = [
+                LUE_max, tmin0, tmin1, vpd0, vpd1, SLA,
+                Q10_livewood, Q10_froot, froot_leaf_ratio, livewood_leaf_ratio,
+                leaf_mr_base, froot_mr_base, livewood_mr_base
+            ]
+            params = at.as_tensor_variable(params_list)
+            # Key step: Define the log-likelihood as an added potential
+            pm.Potential(&#39;likelihood&#39;, log_likelihood(params))
+        return model
+
+
+class VIIRSCalibrationAPI(CalibrationAPI):
+    &#39;&#39;&#39;
+    Convenience class for calibrating the MOD17 GPP and NPP models. Meant to
+    be used with `fire.Fire()`.
+    &#39;&#39;&#39;
+    def __init__(self, config = None):
+        config_file = config
+        if config_file is None:
+            config_file = os.path.join(
+                MOD17_DIR, &#39;data/MOD17_calibration_config.json&#39;)
+        with open(config_file, &#39;r&#39;) as file:
+            self.config = json.load(file)
+        self.hdf5 = self.config[&#39;data&#39;][&#39;file&#39;]
+
+    def tune_gpp(
+            self, pft: int, plot_trace: bool = False, ipdb: bool = False,
+            save_fig: bool = False, **kwargs):
+        &#39;&#39;&#39;
+        Run the VNP17 GPP calibration.
+
+        Parameters
+        ----------
+        pft : int
+            The Plant Functional Type (PFT) to calibrate
+        plot_trace : bool
+            True to plot the trace for a previous calibration run; this will
+            also NOT start a new calibration (Default: False)
+        ipdb : bool
+            True to drop the user into an ipdb prompt, prior to and instead of
+            running calibration
+        save_fig : bool
+            True to save figures to files instead of showing them
+            (Default: False)
+        **kwargs
+            Additional keyword arguments passed to
+            `VNP17StochasticSampler.run()`
+        &#39;&#39;&#39;
+        assert pft in PFT_VALID, f&#39;Invalid PFT: {pft}&#39;
+        params_dict = restore_bplut(self.config[&#39;BPLUT&#39;][&#39;GPP&#39;])
+        # Load blacklisted sites (if any)
+        blacklist = self.config[&#39;data&#39;][&#39;sites_blacklisted&#39;]
+        # Filter the parameters to just those for the PFT of interest
+        params_dict = dict([(k, v[pft]) for k, v in params_dict.items()])
+        model = MOD17(params_dict)
+        objective = self.config[&#39;optimization&#39;][&#39;objective&#39;].lower()
+
+        print(&#39;Loading driver datasets...&#39;)
+        with h5py.File(self.hdf5, &#39;r&#39;) as hdf:
+            sites = hdf[&#39;FLUXNET/site_id&#39;][:]
+            if hasattr(sites[0], &#39;decode&#39;):
+                sites = list(map(lambda x: x.decode(&#39;utf-8&#39;), sites))
+            # Get dominant PFT
+            pft_map = pft_dominant(hdf[&#39;state/PFT&#39;][:], site_list = sites)
+            # Blacklist various sites
+            pft_mask = np.logical_and(pft_map == pft, ~np.in1d(sites, blacklist))
+            dates = hdf[&#39;time&#39;][:]
+            # For expedience, subset all data to the VIIRS post-launch period
+            cutoff = np.argwhere(dates[:,0] == 2012).min()
+            weights = hdf[&#39;weights&#39;][pft_mask]
+            # NOTE: Converting from Kelvin to Celsius
+            tday = hdf[&#39;MERRA2/T10M_daytime&#39;][:][cutoff:,pft_mask] - 273.15
+            qv10m = hdf[&#39;MERRA2/QV10M_daytime&#39;][:][cutoff:,pft_mask]
+            ps = hdf[&#39;MERRA2/PS_daytime&#39;][:][cutoff:,pft_mask]
+            drivers = [ # fPAR, Tmin, VPD, PAR
+                hdf[&#39;VIIRS/VNP15A2HGF_fPAR_interp&#39;][:][cutoff:,pft_mask],
+                hdf[&#39;MERRA2/Tmin&#39;][:][cutoff:,pft_mask] - 273.15,
+                MOD17.vpd(qv10m, ps, tday),
+                MOD17.par(hdf[&#39;MERRA2/SWGDN&#39;][:][cutoff:,pft_mask]),
+            ]
+            # Set negative VPD to zero
+            drivers[2] = np.where(drivers[2] &lt; 0, 0, drivers[2])
+            # Convert fPAR from (%) to [0,1]
+            drivers[0] = np.nanmean(drivers[0], axis = -1) / 100
+            # If RMSE is used, then we want to pay attention to weighting
+            weights = None
+            if objective in (&#39;rmsd&#39;, &#39;rmse&#39;):
+                weights = hdf[&#39;weights&#39;][pft_mask][np.newaxis,:]\
+                    .repeat(tday.shape[0], axis = 0)
+            for d, each in enumerate(drivers):
+                name = (&#39;fPAR&#39;, &#39;Tmin&#39;, &#39;VPD&#39;, &#39;PAR&#39;)[d]
+                assert not np.isnan(each).any(),\
+                    f&#39;Driver dataset &#34;{name}&#34; contains NaNs&#39;
+            tower_gpp = hdf[&#39;FLUXNET/GPP&#39;][:][cutoff:,pft_mask]
+            # Read the validation mask; mask out observations that are
+            #   reserved for validation
+            print(&#39;Masking out validation data...&#39;)
+            mask = hdf[&#39;FLUXNET/validation_mask_VNP17&#39;][pft]
+            tower_gpp[mask] = np.nan
+
+        # Clean observations, then mask out driver data where the are no
+        #   observations
+        tower_gpp = self.clean_observed(
+            tower_gpp, drivers, VNP17StochasticSampler.required_drivers[&#39;GPP&#39;],
+            protocol = &#39;GPP&#39;)
+        if weights is not None:
+            weights = weights[~np.isnan(tower_gpp)]
+        for d, _ in enumerate(drivers):
+            drivers[d] = drivers[d][~np.isnan(tower_gpp)]
+        tower_gpp = tower_gpp[~np.isnan(tower_gpp)]
+
+        print(&#39;Initializing sampler...&#39;)
+        backend = self.config[&#39;optimization&#39;][&#39;backend_template&#39;] % (&#39;GPP&#39;, pft)
+        sampler = VNP17StochasticSampler(
+            self.config, MOD17._gpp, params_dict, backend = backend,
+            weights = weights)
+        if plot_trace or ipdb:
+            if ipdb:
+                import ipdb
+                ipdb.set_trace()
+            trace = sampler.get_trace()
+            az.plot_trace(trace, var_names = VNP17.required_parameters[0:5])
+            pyplot.show()
+            return
+        # Get (informative) priors for just those parameters that have them
+        with open(self.config[&#39;optimization&#39;][&#39;prior&#39;], &#39;r&#39;) as file:
+            prior = json.load(file)
+        prior_params = filter(
+            lambda p: p in prior.keys(), sampler.required_parameters[&#39;GPP&#39;])
+        prior = dict([
+            (p, {&#39;mu&#39;: prior[p][&#39;mu&#39;][pft], &#39;sigma&#39;: prior[p][&#39;sigma&#39;][pft]})
+            for p in prior_params
+        ])
+        sampler.run(
+            tower_gpp, drivers, prior = prior, save_fig = save_fig, **kwargs)
+
+    def tune_npp(
+            self, pft: int, plot_trace: bool = False, ipdb: bool = False,
+            save_fig: bool = False, climatology = False,
+            cutoff: Number = 2385, k_folds: int = 1, **kwargs):
+        &#39;&#39;&#39;
+        Run the VNP17 NPP calibration.
+
+        Parameters
+        ----------
+        pft : int
+            The Plant Functional Type (PFT) to calibrate
+        plot_trace : bool
+            True to display the trace plot ONLY and not run calibration
+            (Default: False)
+        ipdb : bool
+            True to drop into an interactive Python debugger (`ipdb`) after
+            loading an existing trace (Default: False)
+        save_fig : bool
+            True to save the post-calibration trace plot to a file instead of
+            displaying it (Default: False)
+        climatology : bool
+            True to use a MERRA-2 climatology (and look for it in the drivers
+            file), i.e., use `MERRA2_climatology` group instead of
+            `surface_met_MERRA2` group (Default: False)
+        cutoff : Number
+            Maximum value of observed NPP (g C m-2 year-1); values above this
+            cutoff will be discarded and not used in calibration
+            (Default: 2385)
+        k_folds : int
+            Number of folds to use in k-folds cross-validation; defaults to
+            k=1, i.e., no cross-validation is performed.
+        **kwargs
+            Additional keyword arguments passed to
+            `VNP17StochasticSampler.run()`
+        &#39;&#39;&#39;
+        assert pft in PFT_VALID, f&#39;Invalid PFT: {pft}&#39;
+        prefix = &#39;MERRA2_climatology&#39; if climatology else &#39;surface_met_MERRA2&#39;
+        params_dict = restore_bplut(self.config[&#39;BPLUT&#39;][&#39;NPP&#39;])
+        # Filter the parameters to just those for the PFT of interest
+        params_dict = dict([(k, v[pft]) for k, v in params_dict.items()])
+        model = MOD17(params_dict)
+        kwargs.update({&#39;var_names&#39;: [
+            &#39;~LUE_max&#39;, &#39;~tmin0&#39;, &#39;~tmin1&#39;, &#39;~vpd0&#39;, &#39;~vpd1&#39;, &#39;~log_likelihood&#39;
+        ]})
+        # Pass configuration parameters to VNP17StochasticSampler.run()
+        for key in (&#39;chains&#39;, &#39;draws&#39;, &#39;tune&#39;, &#39;scaling&#39;):
+            if key in self.config[&#39;optimization&#39;].keys():
+                kwargs[key] = self.config[&#39;optimization&#39;][key]
+
+        print(&#39;Loading driver datasets...&#39;)
+        with h5py.File(self.hdf5, &#39;r&#39;) as hdf:
+            # NOTE: This is only recorded at the site-level; no need to
+            #   determine modal PFT across subgrid
+            pft_map = hdf[&#39;NPP/PFT&#39;][:]
+            # Leave out sites where there is no fPAR (and no LAI) data
+            fpar = hdf[&#39;NPP/MOD15A2H_fPAR_clim&#39;][:]
+            mask = np.logical_and(
+                    pft_map == pft, ~np.isnan(np.nanmean(fpar, axis = -1))\
+                .all(axis = 0))
+            # NOTE: Converting from Kelvin to Celsius
+            tday = hdf[f&#39;NPP/{prefix}/T10M_daytime&#39;][:][:,mask] - 273.15
+            qv10m = hdf[f&#39;NPP/{prefix}/QV10M_daytime&#39;][:][:,mask]
+            ps = hdf[f&#39;NPP/{prefix}/PS_daytime&#39;][:][:,mask]
+            drivers = [ # fPAR, Tmin, VPD, PAR, LAI, Tmean, years
+                hdf[&#39;NPP/VNP15A2H_fPAR_clim&#39;][:][:,mask],
+                hdf[f&#39;NPP/{prefix}/Tmin&#39;][:][:,mask]  - 273.15,
+                MOD17.vpd(qv10m, ps, tday),
+                MOD17.par(hdf[f&#39;NPP/{prefix}/SWGDN&#39;][:][:,mask]),
+                hdf[&#39;NPP/VNP15A2H_LAI_clim&#39;][:][:,mask],
+                hdf[f&#39;NPP/{prefix}/T10M&#39;][:][:,mask] - 273.15,
+                np.full(ps.shape, 1) # i.e., A 365-day climatological year (&#34;Year 1&#34;)
+            ]
+            observed_npp = hdf[&#39;NPP/NPP_total&#39;][:][mask]
+        if cutoff is not None:
+            observed_npp[observed_npp &gt; cutoff] = np.nan
+        # Set negative VPD to zero
+        drivers[2] = np.where(drivers[2] &lt; 0, 0, drivers[2])
+        # Convert fPAR from (%) to [0,1] and re-scale LAI; reshape fPAR, LAI
+        drivers[0] = np.nanmean(drivers[0], axis = -1) * 0.01
+        drivers[4] = np.nanmean(drivers[4], axis = -1) * 0.1
+        # Mask out driver data where the are no observations
+        for d, _ in enumerate(drivers):
+            drivers[d] = drivers[d][:,~np.isnan(observed_npp)]
+        observed_npp = observed_npp[~np.isnan(observed_npp)]
+
+        if k_folds &gt; 1:
+            # Back-up the original (complete) datasets
+            _drivers = [d.copy() for d in drivers]
+            _observed_npp = observed_npp.copy()
+            # Randomize the indices of the NPP data
+            indices = np.arange(0, observed_npp.size)
+            np.random.shuffle(indices)
+            # Get the starting and ending index of each fold
+            fold_idx = np.array([indices.size // k_folds] * k_folds) * np.arange(0, k_folds)
+            fold_idx = list(map(list, zip(fold_idx, fold_idx + indices.size // k_folds)))
+            # Ensure that the entire dataset is used
+            fold_idx[-1][-1] = indices.max()
+            idx_test = [indices[start:end] for start, end in fold_idx]
+
+        for k, fold in enumerate(range(1, k_folds + 1)):
+            backend = self.config[&#39;optimization&#39;][&#39;backend_template&#39;] % (&#39;NPP&#39;, pft)
+            if k_folds &gt; 1:
+                # Create an HDF5 file with the same name as the (original)
+                #   netCDF4 back-end, store the test indices
+                with h5py.File(backend.replace(&#39;nc4&#39;, &#39;h5&#39;), &#39;w&#39;) as hdf:
+                    out = list(idx_test)
+                    size = indices.size // k_folds
+                    try:
+                        out = np.stack(out)
+                    except ValueError:
+                        size = max((o.size for o in out))
+                        for i in range(0, len(out)):
+                            out[i] = np.concatenate((out[i], [np.nan] * (size - out[i].size)))
+                    hdf.create_dataset(
+                        &#39;test_indices&#39;, (k_folds, size), np.int32, np.stack(out))
+                backend = self.config[&#39;optimization&#39;][&#39;backend_template&#39;] % (f&#39;NPP-k{fold}&#39;, pft)
+                # Restore the original NPP dataset
+                observed_npp = _observed_npp.copy()
+                # Set to NaN all the test indices
+                idx = idx_test[k]
+                observed_npp[idx] = np.nan
+                # Same for drivers, after restoring from the original
+                drivers = [d.copy()[:,~np.isnan(observed_npp)] for d in _drivers]
+                observed_npp = observed_npp[~np.isnan(observed_npp)]
+
+            print(&#39;Initializing sampler...&#39;)
+            sampler = VNP17StochasticSampler(
+                self.config, MOD17._npp, params_dict, backend = backend,
+                model_name = &#39;NPP&#39;)
+            if plot_trace or ipdb:
+                if ipdb:
+                    import ipdb
+                    ipdb.set_trace()
+                trace = sampler.get_trace()
+                az.plot_trace(trace, var_names = MOD17.required_parameters[5:])
+                pyplot.show()
+                return
+            # Get (informative) priors for just those parameters that have them
+            with open(self.config[&#39;optimization&#39;][&#39;prior&#39;], &#39;r&#39;) as file:
+                prior = json.load(file)
+            prior_params = filter(
+                lambda p: p in prior.keys(), sampler.required_parameters[&#39;NPP&#39;])
+            prior = dict([
+                (p, prior[p]) for p in prior_params
+            ])
+            for key in prior.keys():
+                # And make sure to subset to the chosen PFT!
+                for arg in prior[key].keys():
+                    prior[key][arg] = prior[key][arg][pft]
+            sampler.run(
+                observed_npp, drivers, prior = prior, save_fig = save_fig,
+                **kwargs)
+
+
+if __name__ == &#39;__main__&#39;:
+    import fire
+    with warnings.catch_warnings():
+        warnings.simplefilter(&#39;ignore&#39;)
+        fire.Fire(VIIRSCalibrationAPI)</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="mod17.viirs.VIIRSCalibrationAPI"><code class="flex name class">
+<span>class <span class="ident">VIIRSCalibrationAPI</span></span>
+<span>(</span><span>config=None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Convenience class for calibrating the MOD17 GPP and NPP models. Meant to
+be used with <code>fire.Fire()</code>.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class VIIRSCalibrationAPI(CalibrationAPI):
+    &#39;&#39;&#39;
+    Convenience class for calibrating the MOD17 GPP and NPP models. Meant to
+    be used with `fire.Fire()`.
+    &#39;&#39;&#39;
+    def __init__(self, config = None):
+        config_file = config
+        if config_file is None:
+            config_file = os.path.join(
+                MOD17_DIR, &#39;data/MOD17_calibration_config.json&#39;)
+        with open(config_file, &#39;r&#39;) as file:
+            self.config = json.load(file)
+        self.hdf5 = self.config[&#39;data&#39;][&#39;file&#39;]
+
+    def tune_gpp(
+            self, pft: int, plot_trace: bool = False, ipdb: bool = False,
+            save_fig: bool = False, **kwargs):
+        &#39;&#39;&#39;
+        Run the VNP17 GPP calibration.
+
+        Parameters
+        ----------
+        pft : int
+            The Plant Functional Type (PFT) to calibrate
+        plot_trace : bool
+            True to plot the trace for a previous calibration run; this will
+            also NOT start a new calibration (Default: False)
+        ipdb : bool
+            True to drop the user into an ipdb prompt, prior to and instead of
+            running calibration
+        save_fig : bool
+            True to save figures to files instead of showing them
+            (Default: False)
+        **kwargs
+            Additional keyword arguments passed to
+            `VNP17StochasticSampler.run()`
+        &#39;&#39;&#39;
+        assert pft in PFT_VALID, f&#39;Invalid PFT: {pft}&#39;
+        params_dict = restore_bplut(self.config[&#39;BPLUT&#39;][&#39;GPP&#39;])
+        # Load blacklisted sites (if any)
+        blacklist = self.config[&#39;data&#39;][&#39;sites_blacklisted&#39;]
+        # Filter the parameters to just those for the PFT of interest
+        params_dict = dict([(k, v[pft]) for k, v in params_dict.items()])
+        model = MOD17(params_dict)
+        objective = self.config[&#39;optimization&#39;][&#39;objective&#39;].lower()
+
+        print(&#39;Loading driver datasets...&#39;)
+        with h5py.File(self.hdf5, &#39;r&#39;) as hdf:
+            sites = hdf[&#39;FLUXNET/site_id&#39;][:]
+            if hasattr(sites[0], &#39;decode&#39;):
+                sites = list(map(lambda x: x.decode(&#39;utf-8&#39;), sites))
+            # Get dominant PFT
+            pft_map = pft_dominant(hdf[&#39;state/PFT&#39;][:], site_list = sites)
+            # Blacklist various sites
+            pft_mask = np.logical_and(pft_map == pft, ~np.in1d(sites, blacklist))
+            dates = hdf[&#39;time&#39;][:]
+            # For expedience, subset all data to the VIIRS post-launch period
+            cutoff = np.argwhere(dates[:,0] == 2012).min()
+            weights = hdf[&#39;weights&#39;][pft_mask]
+            # NOTE: Converting from Kelvin to Celsius
+            tday = hdf[&#39;MERRA2/T10M_daytime&#39;][:][cutoff:,pft_mask] - 273.15
+            qv10m = hdf[&#39;MERRA2/QV10M_daytime&#39;][:][cutoff:,pft_mask]
+            ps = hdf[&#39;MERRA2/PS_daytime&#39;][:][cutoff:,pft_mask]
+            drivers = [ # fPAR, Tmin, VPD, PAR
+                hdf[&#39;VIIRS/VNP15A2HGF_fPAR_interp&#39;][:][cutoff:,pft_mask],
+                hdf[&#39;MERRA2/Tmin&#39;][:][cutoff:,pft_mask] - 273.15,
+                MOD17.vpd(qv10m, ps, tday),
+                MOD17.par(hdf[&#39;MERRA2/SWGDN&#39;][:][cutoff:,pft_mask]),
+            ]
+            # Set negative VPD to zero
+            drivers[2] = np.where(drivers[2] &lt; 0, 0, drivers[2])
+            # Convert fPAR from (%) to [0,1]
+            drivers[0] = np.nanmean(drivers[0], axis = -1) / 100
+            # If RMSE is used, then we want to pay attention to weighting
+            weights = None
+            if objective in (&#39;rmsd&#39;, &#39;rmse&#39;):
+                weights = hdf[&#39;weights&#39;][pft_mask][np.newaxis,:]\
+                    .repeat(tday.shape[0], axis = 0)
+            for d, each in enumerate(drivers):
+                name = (&#39;fPAR&#39;, &#39;Tmin&#39;, &#39;VPD&#39;, &#39;PAR&#39;)[d]
+                assert not np.isnan(each).any(),\
+                    f&#39;Driver dataset &#34;{name}&#34; contains NaNs&#39;
+            tower_gpp = hdf[&#39;FLUXNET/GPP&#39;][:][cutoff:,pft_mask]
+            # Read the validation mask; mask out observations that are
+            #   reserved for validation
+            print(&#39;Masking out validation data...&#39;)
+            mask = hdf[&#39;FLUXNET/validation_mask_VNP17&#39;][pft]
+            tower_gpp[mask] = np.nan
+
+        # Clean observations, then mask out driver data where the are no
+        #   observations
+        tower_gpp = self.clean_observed(
+            tower_gpp, drivers, VNP17StochasticSampler.required_drivers[&#39;GPP&#39;],
+            protocol = &#39;GPP&#39;)
+        if weights is not None:
+            weights = weights[~np.isnan(tower_gpp)]
+        for d, _ in enumerate(drivers):
+            drivers[d] = drivers[d][~np.isnan(tower_gpp)]
+        tower_gpp = tower_gpp[~np.isnan(tower_gpp)]
+
+        print(&#39;Initializing sampler...&#39;)
+        backend = self.config[&#39;optimization&#39;][&#39;backend_template&#39;] % (&#39;GPP&#39;, pft)
+        sampler = VNP17StochasticSampler(
+            self.config, MOD17._gpp, params_dict, backend = backend,
+            weights = weights)
+        if plot_trace or ipdb:
+            if ipdb:
+                import ipdb
+                ipdb.set_trace()
+            trace = sampler.get_trace()
+            az.plot_trace(trace, var_names = VNP17.required_parameters[0:5])
+            pyplot.show()
+            return
+        # Get (informative) priors for just those parameters that have them
+        with open(self.config[&#39;optimization&#39;][&#39;prior&#39;], &#39;r&#39;) as file:
+            prior = json.load(file)
+        prior_params = filter(
+            lambda p: p in prior.keys(), sampler.required_parameters[&#39;GPP&#39;])
+        prior = dict([
+            (p, {&#39;mu&#39;: prior[p][&#39;mu&#39;][pft], &#39;sigma&#39;: prior[p][&#39;sigma&#39;][pft]})
+            for p in prior_params
+        ])
+        sampler.run(
+            tower_gpp, drivers, prior = prior, save_fig = save_fig, **kwargs)
+
+    def tune_npp(
+            self, pft: int, plot_trace: bool = False, ipdb: bool = False,
+            save_fig: bool = False, climatology = False,
+            cutoff: Number = 2385, k_folds: int = 1, **kwargs):
+        &#39;&#39;&#39;
+        Run the VNP17 NPP calibration.
+
+        Parameters
+        ----------
+        pft : int
+            The Plant Functional Type (PFT) to calibrate
+        plot_trace : bool
+            True to display the trace plot ONLY and not run calibration
+            (Default: False)
+        ipdb : bool
+            True to drop into an interactive Python debugger (`ipdb`) after
+            loading an existing trace (Default: False)
+        save_fig : bool
+            True to save the post-calibration trace plot to a file instead of
+            displaying it (Default: False)
+        climatology : bool
+            True to use a MERRA-2 climatology (and look for it in the drivers
+            file), i.e., use `MERRA2_climatology` group instead of
+            `surface_met_MERRA2` group (Default: False)
+        cutoff : Number
+            Maximum value of observed NPP (g C m-2 year-1); values above this
+            cutoff will be discarded and not used in calibration
+            (Default: 2385)
+        k_folds : int
+            Number of folds to use in k-folds cross-validation; defaults to
+            k=1, i.e., no cross-validation is performed.
+        **kwargs
+            Additional keyword arguments passed to
+            `VNP17StochasticSampler.run()`
+        &#39;&#39;&#39;
+        assert pft in PFT_VALID, f&#39;Invalid PFT: {pft}&#39;
+        prefix = &#39;MERRA2_climatology&#39; if climatology else &#39;surface_met_MERRA2&#39;
+        params_dict = restore_bplut(self.config[&#39;BPLUT&#39;][&#39;NPP&#39;])
+        # Filter the parameters to just those for the PFT of interest
+        params_dict = dict([(k, v[pft]) for k, v in params_dict.items()])
+        model = MOD17(params_dict)
+        kwargs.update({&#39;var_names&#39;: [
+            &#39;~LUE_max&#39;, &#39;~tmin0&#39;, &#39;~tmin1&#39;, &#39;~vpd0&#39;, &#39;~vpd1&#39;, &#39;~log_likelihood&#39;
+        ]})
+        # Pass configuration parameters to VNP17StochasticSampler.run()
+        for key in (&#39;chains&#39;, &#39;draws&#39;, &#39;tune&#39;, &#39;scaling&#39;):
+            if key in self.config[&#39;optimization&#39;].keys():
+                kwargs[key] = self.config[&#39;optimization&#39;][key]
+
+        print(&#39;Loading driver datasets...&#39;)
+        with h5py.File(self.hdf5, &#39;r&#39;) as hdf:
+            # NOTE: This is only recorded at the site-level; no need to
+            #   determine modal PFT across subgrid
+            pft_map = hdf[&#39;NPP/PFT&#39;][:]
+            # Leave out sites where there is no fPAR (and no LAI) data
+            fpar = hdf[&#39;NPP/MOD15A2H_fPAR_clim&#39;][:]
+            mask = np.logical_and(
+                    pft_map == pft, ~np.isnan(np.nanmean(fpar, axis = -1))\
+                .all(axis = 0))
+            # NOTE: Converting from Kelvin to Celsius
+            tday = hdf[f&#39;NPP/{prefix}/T10M_daytime&#39;][:][:,mask] - 273.15
+            qv10m = hdf[f&#39;NPP/{prefix}/QV10M_daytime&#39;][:][:,mask]
+            ps = hdf[f&#39;NPP/{prefix}/PS_daytime&#39;][:][:,mask]
+            drivers = [ # fPAR, Tmin, VPD, PAR, LAI, Tmean, years
+                hdf[&#39;NPP/VNP15A2H_fPAR_clim&#39;][:][:,mask],
+                hdf[f&#39;NPP/{prefix}/Tmin&#39;][:][:,mask]  - 273.15,
+                MOD17.vpd(qv10m, ps, tday),
+                MOD17.par(hdf[f&#39;NPP/{prefix}/SWGDN&#39;][:][:,mask]),
+                hdf[&#39;NPP/VNP15A2H_LAI_clim&#39;][:][:,mask],
+                hdf[f&#39;NPP/{prefix}/T10M&#39;][:][:,mask] - 273.15,
+                np.full(ps.shape, 1) # i.e., A 365-day climatological year (&#34;Year 1&#34;)
+            ]
+            observed_npp = hdf[&#39;NPP/NPP_total&#39;][:][mask]
+        if cutoff is not None:
+            observed_npp[observed_npp &gt; cutoff] = np.nan
+        # Set negative VPD to zero
+        drivers[2] = np.where(drivers[2] &lt; 0, 0, drivers[2])
+        # Convert fPAR from (%) to [0,1] and re-scale LAI; reshape fPAR, LAI
+        drivers[0] = np.nanmean(drivers[0], axis = -1) * 0.01
+        drivers[4] = np.nanmean(drivers[4], axis = -1) * 0.1
+        # Mask out driver data where the are no observations
+        for d, _ in enumerate(drivers):
+            drivers[d] = drivers[d][:,~np.isnan(observed_npp)]
+        observed_npp = observed_npp[~np.isnan(observed_npp)]
+
+        if k_folds &gt; 1:
+            # Back-up the original (complete) datasets
+            _drivers = [d.copy() for d in drivers]
+            _observed_npp = observed_npp.copy()
+            # Randomize the indices of the NPP data
+            indices = np.arange(0, observed_npp.size)
+            np.random.shuffle(indices)
+            # Get the starting and ending index of each fold
+            fold_idx = np.array([indices.size // k_folds] * k_folds) * np.arange(0, k_folds)
+            fold_idx = list(map(list, zip(fold_idx, fold_idx + indices.size // k_folds)))
+            # Ensure that the entire dataset is used
+            fold_idx[-1][-1] = indices.max()
+            idx_test = [indices[start:end] for start, end in fold_idx]
+
+        for k, fold in enumerate(range(1, k_folds + 1)):
+            backend = self.config[&#39;optimization&#39;][&#39;backend_template&#39;] % (&#39;NPP&#39;, pft)
+            if k_folds &gt; 1:
+                # Create an HDF5 file with the same name as the (original)
+                #   netCDF4 back-end, store the test indices
+                with h5py.File(backend.replace(&#39;nc4&#39;, &#39;h5&#39;), &#39;w&#39;) as hdf:
+                    out = list(idx_test)
+                    size = indices.size // k_folds
+                    try:
+                        out = np.stack(out)
+                    except ValueError:
+                        size = max((o.size for o in out))
+                        for i in range(0, len(out)):
+                            out[i] = np.concatenate((out[i], [np.nan] * (size - out[i].size)))
+                    hdf.create_dataset(
+                        &#39;test_indices&#39;, (k_folds, size), np.int32, np.stack(out))
+                backend = self.config[&#39;optimization&#39;][&#39;backend_template&#39;] % (f&#39;NPP-k{fold}&#39;, pft)
+                # Restore the original NPP dataset
+                observed_npp = _observed_npp.copy()
+                # Set to NaN all the test indices
+                idx = idx_test[k]
+                observed_npp[idx] = np.nan
+                # Same for drivers, after restoring from the original
+                drivers = [d.copy()[:,~np.isnan(observed_npp)] for d in _drivers]
+                observed_npp = observed_npp[~np.isnan(observed_npp)]
+
+            print(&#39;Initializing sampler...&#39;)
+            sampler = VNP17StochasticSampler(
+                self.config, MOD17._npp, params_dict, backend = backend,
+                model_name = &#39;NPP&#39;)
+            if plot_trace or ipdb:
+                if ipdb:
+                    import ipdb
+                    ipdb.set_trace()
+                trace = sampler.get_trace()
+                az.plot_trace(trace, var_names = MOD17.required_parameters[5:])
+                pyplot.show()
+                return
+            # Get (informative) priors for just those parameters that have them
+            with open(self.config[&#39;optimization&#39;][&#39;prior&#39;], &#39;r&#39;) as file:
+                prior = json.load(file)
+            prior_params = filter(
+                lambda p: p in prior.keys(), sampler.required_parameters[&#39;NPP&#39;])
+            prior = dict([
+                (p, prior[p]) for p in prior_params
+            ])
+            for key in prior.keys():
+                # And make sure to subset to the chosen PFT!
+                for arg in prior[key].keys():
+                    prior[key][arg] = prior[key][arg][pft]
+            sampler.run(
+                observed_npp, drivers, prior = prior, save_fig = save_fig,
+                **kwargs)</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="mod17.calibration.CalibrationAPI" href="calibration.html#mod17.calibration.CalibrationAPI">CalibrationAPI</a></li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="mod17.viirs.VIIRSCalibrationAPI.tune_gpp"><code class="name flex">
+<span>def <span class="ident">tune_gpp</span></span>(<span>self, pft: int, plot_trace: bool = False, ipdb: bool = False, save_fig: bool = False, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Run the VNP17 GPP calibration.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>pft</code></strong> :&ensp;<code>int</code></dt>
+<dd>The Plant Functional Type (PFT) to calibrate</dd>
+<dt><strong><code>plot_trace</code></strong> :&ensp;<code>bool</code></dt>
+<dd>True to plot the trace for a previous calibration run; this will
+also NOT start a new calibration (Default: False)</dd>
+<dt><strong><code>ipdb</code></strong> :&ensp;<code>bool</code></dt>
+<dd>True to drop the user into an ipdb prompt, prior to and instead of
+running calibration</dd>
+<dt><strong><code>save_fig</code></strong> :&ensp;<code>bool</code></dt>
+<dd>True to save figures to files instead of showing them
+(Default: False)</dd>
+<dt><strong><code>**kwargs</code></strong></dt>
+<dd>Additional keyword arguments passed to
+<code><a title="mod17.viirs.VNP17StochasticSampler.run" href="calibration.html#mod17.calibration.StochasticSampler.run">StochasticSampler.run()</a></code></dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def tune_gpp(
+        self, pft: int, plot_trace: bool = False, ipdb: bool = False,
+        save_fig: bool = False, **kwargs):
+    &#39;&#39;&#39;
+    Run the VNP17 GPP calibration.
+
+    Parameters
+    ----------
+    pft : int
+        The Plant Functional Type (PFT) to calibrate
+    plot_trace : bool
+        True to plot the trace for a previous calibration run; this will
+        also NOT start a new calibration (Default: False)
+    ipdb : bool
+        True to drop the user into an ipdb prompt, prior to and instead of
+        running calibration
+    save_fig : bool
+        True to save figures to files instead of showing them
+        (Default: False)
+    **kwargs
+        Additional keyword arguments passed to
+        `VNP17StochasticSampler.run()`
+    &#39;&#39;&#39;
+    assert pft in PFT_VALID, f&#39;Invalid PFT: {pft}&#39;
+    params_dict = restore_bplut(self.config[&#39;BPLUT&#39;][&#39;GPP&#39;])
+    # Load blacklisted sites (if any)
+    blacklist = self.config[&#39;data&#39;][&#39;sites_blacklisted&#39;]
+    # Filter the parameters to just those for the PFT of interest
+    params_dict = dict([(k, v[pft]) for k, v in params_dict.items()])
+    model = MOD17(params_dict)
+    objective = self.config[&#39;optimization&#39;][&#39;objective&#39;].lower()
+
+    print(&#39;Loading driver datasets...&#39;)
+    with h5py.File(self.hdf5, &#39;r&#39;) as hdf:
+        sites = hdf[&#39;FLUXNET/site_id&#39;][:]
+        if hasattr(sites[0], &#39;decode&#39;):
+            sites = list(map(lambda x: x.decode(&#39;utf-8&#39;), sites))
+        # Get dominant PFT
+        pft_map = pft_dominant(hdf[&#39;state/PFT&#39;][:], site_list = sites)
+        # Blacklist various sites
+        pft_mask = np.logical_and(pft_map == pft, ~np.in1d(sites, blacklist))
+        dates = hdf[&#39;time&#39;][:]
+        # For expedience, subset all data to the VIIRS post-launch period
+        cutoff = np.argwhere(dates[:,0] == 2012).min()
+        weights = hdf[&#39;weights&#39;][pft_mask]
+        # NOTE: Converting from Kelvin to Celsius
+        tday = hdf[&#39;MERRA2/T10M_daytime&#39;][:][cutoff:,pft_mask] - 273.15
+        qv10m = hdf[&#39;MERRA2/QV10M_daytime&#39;][:][cutoff:,pft_mask]
+        ps = hdf[&#39;MERRA2/PS_daytime&#39;][:][cutoff:,pft_mask]
+        drivers = [ # fPAR, Tmin, VPD, PAR
+            hdf[&#39;VIIRS/VNP15A2HGF_fPAR_interp&#39;][:][cutoff:,pft_mask],
+            hdf[&#39;MERRA2/Tmin&#39;][:][cutoff:,pft_mask] - 273.15,
+            MOD17.vpd(qv10m, ps, tday),
+            MOD17.par(hdf[&#39;MERRA2/SWGDN&#39;][:][cutoff:,pft_mask]),
+        ]
+        # Set negative VPD to zero
+        drivers[2] = np.where(drivers[2] &lt; 0, 0, drivers[2])
+        # Convert fPAR from (%) to [0,1]
+        drivers[0] = np.nanmean(drivers[0], axis = -1) / 100
+        # If RMSE is used, then we want to pay attention to weighting
+        weights = None
+        if objective in (&#39;rmsd&#39;, &#39;rmse&#39;):
+            weights = hdf[&#39;weights&#39;][pft_mask][np.newaxis,:]\
+                .repeat(tday.shape[0], axis = 0)
+        for d, each in enumerate(drivers):
+            name = (&#39;fPAR&#39;, &#39;Tmin&#39;, &#39;VPD&#39;, &#39;PAR&#39;)[d]
+            assert not np.isnan(each).any(),\
+                f&#39;Driver dataset &#34;{name}&#34; contains NaNs&#39;
+        tower_gpp = hdf[&#39;FLUXNET/GPP&#39;][:][cutoff:,pft_mask]
+        # Read the validation mask; mask out observations that are
+        #   reserved for validation
+        print(&#39;Masking out validation data...&#39;)
+        mask = hdf[&#39;FLUXNET/validation_mask_VNP17&#39;][pft]
+        tower_gpp[mask] = np.nan
+
+    # Clean observations, then mask out driver data where the are no
+    #   observations
+    tower_gpp = self.clean_observed(
+        tower_gpp, drivers, VNP17StochasticSampler.required_drivers[&#39;GPP&#39;],
+        protocol = &#39;GPP&#39;)
+    if weights is not None:
+        weights = weights[~np.isnan(tower_gpp)]
+    for d, _ in enumerate(drivers):
+        drivers[d] = drivers[d][~np.isnan(tower_gpp)]
+    tower_gpp = tower_gpp[~np.isnan(tower_gpp)]
+
+    print(&#39;Initializing sampler...&#39;)
+    backend = self.config[&#39;optimization&#39;][&#39;backend_template&#39;] % (&#39;GPP&#39;, pft)
+    sampler = VNP17StochasticSampler(
+        self.config, MOD17._gpp, params_dict, backend = backend,
+        weights = weights)
+    if plot_trace or ipdb:
+        if ipdb:
+            import ipdb
+            ipdb.set_trace()
+        trace = sampler.get_trace()
+        az.plot_trace(trace, var_names = VNP17.required_parameters[0:5])
+        pyplot.show()
+        return
+    # Get (informative) priors for just those parameters that have them
+    with open(self.config[&#39;optimization&#39;][&#39;prior&#39;], &#39;r&#39;) as file:
+        prior = json.load(file)
+    prior_params = filter(
+        lambda p: p in prior.keys(), sampler.required_parameters[&#39;GPP&#39;])
+    prior = dict([
+        (p, {&#39;mu&#39;: prior[p][&#39;mu&#39;][pft], &#39;sigma&#39;: prior[p][&#39;sigma&#39;][pft]})
+        for p in prior_params
+    ])
+    sampler.run(
+        tower_gpp, drivers, prior = prior, save_fig = save_fig, **kwargs)</code></pre>
+</details>
+</dd>
+<dt id="mod17.viirs.VIIRSCalibrationAPI.tune_npp"><code class="name flex">
+<span>def <span class="ident">tune_npp</span></span>(<span>self, pft: int, plot_trace: bool = False, ipdb: bool = False, save_fig: bool = False, climatology=False, cutoff: numbers.Number = 2385, k_folds: int = 1, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Run the VNP17 NPP calibration.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>pft</code></strong> :&ensp;<code>int</code></dt>
+<dd>The Plant Functional Type (PFT) to calibrate</dd>
+<dt><strong><code>plot_trace</code></strong> :&ensp;<code>bool</code></dt>
+<dd>True to display the trace plot ONLY and not run calibration
+(Default: False)</dd>
+<dt><strong><code>ipdb</code></strong> :&ensp;<code>bool</code></dt>
+<dd>True to drop into an interactive Python debugger (<code>ipdb</code>) after
+loading an existing trace (Default: False)</dd>
+<dt><strong><code>save_fig</code></strong> :&ensp;<code>bool</code></dt>
+<dd>True to save the post-calibration trace plot to a file instead of
+displaying it (Default: False)</dd>
+<dt><strong><code>climatology</code></strong> :&ensp;<code>bool</code></dt>
+<dd>True to use a MERRA-2 climatology (and look for it in the drivers
+file), i.e., use <code>MERRA2_climatology</code> group instead of
+<code>surface_met_MERRA2</code> group (Default: False)</dd>
+<dt><strong><code>cutoff</code></strong> :&ensp;<code>Number</code></dt>
+<dd>Maximum value of observed NPP (g C m-2 year-1); values above this
+cutoff will be discarded and not used in calibration
+(Default: 2385)</dd>
+<dt><strong><code>k_folds</code></strong> :&ensp;<code>int</code></dt>
+<dd>Number of folds to use in k-folds cross-validation; defaults to
+k=1, i.e., no cross-validation is performed.</dd>
+<dt><strong><code>**kwargs</code></strong></dt>
+<dd>Additional keyword arguments passed to
+<code><a title="mod17.viirs.VNP17StochasticSampler.run" href="calibration.html#mod17.calibration.StochasticSampler.run">StochasticSampler.run()</a></code></dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def tune_npp(
+        self, pft: int, plot_trace: bool = False, ipdb: bool = False,
+        save_fig: bool = False, climatology = False,
+        cutoff: Number = 2385, k_folds: int = 1, **kwargs):
+    &#39;&#39;&#39;
+    Run the VNP17 NPP calibration.
+
+    Parameters
+    ----------
+    pft : int
+        The Plant Functional Type (PFT) to calibrate
+    plot_trace : bool
+        True to display the trace plot ONLY and not run calibration
+        (Default: False)
+    ipdb : bool
+        True to drop into an interactive Python debugger (`ipdb`) after
+        loading an existing trace (Default: False)
+    save_fig : bool
+        True to save the post-calibration trace plot to a file instead of
+        displaying it (Default: False)
+    climatology : bool
+        True to use a MERRA-2 climatology (and look for it in the drivers
+        file), i.e., use `MERRA2_climatology` group instead of
+        `surface_met_MERRA2` group (Default: False)
+    cutoff : Number
+        Maximum value of observed NPP (g C m-2 year-1); values above this
+        cutoff will be discarded and not used in calibration
+        (Default: 2385)
+    k_folds : int
+        Number of folds to use in k-folds cross-validation; defaults to
+        k=1, i.e., no cross-validation is performed.
+    **kwargs
+        Additional keyword arguments passed to
+        `VNP17StochasticSampler.run()`
+    &#39;&#39;&#39;
+    assert pft in PFT_VALID, f&#39;Invalid PFT: {pft}&#39;
+    prefix = &#39;MERRA2_climatology&#39; if climatology else &#39;surface_met_MERRA2&#39;
+    params_dict = restore_bplut(self.config[&#39;BPLUT&#39;][&#39;NPP&#39;])
+    # Filter the parameters to just those for the PFT of interest
+    params_dict = dict([(k, v[pft]) for k, v in params_dict.items()])
+    model = MOD17(params_dict)
+    kwargs.update({&#39;var_names&#39;: [
+        &#39;~LUE_max&#39;, &#39;~tmin0&#39;, &#39;~tmin1&#39;, &#39;~vpd0&#39;, &#39;~vpd1&#39;, &#39;~log_likelihood&#39;
+    ]})
+    # Pass configuration parameters to VNP17StochasticSampler.run()
+    for key in (&#39;chains&#39;, &#39;draws&#39;, &#39;tune&#39;, &#39;scaling&#39;):
+        if key in self.config[&#39;optimization&#39;].keys():
+            kwargs[key] = self.config[&#39;optimization&#39;][key]
+
+    print(&#39;Loading driver datasets...&#39;)
+    with h5py.File(self.hdf5, &#39;r&#39;) as hdf:
+        # NOTE: This is only recorded at the site-level; no need to
+        #   determine modal PFT across subgrid
+        pft_map = hdf[&#39;NPP/PFT&#39;][:]
+        # Leave out sites where there is no fPAR (and no LAI) data
+        fpar = hdf[&#39;NPP/MOD15A2H_fPAR_clim&#39;][:]
+        mask = np.logical_and(
+                pft_map == pft, ~np.isnan(np.nanmean(fpar, axis = -1))\
+            .all(axis = 0))
+        # NOTE: Converting from Kelvin to Celsius
+        tday = hdf[f&#39;NPP/{prefix}/T10M_daytime&#39;][:][:,mask] - 273.15
+        qv10m = hdf[f&#39;NPP/{prefix}/QV10M_daytime&#39;][:][:,mask]
+        ps = hdf[f&#39;NPP/{prefix}/PS_daytime&#39;][:][:,mask]
+        drivers = [ # fPAR, Tmin, VPD, PAR, LAI, Tmean, years
+            hdf[&#39;NPP/VNP15A2H_fPAR_clim&#39;][:][:,mask],
+            hdf[f&#39;NPP/{prefix}/Tmin&#39;][:][:,mask]  - 273.15,
+            MOD17.vpd(qv10m, ps, tday),
+            MOD17.par(hdf[f&#39;NPP/{prefix}/SWGDN&#39;][:][:,mask]),
+            hdf[&#39;NPP/VNP15A2H_LAI_clim&#39;][:][:,mask],
+            hdf[f&#39;NPP/{prefix}/T10M&#39;][:][:,mask] - 273.15,
+            np.full(ps.shape, 1) # i.e., A 365-day climatological year (&#34;Year 1&#34;)
+        ]
+        observed_npp = hdf[&#39;NPP/NPP_total&#39;][:][mask]
+    if cutoff is not None:
+        observed_npp[observed_npp &gt; cutoff] = np.nan
+    # Set negative VPD to zero
+    drivers[2] = np.where(drivers[2] &lt; 0, 0, drivers[2])
+    # Convert fPAR from (%) to [0,1] and re-scale LAI; reshape fPAR, LAI
+    drivers[0] = np.nanmean(drivers[0], axis = -1) * 0.01
+    drivers[4] = np.nanmean(drivers[4], axis = -1) * 0.1
+    # Mask out driver data where the are no observations
+    for d, _ in enumerate(drivers):
+        drivers[d] = drivers[d][:,~np.isnan(observed_npp)]
+    observed_npp = observed_npp[~np.isnan(observed_npp)]
+
+    if k_folds &gt; 1:
+        # Back-up the original (complete) datasets
+        _drivers = [d.copy() for d in drivers]
+        _observed_npp = observed_npp.copy()
+        # Randomize the indices of the NPP data
+        indices = np.arange(0, observed_npp.size)
+        np.random.shuffle(indices)
+        # Get the starting and ending index of each fold
+        fold_idx = np.array([indices.size // k_folds] * k_folds) * np.arange(0, k_folds)
+        fold_idx = list(map(list, zip(fold_idx, fold_idx + indices.size // k_folds)))
+        # Ensure that the entire dataset is used
+        fold_idx[-1][-1] = indices.max()
+        idx_test = [indices[start:end] for start, end in fold_idx]
+
+    for k, fold in enumerate(range(1, k_folds + 1)):
+        backend = self.config[&#39;optimization&#39;][&#39;backend_template&#39;] % (&#39;NPP&#39;, pft)
+        if k_folds &gt; 1:
+            # Create an HDF5 file with the same name as the (original)
+            #   netCDF4 back-end, store the test indices
+            with h5py.File(backend.replace(&#39;nc4&#39;, &#39;h5&#39;), &#39;w&#39;) as hdf:
+                out = list(idx_test)
+                size = indices.size // k_folds
+                try:
+                    out = np.stack(out)
+                except ValueError:
+                    size = max((o.size for o in out))
+                    for i in range(0, len(out)):
+                        out[i] = np.concatenate((out[i], [np.nan] * (size - out[i].size)))
+                hdf.create_dataset(
+                    &#39;test_indices&#39;, (k_folds, size), np.int32, np.stack(out))
+            backend = self.config[&#39;optimization&#39;][&#39;backend_template&#39;] % (f&#39;NPP-k{fold}&#39;, pft)
+            # Restore the original NPP dataset
+            observed_npp = _observed_npp.copy()
+            # Set to NaN all the test indices
+            idx = idx_test[k]
+            observed_npp[idx] = np.nan
+            # Same for drivers, after restoring from the original
+            drivers = [d.copy()[:,~np.isnan(observed_npp)] for d in _drivers]
+            observed_npp = observed_npp[~np.isnan(observed_npp)]
+
+        print(&#39;Initializing sampler...&#39;)
+        sampler = VNP17StochasticSampler(
+            self.config, MOD17._npp, params_dict, backend = backend,
+            model_name = &#39;NPP&#39;)
+        if plot_trace or ipdb:
+            if ipdb:
+                import ipdb
+                ipdb.set_trace()
+            trace = sampler.get_trace()
+            az.plot_trace(trace, var_names = MOD17.required_parameters[5:])
+            pyplot.show()
+            return
+        # Get (informative) priors for just those parameters that have them
+        with open(self.config[&#39;optimization&#39;][&#39;prior&#39;], &#39;r&#39;) as file:
+            prior = json.load(file)
+        prior_params = filter(
+            lambda p: p in prior.keys(), sampler.required_parameters[&#39;NPP&#39;])
+        prior = dict([
+            (p, prior[p]) for p in prior_params
+        ])
+        for key in prior.keys():
+            # And make sure to subset to the chosen PFT!
+            for arg in prior[key].keys():
+                prior[key][arg] = prior[key][arg][pft]
+        sampler.run(
+            observed_npp, drivers, prior = prior, save_fig = save_fig,
+            **kwargs)</code></pre>
+</details>
+</dd>
+</dl>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="mod17.calibration.CalibrationAPI" href="calibration.html#mod17.calibration.CalibrationAPI">CalibrationAPI</a></b></code>:
+<ul class="hlist">
+<li><code><a title="mod17.calibration.CalibrationAPI.clean_observed" href="calibration.html#mod17.calibration.CalibrationAPI.clean_observed">clean_observed</a></code></li>
+<li><code><a title="mod17.calibration.CalibrationAPI.export_bplut" href="calibration.html#mod17.calibration.CalibrationAPI.export_bplut">export_bplut</a></code></li>
+<li><code><a title="mod17.calibration.CalibrationAPI.export_likely_posterior" href="calibration.html#mod17.calibration.CalibrationAPI.export_likely_posterior">export_likely_posterior</a></code></li>
+<li><code><a title="mod17.calibration.CalibrationAPI.export_posterior" href="calibration.html#mod17.calibration.CalibrationAPI.export_posterior">export_posterior</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="mod17.viirs.VNP17StochasticSampler"><code class="flex name class">
+<span>class <span class="ident">VNP17StochasticSampler</span></span>
+<span>(</span><span>config: dict, model: Callable, params_dict: dict = None, backend: str = None, weights: Sequence[+T_co] = None, model_name: str = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>A Markov Chain-Monte Carlo (MCMC) sampler for MOD17. The specific sampler
+used is the Differential Evolution (DE) MCMC algorithm described by
+Ter Braak (2008), though the implementation is specific to the PyMC3
+library.</p>
+<p>Considerations:</p>
+<ol>
+<li>Tower GPP is censored when values are &lt; 0 or when APAR is
+&lt; 0.1 MJ m-2 d-1.</li>
+</ol>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>config</code></strong> :&ensp;<code>dict</code></dt>
+<dd>Dictionary of configuration parameters</dd>
+<dt><strong><code>model</code></strong> :&ensp;<code>Callable</code></dt>
+<dd>The function to call (with driver data and parameters); this function
+should take driver data as positional arguments and the model
+parameters as a <code>*Sequence</code>; it should require no external state.</dd>
+<dt><strong><code>observed</code></strong> :&ensp;<code>Sequence</code></dt>
+<dd>Sequence of observed values that will be used to calibrate the model;
+i.e., model is scored by how close its predicted values are to the
+observed values</dd>
+<dt><strong><code>params_dict</code></strong> :&ensp;<code>dict</code> or <code>None</code></dt>
+<dd>Dictionary of model parameters, to be used as initial values and as
+the basis for constructing a new dictionary of optimized parameters</dd>
+<dt><strong><code>backend</code></strong> :&ensp;<code>str</code> or <code>None</code></dt>
+<dd>Path to a NetCDF4 file backend (Default: None)</dd>
+<dt><strong><code>weights</code></strong> :&ensp;<code>Sequence</code> or <code>None</code></dt>
+<dd>Optional sequence of weights applied to the model residuals (as in
+weighted least squares)</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class VNP17StochasticSampler(MOD17StochasticSampler):
+    &#39;&#39;&#39;
+    A Markov Chain-Monte Carlo (MCMC) sampler for MOD17. The specific sampler
+    used is the Differential Evolution (DE) MCMC algorithm described by
+    Ter Braak (2008), though the implementation is specific to the PyMC3
+    library.
+
+    Considerations:
+
+    1. Tower GPP is censored when values are &lt; 0 or when APAR is
+        &lt; 0.1 MJ m-2 d-1.
+
+    Parameters
+    ----------
+    config : dict
+        Dictionary of configuration parameters
+    model : Callable
+        The function to call (with driver data and parameters); this function
+        should take driver data as positional arguments and the model
+        parameters as a `*Sequence`; it should require no external state.
+    observed : Sequence
+        Sequence of observed values that will be used to calibrate the model;
+        i.e., model is scored by how close its predicted values are to the
+        observed values
+    params_dict : dict or None
+        Dictionary of model parameters, to be used as initial values and as
+        the basis for constructing a new dictionary of optimized parameters
+    backend : str or None
+        Path to a NetCDF4 file backend (Default: None)
+    weights : Sequence or None
+        Optional sequence of weights applied to the model residuals (as in
+        weighted least squares)
+    &#39;&#39;&#39;
+    # NOTE: This is different than for mod17.MOD17 because we haven&#39;t yet
+    #   figured out how the respiration terms are calculated
+    required_parameters = {
+        &#39;GPP&#39;: [&#39;LUE_max&#39;, &#39;tmin0&#39;, &#39;tmin1&#39;, &#39;vpd0&#39;, &#39;vpd1&#39;],
+        &#39;NPP&#39;: MOD17.required_parameters
+    }
+    required_drivers = {
+        &#39;GPP&#39;: [&#39;fPAR&#39;, &#39;Tmin&#39;, &#39;VPD&#39;, &#39;PAR&#39;],
+        &#39;NPP&#39;: [&#39;fPAR&#39;, &#39;Tmin&#39;, &#39;VPD&#39;, &#39;PAR&#39;, &#39;LAI&#39;, &#39;Tmean&#39;, &#39;years&#39;]
+    }
+
+    def compile_gpp_model(
+            self, observed: Sequence, drivers: Sequence) -&gt; pm.Model:
+        &#39;&#39;&#39;
+        Creates a new GPP model based on the prior distribution. Model can be
+        re-compiled multiple times, e.g., for cross validation.
+
+        Parameters
+        ----------
+        observed : Sequence
+            Sequence of observed values that will be used to calibrate the model;
+            i.e., model is scored by how close its predicted values are to the
+            observed values
+        drivers : list or tuple
+            Sequence of driver datasets to be supplied, in order, to the
+            model&#39;s run function
+
+        Returns
+        -------
+        pm.Model
+        &#39;&#39;&#39;
+        # Define the objective/ likelihood function
+        log_likelihood = BlackBoxLikelihood(
+            self.model, observed, x = drivers, weights = self.weights)
+        # With this context manager, &#34;all PyMC3 objects introduced in the indented
+        #   code block...are added to the model behind the scenes.&#34;
+        with pm.Model() as model:
+            # (Stochstic) Priors for unknown model parameters
+            LUE_max = pm.TruncatedNormal(&#39;LUE_max&#39;,
+                **self.prior[&#39;LUE_max&#39;], **self.bounds[&#39;LUE_max&#39;])
+            # NOTE: All environmental scalars are fixed at their updated
+            #   MOD17 values
+            tmin0 = self.params[&#39;tmin0&#39;]
+            tmin1 = self.params[&#39;tmin1&#39;]
+            vpd0 = self.params[&#39;vpd0&#39;]
+            vpd1 = self.params[&#39;vpd1&#39;]
+            # Convert model parameters to a tensor vector
+            params_list = [LUE_max, tmin0, tmin1, vpd0, vpd1]
+            params = at.as_tensor_variable(params_list)
+            # Key step: Define the log-likelihood as an added potential
+            pm.Potential(&#39;likelihood&#39;, log_likelihood(params))
+        return model
+
+    def compile_npp_model(
+            self, observed: Sequence, drivers: Sequence) -&gt; pm.Model:
+        &#39;&#39;&#39;
+        Creates a new NPP model based on the prior distribution. Model can be
+        re-compiled multiple times, e.g., for cross validation.
+
+        Parameters
+        ----------
+        observed : Sequence
+            Sequence of observed values that will be used to calibrate the model;
+            i.e., model is scored by how close its predicted values are to the
+            observed values
+        drivers : list or tuple
+            Sequence of driver datasets to be supplied, in order, to the
+            model&#39;s run function
+
+        Returns
+        -------
+        pm.Model
+        &#39;&#39;&#39;
+        # Define the objective/ likelihood function
+        log_likelihood = BlackBoxLikelihood(
+            self.model, observed, x = drivers, weights = self.weights)
+        # With this context manager, &#34;all PyMC3 objects introduced in the indented
+        #   code block...are added to the model behind the scenes.&#34;
+        with pm.Model() as model:
+            # Setting GPP parameters that are known
+            LUE_max = self.params[&#39;LUE_max&#39;]
+            tmin0   = self.params[&#39;tmin0&#39;]
+            tmin1   = self.params[&#39;tmin1&#39;]
+            vpd0    = self.params[&#39;vpd0&#39;]
+            vpd1    = self.params[&#39;vpd1&#39;]
+            # SLA fixed at prior mean
+            SLA = np.exp(self.prior[&#39;SLA&#39;][&#39;mu&#39;])
+            # Allometry ratios prescribe narrow range around Collection 6.1 values
+            froot_leaf_ratio = pm.Triangular(
+                &#39;froot_leaf_ratio&#39;, **self.prior[&#39;froot_leaf_ratio&#39;])
+            Q10_froot = pm.TruncatedNormal(
+                &#39;Q10_froot&#39;, **self.prior[&#39;Q10_froot&#39;], **self.bounds[&#39;Q10&#39;])
+            leaf_mr_base = pm.LogNormal(
+                &#39;leaf_mr_base&#39;, **self.prior[&#39;leaf_mr_base&#39;])
+            froot_mr_base = pm.LogNormal(
+                &#39;froot_mr_base&#39;, **self.prior[&#39;froot_mr_base&#39;])
+            # For GRS and CRO, livewood mass and respiration are zero
+            if list(self.prior[&#39;livewood_mr_base&#39;].values()) == [0, 0]:
+                livewood_leaf_ratio = 0
+                livewood_mr_base = 0
+                Q10_livewood = 0
+            else:
+                livewood_leaf_ratio = pm.Triangular(
+                    &#39;livewood_leaf_ratio&#39;, **self.prior[&#39;livewood_leaf_ratio&#39;])
+                livewood_mr_base = pm.LogNormal(
+                    &#39;livewood_mr_base&#39;, **self.prior[&#39;livewood_mr_base&#39;])
+                Q10_livewood = pm.TruncatedNormal(
+                    &#39;Q10_livewood&#39;, **self.prior[&#39;Q10_livewood&#39;],
+                    **self.bounds[&#39;Q10&#39;])
+            # Convert model parameters to a tensor vector
+            params_list = [
+                LUE_max, tmin0, tmin1, vpd0, vpd1, SLA,
+                Q10_livewood, Q10_froot, froot_leaf_ratio, livewood_leaf_ratio,
+                leaf_mr_base, froot_mr_base, livewood_mr_base
+            ]
+            params = at.as_tensor_variable(params_list)
+            # Key step: Define the log-likelihood as an added potential
+            pm.Potential(&#39;likelihood&#39;, log_likelihood(params))
+        return model</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="mod17.calibration.MOD17StochasticSampler" href="calibration.html#mod17.calibration.MOD17StochasticSampler">MOD17StochasticSampler</a></li>
+<li><a title="mod17.calibration.StochasticSampler" href="calibration.html#mod17.calibration.StochasticSampler">StochasticSampler</a></li>
+<li><a title="mod17.calibration.AbstractSampler" href="calibration.html#mod17.calibration.AbstractSampler">AbstractSampler</a></li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="mod17.viirs.VNP17StochasticSampler.required_drivers"><code class="name">var <span class="ident">required_drivers</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="mod17.viirs.VNP17StochasticSampler.required_parameters"><code class="name">var <span class="ident">required_parameters</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="mod17.calibration.MOD17StochasticSampler" href="calibration.html#mod17.calibration.MOD17StochasticSampler">MOD17StochasticSampler</a></b></code>:
+<ul class="hlist">
+<li><code><a title="mod17.calibration.MOD17StochasticSampler.compile_gpp_model" href="calibration.html#mod17.calibration.MOD17StochasticSampler.compile_gpp_model">compile_gpp_model</a></code></li>
+<li><code><a title="mod17.calibration.MOD17StochasticSampler.compile_npp_model" href="calibration.html#mod17.calibration.MOD17StochasticSampler.compile_npp_model">compile_npp_model</a></code></li>
+<li><code><a title="mod17.calibration.MOD17StochasticSampler.get_posterior" href="calibration.html#mod17.calibration.AbstractSampler.get_posterior">get_posterior</a></code></li>
+<li><code><a title="mod17.calibration.MOD17StochasticSampler.get_trace" href="calibration.html#mod17.calibration.AbstractSampler.get_trace">get_trace</a></code></li>
+<li><code><a title="mod17.calibration.MOD17StochasticSampler.plot_autocorr" href="calibration.html#mod17.calibration.AbstractSampler.plot_autocorr">plot_autocorr</a></code></li>
+<li><code><a title="mod17.calibration.MOD17StochasticSampler.plot_forest" href="calibration.html#mod17.calibration.AbstractSampler.plot_forest">plot_forest</a></code></li>
+<li><code><a title="mod17.calibration.MOD17StochasticSampler.plot_pair" href="calibration.html#mod17.calibration.AbstractSampler.plot_pair">plot_pair</a></code></li>
+<li><code><a title="mod17.calibration.MOD17StochasticSampler.plot_partial_score" href="calibration.html#mod17.calibration.AbstractSampler.plot_partial_score">plot_partial_score</a></code></li>
+<li><code><a title="mod17.calibration.MOD17StochasticSampler.plot_posterior" href="calibration.html#mod17.calibration.AbstractSampler.plot_posterior">plot_posterior</a></code></li>
+<li><code><a title="mod17.calibration.MOD17StochasticSampler.run" href="calibration.html#mod17.calibration.StochasticSampler.run">run</a></code></li>
+<li><code><a title="mod17.calibration.MOD17StochasticSampler.score_posterior" href="calibration.html#mod17.calibration.AbstractSampler.score_posterior">score_posterior</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="mod17" href="index.html">mod17</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="mod17.viirs.VIIRSCalibrationAPI" href="#mod17.viirs.VIIRSCalibrationAPI">VIIRSCalibrationAPI</a></code></h4>
+<ul class="">
+<li><code><a title="mod17.viirs.VIIRSCalibrationAPI.tune_gpp" href="#mod17.viirs.VIIRSCalibrationAPI.tune_gpp">tune_gpp</a></code></li>
+<li><code><a title="mod17.viirs.VIIRSCalibrationAPI.tune_npp" href="#mod17.viirs.VIIRSCalibrationAPI.tune_npp">tune_npp</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="mod17.viirs.VNP17StochasticSampler" href="#mod17.viirs.VNP17StochasticSampler">VNP17StochasticSampler</a></code></h4>
+<ul class="">
+<li><code><a title="mod17.viirs.VNP17StochasticSampler.required_drivers" href="#mod17.viirs.VNP17StochasticSampler.required_drivers">required_drivers</a></code></li>
+<li><code><a title="mod17.viirs.VNP17StochasticSampler.required_parameters" href="#mod17.viirs.VNP17StochasticSampler.required_parameters">required_parameters</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>

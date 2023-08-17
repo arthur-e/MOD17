@@ -1,0 +1,627 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>mod17.srs API documentation</title>
+<meta name="description" content="MODIS sinusoidal projection forward and backward coordinate transformations,
+courtesy of Giglio et al. (2018), Collection 6 MODIS Burned Area Product
+…" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS_CHTML" integrity="sha256-kZafAc6mZvK3W3v1pHOcUix30OHQN6pU/NO2oFkqZVw=" crossorigin></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>mod17.srs</code></h1>
+</header>
+<section id="section-intro">
+<p>MODIS sinusoidal projection forward and backward coordinate transformations,
+courtesy of Giglio et al. (2018), Collection 6 MODIS Burned Area Product
+User's Guide, Version 1, Appendix B:</p>
+<ul>
+<li><a href="https://modis-fire.umd.edu/files/MODIS_C6_BA_User_Guide_1.2.pdf">https://modis-fire.umd.edu/files/MODIS_C6_BA_User_Guide_1.2.pdf</a></li>
+</ul>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">&#39;&#39;&#39;
+MODIS sinusoidal projection forward and backward coordinate transformations,
+courtesy of Giglio et al. (2018), Collection 6 MODIS Burned Area Product
+User&#39;s Guide, Version 1, Appendix B:
+
+- https://modis-fire.umd.edu/files/MODIS_C6_BA_User_Guide_1.2.pdf
+&#39;&#39;&#39;
+
+import h5py
+import re
+import numpy as np
+from numbers import Number
+from typing import Sequence, Tuple, Iterable
+
+SPHERE_RADIUS = 6371007.181 # Radius of ideal sphere, meters
+TILE_LINES = {250: 5000, 500: 2400, 1000: 1200} # Num. lines by nominal res.
+TILE_SIZE = 1111950 # Width and height of MODIS tile in projection plane
+XMIN = -20015109 # Western limit of projection plane, meters
+YMAX = 10007555 # Nothern limit of projection plane, meters
+VIIRS_METADATA = re.compile(
+    r&#39;.*XDim=(?P&lt;xdim&gt;\d+)&#39;
+    r&#39;.*YDim=(?P&lt;ydim&gt;\d+)&#39;
+    r&#39;.*UpperLeftPointMtrs=\((?P&lt;ul&gt;[0-9,\-\.]+)\)&#39;
+    r&#39;.*LowerRightMtrs=\((?P&lt;lr&gt;[0-9,\-\.]+)\).*&#39;, re.DOTALL)
+# Taken from a MOD15A2H EOS-HDF file; this seems to fit best
+MODIS_SINUSOIDAL_PROJ_WKT = &#39;&#39;&#39;
+PROJCS[&#34;unnamed&#34;,GEOGCS[&#34;Unknown datum based upon the custom spheroid&#34;,
+  DATUM[&#34;Not specified (based on custom spheroid)&#34;,
+  SPHEROID[&#34;Custom spheroid&#34;,6371007.181,0]],PRIMEM[&#34;Greenwich&#34;,0],
+  UNIT[&#34;degree&#34;,0.0174532925199433,AUTHORITY[&#34;EPSG&#34;,&#34;9122&#34;]]],
+  PROJECTION[&#34;Sinusoidal&#34;],
+  PARAMETER[&#34;longitude_of_center&#34;,0],
+  PARAMETER[&#34;false_easting&#34;,0],
+  PARAMETER[&#34;false_northing&#34;,0],
+  UNIT[&#34;Meter&#34;,1],AXIS[&#34;Easting&#34;,EAST],
+  AXIS[&#34;Northing&#34;,NORTH]]
+&#39;&#39;&#39;.replace(&#39;\n&#39;, &#39;&#39;)
+
+
+def geotransform(
+        hdf: h5py.File,
+        ps: float = 463.31271653,
+        nrow: int = 2400,
+        ncol: int = 2400,
+        metadata = VIIRS_METADATA
+    ) -&gt; Iterable[Tuple[Number, Number, Number, Number, Number, Number]]:
+    &#39;&#39;&#39;
+    Prescribe a geotransform tuple for the output GeoTIFF. For MODIS/VIIRS
+    sinsuoidal projections, the lower right corner coordinates are &#34;the only
+    metadata that accurately reflect the extreme corners of the gridded image&#34;
+    (Myneni et al. 2018, VIIRS LAI/fPAR User Guide). So, instead of using the
+    reported upper-left (UL) corner coordinates, it is more accurate to use
+    the lower-right (LR) corner coordinates and calculate the position of the
+    UL corner based on the width and height of the image and the pixel size.
+    NOTE that a rather odd pixel size is required to get the correct results
+    verified against the HDF-EOS-to-GeoTIFF (HEG) Conversion Tool; see also
+    Giglio et al. (2018), &#34;Collection 6 MODIS Burned Area Product User&#39;s
+    Guide, Version 1&#34; Table 1.
+
+        https://modis-land.gsfc.nasa.gov/pdf/MODIS_C6_BA_User_Guide_1.2.pdf
+
+    Parameters
+    ----------
+    hdf : h5py.File
+    ps : int or float
+        The pixel size; in units matching the linear units of the SRS
+        (Default: 463.3127 meters)
+    nrow : int
+        Number of rows in the output image (Default: 2400 for MODIS/VIIRS)
+    ncol : int
+        Number of columns in the output image (Default: 2400 for MODIS/VIIRS)
+    metadata : re.Pattern
+        Compiled regex that captures important metadata fields
+
+    Returns
+    -------
+    tuple
+        (x_min, pixel_width, 0, y_max, 0, -pixel_height)
+    &#39;&#39;&#39;
+    meta = hdf[&#39;HDFEOS INFORMATION/StructMetadata.0&#39;][()].decode()
+    lr = VIIRS_METADATA.match(meta).groupdict()[&#39;lr&#39;].split(&#39;,&#39;)
+    return ( # Subtract distance (meters) from LR corner to obtain UR corner
+        float(lr[0]) - (ncol * ps), ps, 0, float(lr[1]) + (nrow * ps), 0, -ps)
+
+
+def modis_from_wgs84(coords: Sequence) -&gt; Sequence:
+    &#39;&#39;&#39;
+    Given longitude-latitude coordinates, return the coordinates on the
+    sinusoidal projection plane.
+
+    Parameters
+    ----------
+    coords : tuple or list or numpy.ndarray
+        (Longitude, Latitude) coordinate pair; for a numpy.ndarray, assumes
+        that this is described by the first axis, which is length 2
+
+    Returns
+    -------
+    numpy.ndarray
+        (X, Y) coordinate pair in MODIS sinusoidal projection; a (2 x ...) array
+    &#39;&#39;&#39;
+    x, y = np.deg2rad(coords)
+    return np.stack((SPHERE_RADIUS * x * np.cos(y), SPHERE_RADIUS * y))
+
+
+def modis_to_wgs84(coords: Sequence) -&gt; Sequence:
+    &#39;&#39;&#39;
+    Convert coordinates on the MODIS sinusoidal plane to longitude-latitude
+    coordinates (WGS84).
+
+    Parameters
+    ----------
+    coords : tuple or list or numpy.ndarray
+        (X, Y) coordinate pair in MODIS sinusoidal projection; for a
+        numpy.ndarray, assumes that this is described by the first axis,
+        which is length 2
+
+    Returns
+    -------
+    numpy.ndarray
+        (Longitude, Latitude) coordinate pair; a (2 x ...) array
+    &#39;&#39;&#39;
+    x, y = coords
+    lat = y / SPHERE_RADIUS # i.e., return value in radians
+    lng = x / (SPHERE_RADIUS * np.cos(lat))
+    return np.stack((np.rad2deg(lng), np.rad2deg(lat)))
+
+
+def modis_tile_from_wgs84(coords: Sequence) -&gt; Sequence:
+    &#39;&#39;&#39;
+    Given longitude-latitude coordinates, return the MODIS tile (H,V) that
+    contains them.
+
+    Parameters
+    ----------
+    coords : tuple or list or numpy.ndarray
+        (Longitude, Latitude) coordinate pair; for a numpy.ndarray, assumes
+        that this is described by the first axis, which is length 2
+
+    Returns
+    -------
+    numpy.ndarray
+        (H,V) tile identifier; a (2 x ...) array
+    &#39;&#39;&#39;
+    x, y = modis_from_wgs84(coords) # Get coordinates in the projection plane
+    return np.stack((
+        np.floor((x - XMIN) / TILE_SIZE),
+        np.floor((YMAX - y) / TILE_SIZE)))
+
+
+def modis_row_col_from_wgs84(
+        coords: Sequence, nominal: int = 500) -&gt; Sequence:
+    &#39;&#39;&#39;
+    Given longitude-latitude coordinates, return the corresponding row-column
+    coordinates within a MODIS tile. NOTE: You&#39;ll need to determine which
+    MODIS tile contains this row-column index with `modis_tile_from_wgs84()`.
+
+    Parameters
+    ----------
+    coords : tuple or list or numpy.ndarray
+        (Longitude, Latitude) coordinate pair in WGS84 projection
+    nominal : int
+        Nominal resolution of MODIS raster: 250 (meters), 500, or 1000
+
+    Returns
+    -------
+    numpy.ndarray
+        (Row, Column) coordinates; a (2 x ...) array
+    &#39;&#39;&#39;
+    x, y = modis_from_wgs84(coords) # Get coordinates in the projection plane
+    # Get actual size of, e.g., &#34;500-m&#34; MODIS sinusoidal cell
+    res = TILE_SIZE / float(TILE_LINES[nominal])
+    out = np.stack((
+        np.floor((((YMAX - y) % TILE_SIZE) / res) - 0.5),
+        np.floor((((x - XMIN) % TILE_SIZE) / res) - 0.5),
+    ))
+    # Fix some edge cases where subtracting 0.5, taking the floor leads to -1
+    return np.where(out == -1, 0, out)
+
+
+def modis_row_col_to_wgs84(
+        coords: Sequence, h: Number, v: Number, nominal: int = 500
+    ) -&gt; Sequence:
+    &#39;&#39;&#39;
+    Convert pixel coordinates in a specific MODIS tile to longitude-latitude
+    coordinates. The &#34;h&#34; and &#34;v&#34; arguments if passed as arrays, must be
+    conformable to the &#34;coords&#34; array.
+
+    Parameters
+    ----------
+    coords : tuple or list or numpy.ndarray
+        (X, Y) coordinate pair in MODIS sinusoidal projection
+    h : int or numpy.ndarray
+        MODIS tile &#34;h&#34; index
+    v : int or numpy.ndarray
+        MODIS tile &#34;v&#34; index
+    nominal : int
+        Nominal resolution of MODIS raster: 250 (meters), 500, or 1000
+
+    Returns
+    -------
+    numpy.ndarray
+        (Longitude, Latitude) coordinates; a (2 x ...) array
+    &#39;&#39;&#39;
+    r, c = coords
+    lines = TILE_LINES[nominal]
+    assert np.logical_and(
+        np.logical_and(0 &lt;= r, r &lt;= (lines - 1)),
+        np.logical_and(0 &lt;= c, c &lt;= (lines - 1))).all(),\
+        &#39;Row and column indices must be in the range [0, %d]&#39; % (lines - 1)
+    # Get actual size of, e.g., &#34;500-m&#34; MODIS sinusoidal cell
+    res = TILE_SIZE / float(TILE_LINES[nominal])
+    x = ((c + 0.5) * res) + (h * TILE_SIZE) + XMIN
+    y = YMAX - ((r + 0.5) * res) - (v * TILE_SIZE)
+    return modis_to_wgs84((x, y))</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="mod17.srs.geotransform"><code class="name flex">
+<span>def <span class="ident">geotransform</span></span>(<span>hdf: h5py._hl.files.File, ps: float = 463.31271653, nrow: int = 2400, ncol: int = 2400, metadata=re.compile(&#x27;.*XDim=(?P&lt;xdim&gt;\\d+).*YDim=(?P&lt;ydim&gt;\\d+).*UpperLeftPointMtrs=\\((?P&lt;ul&gt;[0-9,\\-\\.]+)\\).*LowerRightMtrs=\\((?P&lt;lr&gt;[0-9,\\-\\.]+)\\).*&#x27;, re.DOTALL)) ‑> Iterable[Tuple[numbers.Number, numbers.Number, numbers.Number, numbers.Number, numbers.Number, numbers.Number]]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Prescribe a geotransform tuple for the output GeoTIFF. For MODIS/VIIRS
+sinsuoidal projections, the lower right corner coordinates are "the only
+metadata that accurately reflect the extreme corners of the gridded image"
+(Myneni et al. 2018, VIIRS LAI/fPAR User Guide). So, instead of using the
+reported upper-left (UL) corner coordinates, it is more accurate to use
+the lower-right (LR) corner coordinates and calculate the position of the
+UL corner based on the width and height of the image and the pixel size.
+NOTE that a rather odd pixel size is required to get the correct results
+verified against the HDF-EOS-to-GeoTIFF (HEG) Conversion Tool; see also
+Giglio et al. (2018), "Collection 6 MODIS Burned Area Product User's
+Guide, Version 1" Table 1.</p>
+<pre><code>&lt;https://modis-land.gsfc.nasa.gov/pdf/MODIS_C6_BA_User_Guide_1.2.pdf&gt;
+</code></pre>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>hdf</code></strong> :&ensp;<code>h5py.File</code></dt>
+<dd>&nbsp;</dd>
+<dt><strong><code>ps</code></strong> :&ensp;<code>int</code> or <code>float</code></dt>
+<dd>The pixel size; in units matching the linear units of the SRS
+(Default: 463.3127 meters)</dd>
+<dt><strong><code>nrow</code></strong> :&ensp;<code>int</code></dt>
+<dd>Number of rows in the output image (Default: 2400 for MODIS/VIIRS)</dd>
+<dt><strong><code>ncol</code></strong> :&ensp;<code>int</code></dt>
+<dd>Number of columns in the output image (Default: 2400 for MODIS/VIIRS)</dd>
+<dt><strong><code>metadata</code></strong> :&ensp;<code>re.Pattern</code></dt>
+<dd>Compiled regex that captures important metadata fields</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>tuple</code></dt>
+<dd>(x_min, pixel_width, 0, y_max, 0, -pixel_height)</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def geotransform(
+        hdf: h5py.File,
+        ps: float = 463.31271653,
+        nrow: int = 2400,
+        ncol: int = 2400,
+        metadata = VIIRS_METADATA
+    ) -&gt; Iterable[Tuple[Number, Number, Number, Number, Number, Number]]:
+    &#39;&#39;&#39;
+    Prescribe a geotransform tuple for the output GeoTIFF. For MODIS/VIIRS
+    sinsuoidal projections, the lower right corner coordinates are &#34;the only
+    metadata that accurately reflect the extreme corners of the gridded image&#34;
+    (Myneni et al. 2018, VIIRS LAI/fPAR User Guide). So, instead of using the
+    reported upper-left (UL) corner coordinates, it is more accurate to use
+    the lower-right (LR) corner coordinates and calculate the position of the
+    UL corner based on the width and height of the image and the pixel size.
+    NOTE that a rather odd pixel size is required to get the correct results
+    verified against the HDF-EOS-to-GeoTIFF (HEG) Conversion Tool; see also
+    Giglio et al. (2018), &#34;Collection 6 MODIS Burned Area Product User&#39;s
+    Guide, Version 1&#34; Table 1.
+
+        https://modis-land.gsfc.nasa.gov/pdf/MODIS_C6_BA_User_Guide_1.2.pdf
+
+    Parameters
+    ----------
+    hdf : h5py.File
+    ps : int or float
+        The pixel size; in units matching the linear units of the SRS
+        (Default: 463.3127 meters)
+    nrow : int
+        Number of rows in the output image (Default: 2400 for MODIS/VIIRS)
+    ncol : int
+        Number of columns in the output image (Default: 2400 for MODIS/VIIRS)
+    metadata : re.Pattern
+        Compiled regex that captures important metadata fields
+
+    Returns
+    -------
+    tuple
+        (x_min, pixel_width, 0, y_max, 0, -pixel_height)
+    &#39;&#39;&#39;
+    meta = hdf[&#39;HDFEOS INFORMATION/StructMetadata.0&#39;][()].decode()
+    lr = VIIRS_METADATA.match(meta).groupdict()[&#39;lr&#39;].split(&#39;,&#39;)
+    return ( # Subtract distance (meters) from LR corner to obtain UR corner
+        float(lr[0]) - (ncol * ps), ps, 0, float(lr[1]) + (nrow * ps), 0, -ps)</code></pre>
+</details>
+</dd>
+<dt id="mod17.srs.modis_from_wgs84"><code class="name flex">
+<span>def <span class="ident">modis_from_wgs84</span></span>(<span>coords: Sequence[+T_co]) ‑> Sequence[+T_co]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Given longitude-latitude coordinates, return the coordinates on the
+sinusoidal projection plane.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>coords</code></strong> :&ensp;<code>tuple</code> or <code>list</code> or <code>numpy.ndarray</code></dt>
+<dd>(Longitude, Latitude) coordinate pair; for a numpy.ndarray, assumes
+that this is described by the first axis, which is length 2</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>numpy.ndarray</code></dt>
+<dd>(X, Y) coordinate pair in MODIS sinusoidal projection; a (2 x &hellip;) array</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def modis_from_wgs84(coords: Sequence) -&gt; Sequence:
+    &#39;&#39;&#39;
+    Given longitude-latitude coordinates, return the coordinates on the
+    sinusoidal projection plane.
+
+    Parameters
+    ----------
+    coords : tuple or list or numpy.ndarray
+        (Longitude, Latitude) coordinate pair; for a numpy.ndarray, assumes
+        that this is described by the first axis, which is length 2
+
+    Returns
+    -------
+    numpy.ndarray
+        (X, Y) coordinate pair in MODIS sinusoidal projection; a (2 x ...) array
+    &#39;&#39;&#39;
+    x, y = np.deg2rad(coords)
+    return np.stack((SPHERE_RADIUS * x * np.cos(y), SPHERE_RADIUS * y))</code></pre>
+</details>
+</dd>
+<dt id="mod17.srs.modis_row_col_from_wgs84"><code class="name flex">
+<span>def <span class="ident">modis_row_col_from_wgs84</span></span>(<span>coords: Sequence[+T_co], nominal: int = 500) ‑> Sequence[+T_co]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Given longitude-latitude coordinates, return the corresponding row-column
+coordinates within a MODIS tile. NOTE: You'll need to determine which
+MODIS tile contains this row-column index with <code><a title="mod17.srs.modis_tile_from_wgs84" href="#mod17.srs.modis_tile_from_wgs84">modis_tile_from_wgs84()</a></code>.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>coords</code></strong> :&ensp;<code>tuple</code> or <code>list</code> or <code>numpy.ndarray</code></dt>
+<dd>(Longitude, Latitude) coordinate pair in WGS84 projection</dd>
+<dt><strong><code>nominal</code></strong> :&ensp;<code>int</code></dt>
+<dd>Nominal resolution of MODIS raster: 250 (meters), 500, or 1000</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>numpy.ndarray</code></dt>
+<dd>(Row, Column) coordinates; a (2 x &hellip;) array</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def modis_row_col_from_wgs84(
+        coords: Sequence, nominal: int = 500) -&gt; Sequence:
+    &#39;&#39;&#39;
+    Given longitude-latitude coordinates, return the corresponding row-column
+    coordinates within a MODIS tile. NOTE: You&#39;ll need to determine which
+    MODIS tile contains this row-column index with `modis_tile_from_wgs84()`.
+
+    Parameters
+    ----------
+    coords : tuple or list or numpy.ndarray
+        (Longitude, Latitude) coordinate pair in WGS84 projection
+    nominal : int
+        Nominal resolution of MODIS raster: 250 (meters), 500, or 1000
+
+    Returns
+    -------
+    numpy.ndarray
+        (Row, Column) coordinates; a (2 x ...) array
+    &#39;&#39;&#39;
+    x, y = modis_from_wgs84(coords) # Get coordinates in the projection plane
+    # Get actual size of, e.g., &#34;500-m&#34; MODIS sinusoidal cell
+    res = TILE_SIZE / float(TILE_LINES[nominal])
+    out = np.stack((
+        np.floor((((YMAX - y) % TILE_SIZE) / res) - 0.5),
+        np.floor((((x - XMIN) % TILE_SIZE) / res) - 0.5),
+    ))
+    # Fix some edge cases where subtracting 0.5, taking the floor leads to -1
+    return np.where(out == -1, 0, out)</code></pre>
+</details>
+</dd>
+<dt id="mod17.srs.modis_row_col_to_wgs84"><code class="name flex">
+<span>def <span class="ident">modis_row_col_to_wgs84</span></span>(<span>coords: Sequence[+T_co], h: numbers.Number, v: numbers.Number, nominal: int = 500) ‑> Sequence[+T_co]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Convert pixel coordinates in a specific MODIS tile to longitude-latitude
+coordinates. The "h" and "v" arguments if passed as arrays, must be
+conformable to the "coords" array.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>coords</code></strong> :&ensp;<code>tuple</code> or <code>list</code> or <code>numpy.ndarray</code></dt>
+<dd>(X, Y) coordinate pair in MODIS sinusoidal projection</dd>
+<dt><strong><code>h</code></strong> :&ensp;<code>int</code> or <code>numpy.ndarray</code></dt>
+<dd>MODIS tile "h" index</dd>
+<dt><strong><code>v</code></strong> :&ensp;<code>int</code> or <code>numpy.ndarray</code></dt>
+<dd>MODIS tile "v" index</dd>
+<dt><strong><code>nominal</code></strong> :&ensp;<code>int</code></dt>
+<dd>Nominal resolution of MODIS raster: 250 (meters), 500, or 1000</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>numpy.ndarray</code></dt>
+<dd>(Longitude, Latitude) coordinates; a (2 x &hellip;) array</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def modis_row_col_to_wgs84(
+        coords: Sequence, h: Number, v: Number, nominal: int = 500
+    ) -&gt; Sequence:
+    &#39;&#39;&#39;
+    Convert pixel coordinates in a specific MODIS tile to longitude-latitude
+    coordinates. The &#34;h&#34; and &#34;v&#34; arguments if passed as arrays, must be
+    conformable to the &#34;coords&#34; array.
+
+    Parameters
+    ----------
+    coords : tuple or list or numpy.ndarray
+        (X, Y) coordinate pair in MODIS sinusoidal projection
+    h : int or numpy.ndarray
+        MODIS tile &#34;h&#34; index
+    v : int or numpy.ndarray
+        MODIS tile &#34;v&#34; index
+    nominal : int
+        Nominal resolution of MODIS raster: 250 (meters), 500, or 1000
+
+    Returns
+    -------
+    numpy.ndarray
+        (Longitude, Latitude) coordinates; a (2 x ...) array
+    &#39;&#39;&#39;
+    r, c = coords
+    lines = TILE_LINES[nominal]
+    assert np.logical_and(
+        np.logical_and(0 &lt;= r, r &lt;= (lines - 1)),
+        np.logical_and(0 &lt;= c, c &lt;= (lines - 1))).all(),\
+        &#39;Row and column indices must be in the range [0, %d]&#39; % (lines - 1)
+    # Get actual size of, e.g., &#34;500-m&#34; MODIS sinusoidal cell
+    res = TILE_SIZE / float(TILE_LINES[nominal])
+    x = ((c + 0.5) * res) + (h * TILE_SIZE) + XMIN
+    y = YMAX - ((r + 0.5) * res) - (v * TILE_SIZE)
+    return modis_to_wgs84((x, y))</code></pre>
+</details>
+</dd>
+<dt id="mod17.srs.modis_tile_from_wgs84"><code class="name flex">
+<span>def <span class="ident">modis_tile_from_wgs84</span></span>(<span>coords: Sequence[+T_co]) ‑> Sequence[+T_co]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Given longitude-latitude coordinates, return the MODIS tile (H,V) that
+contains them.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>coords</code></strong> :&ensp;<code>tuple</code> or <code>list</code> or <code>numpy.ndarray</code></dt>
+<dd>(Longitude, Latitude) coordinate pair; for a numpy.ndarray, assumes
+that this is described by the first axis, which is length 2</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>numpy.ndarray</code></dt>
+<dd>(H,V) tile identifier; a (2 x &hellip;) array</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def modis_tile_from_wgs84(coords: Sequence) -&gt; Sequence:
+    &#39;&#39;&#39;
+    Given longitude-latitude coordinates, return the MODIS tile (H,V) that
+    contains them.
+
+    Parameters
+    ----------
+    coords : tuple or list or numpy.ndarray
+        (Longitude, Latitude) coordinate pair; for a numpy.ndarray, assumes
+        that this is described by the first axis, which is length 2
+
+    Returns
+    -------
+    numpy.ndarray
+        (H,V) tile identifier; a (2 x ...) array
+    &#39;&#39;&#39;
+    x, y = modis_from_wgs84(coords) # Get coordinates in the projection plane
+    return np.stack((
+        np.floor((x - XMIN) / TILE_SIZE),
+        np.floor((YMAX - y) / TILE_SIZE)))</code></pre>
+</details>
+</dd>
+<dt id="mod17.srs.modis_to_wgs84"><code class="name flex">
+<span>def <span class="ident">modis_to_wgs84</span></span>(<span>coords: Sequence[+T_co]) ‑> Sequence[+T_co]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Convert coordinates on the MODIS sinusoidal plane to longitude-latitude
+coordinates (WGS84).</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>coords</code></strong> :&ensp;<code>tuple</code> or <code>list</code> or <code>numpy.ndarray</code></dt>
+<dd>(X, Y) coordinate pair in MODIS sinusoidal projection; for a
+numpy.ndarray, assumes that this is described by the first axis,
+which is length 2</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>numpy.ndarray</code></dt>
+<dd>(Longitude, Latitude) coordinate pair; a (2 x &hellip;) array</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def modis_to_wgs84(coords: Sequence) -&gt; Sequence:
+    &#39;&#39;&#39;
+    Convert coordinates on the MODIS sinusoidal plane to longitude-latitude
+    coordinates (WGS84).
+
+    Parameters
+    ----------
+    coords : tuple or list or numpy.ndarray
+        (X, Y) coordinate pair in MODIS sinusoidal projection; for a
+        numpy.ndarray, assumes that this is described by the first axis,
+        which is length 2
+
+    Returns
+    -------
+    numpy.ndarray
+        (Longitude, Latitude) coordinate pair; a (2 x ...) array
+    &#39;&#39;&#39;
+    x, y = coords
+    lat = y / SPHERE_RADIUS # i.e., return value in radians
+    lng = x / (SPHERE_RADIUS * np.cos(lat))
+    return np.stack((np.rad2deg(lng), np.rad2deg(lat)))</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="mod17" href="index.html">mod17</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="mod17.srs.geotransform" href="#mod17.srs.geotransform">geotransform</a></code></li>
+<li><code><a title="mod17.srs.modis_from_wgs84" href="#mod17.srs.modis_from_wgs84">modis_from_wgs84</a></code></li>
+<li><code><a title="mod17.srs.modis_row_col_from_wgs84" href="#mod17.srs.modis_row_col_from_wgs84">modis_row_col_from_wgs84</a></code></li>
+<li><code><a title="mod17.srs.modis_row_col_to_wgs84" href="#mod17.srs.modis_row_col_to_wgs84">modis_row_col_to_wgs84</a></code></li>
+<li><code><a title="mod17.srs.modis_tile_from_wgs84" href="#mod17.srs.modis_tile_from_wgs84">modis_tile_from_wgs84</a></code></li>
+<li><code><a title="mod17.srs.modis_to_wgs84" href="#mod17.srs.modis_to_wgs84">modis_to_wgs84</a></code></li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>

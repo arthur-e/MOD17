@@ -1,0 +1,612 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>mod17.science API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS_CHTML" integrity="sha256-kZafAc6mZvK3W3v1pHOcUix30OHQN6pU/NO2oFkqZVw=" crossorigin></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>mod17.science</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">import warnings
+import numpy as np
+from typing import Sequence
+
+def climatology365(series: Sequence, dates: Sequence) -&gt; Sequence:
+    &#39;&#39;&#39;
+    Computes a 365-day climatology for different locations from a time series
+    of length T. Ignores leap days. The climatology could then be indexed
+    using ordinals generated by `ordinals365()`.
+
+    Parameters
+    ----------
+    series : numpy.ndarray
+        T x ... array of data
+    dates : list or tuple
+        Sequence of datetime.datetime or datetime.date instances
+
+    Returns
+    -------
+    numpy.ndarray
+    &#39;&#39;&#39;
+    # Get first and last day of the year (DOY)
+    ordinal = np.array([
+        # Finally, subtract 1 from each day in a leap year after Leap Day
+        (doy - 1) if ((dates[i].year % 4 == 0) and doy &gt;= 60) else doy
+        for i, doy in enumerate([
+            # Next, fill in 0 wherever Leap Day occurs
+            0 if (dates[i].year % 4 == 0 and doy == 60) else doy
+            for i, doy in enumerate([
+                # First, convert datetime.datetime to ordinal day-of-year (DOY)
+                int(dt.strftime(&#39;%j&#39;)) for dt in dates
+            ])
+        ])
+    ])
+    with warnings.catch_warnings():
+        warnings.simplefilter(&#39;ignore&#39;)
+        return np.array([
+            np.nanmean(series[ordinal == day,...], axis = 0)
+            for day in range(1, 366)
+        ])
+
+
+def daynight_partition(arr_24hr, updown, reducer = &#39;mean&#39;, missing = (0, 0)):
+    &#39;&#39;&#39;
+    Partitions a 24-hour time series array into daytime and nighttime values,
+    then calculates the mean in each group. Daytime is defined as when the sun
+    is above the horizon; nighttime is the complement.
+
+    NOTE: If the sun never rises, the &#34;daytime&#34; average is computed over 24
+    hours, anyway. In these cases, &#34;nighttime&#34; average is identical to the
+    &#34;daytime&#34; average (i.e., 24 hours of night). If the sun is always above
+    the horizon (i.e., sun never sets) on a given day, the &#34;daytime&#34; average
+    is computed as expected (over 24 hours) and the nighttime average is
+    missing and is instead filled with the second element of the `missing`
+    argument&#39;s sequence.
+
+    Parameters
+    ----------
+    arr_24hr : numpy.ndarray
+        A size (24 x ...) array; the first axis must have 24 elements
+        corresponding to the measurement in each hour
+    updown: numpy.ndarray
+        A size (2 x ...) array, compatible with arr_24hr, where the first axis
+        has the hour of sunrise and sunset, in that order, for each element
+    reducer : str
+        One of &#34;mean&#34; or &#34;sum&#34; indicating whether an average or a total of the
+        daytime/ nighttime values should be calculated; e.g., for &#34;mean&#34;, the
+        hourly values from daytime hours are added up and divided by the
+        length of the day (in hours).
+    missing : tuple
+        Values to use when the sun is always below or above the horizon for 24
+        hours (i.e., never rises or never sets); first value is ignored (may
+        be used to fill missing daylight hours in some future version), and
+        the second value is used to fill in missing nighttime hours
+        (Default: `(0, 0)`).
+
+    Returns
+    -------
+    numpy.ndarray
+        A size (2 x ...) array where the first axis enumerates the daytime and
+        nighttime mean values, respectively
+    &#39;&#39;&#39;
+    assert reducer in (&#39;mean&#39;, &#39;sum&#39;),\
+        &#39;Argument &#34;reducer&#34; must be one of: &#34;mean&#34;, &#34;sum&#34;&#39;
+    # Prepare single-valued output array
+    arr_daytime = np.zeros(arr_24hr.shape[1:])
+    arr_nighttime = arr_daytime.copy()
+    daylight_hrs = arr_daytime.copy().astype(np.int16)
+    # Do sunrise and sunset define an interval? (Sunset &gt; Sunrise)?
+    inside_interval = np.apply_along_axis(lambda x: x[1] &gt; x[0], 0, updown)
+    # Or is the sun never up?
+    never_up = np.logical_and(updown[0,...] == -1, updown[1,...] == -1)
+    # Iteratively sum daytime VPD and temperature values
+    for hr in range(0, 24):
+        # Given only hour of sunrise/set on a 24-hour clock...
+        #   if sun rises and sets on same day: SUNRISE &lt;= HOUR &lt;= SUNSET;
+        #   if sun sets on next day: either SUNRISE &lt;= HOUR or HOUR &lt;= SUNSET;
+        sun_is_up = np.logical_or( # Either...
+            np.logical_and(inside_interval, # ...Rises and sets same day
+                np.logical_and(updown[0,...] &lt;= hr, hr &lt;= updown[1,...])),
+            np.logical_and(~inside_interval, # ...Sets on next day
+                np.logical_or(updown[0,...] &lt;= hr, hr &lt;= updown[1,...])))
+        # For simplicity, compute a 24-hour mean even if the sun never rises;
+        #   there&#39;s no way to know what the &#34;correct&#34; daytime value is
+        mask = np.logical_or(never_up, sun_is_up)
+        np.add(np.where(
+            mask, arr_24hr[hr,...], 0), arr_daytime, out = arr_daytime)
+        np.add(np.where(
+            ~mask, arr_24hr[hr,...], 0), arr_nighttime, out = arr_nighttime)
+        # Keep track of the denominator (hours) for calculating the mean;
+        #   note that this over-estimates actual daylight hours by 1 hour
+        #   but results in the correct denominator for the sums above
+        np.add(np.where(mask, 1, 0), daylight_hrs, out = daylight_hrs)
+    arr_24hr = None
+    # Calculate mean quantities
+    if reducer == &#39;mean&#39;:
+        arr_daytime = np.divide(arr_daytime, daylight_hrs)
+        arr_nighttime = np.divide(arr_nighttime, 24 - daylight_hrs)
+        # For sites where the sun is always above/ below the horizon, set missing
+        #   nighttime values to zero
+        arr_nighttime[~np.isfinite(arr_nighttime)] = missing[1]
+    return np.stack((arr_daytime, arr_nighttime))
+
+
+def degree_lengths(phi, a = 6378137, b = 6356752.3142):
+    &#39;&#39;&#39;
+    Returns the approximate length of degrees of latitude and longitude.
+    Source:
+
+        https://en.wikipedia.org/wiki/Latitude
+
+    phi : Number
+        Latitude, in degrees
+    a : Number
+        Radius of the Earth (major axis) in meters
+    b : Number
+        Length of minor axis of the Earth in meters
+
+    Returns
+    -------
+    tuple
+        Length of a degree of (longitude, latitude), respectively
+    &#39;&#39;&#39;
+    e2 = ((a**2) - (b**2)) / (a**2)
+    # Approximate length of a degree of latitude
+    lat_m = 111132.954 - (559.822 * np.cos(2 * np.deg2rad(phi))) +\
+        (1.175 * np.cos(4 * np.deg2rad(phi)))
+    lng_m = (np.pi * a * np.cos(np.deg2rad(phi))) / (
+        180 * np.sqrt(1 - (e2 * np.sin(np.deg2rad(phi))**2)))
+    return (lng_m, lat_m)
+
+
+def nash_sutcliffe(
+        predicted: Sequence, observed: Sequence, norm: bool = False) -&gt; float:
+    &#39;&#39;&#39;
+    Computes the Nash-Sutcliffe efficiency of a model&#39;s predictions.
+
+    $$
+    \mathrm{NSE} = 1 -
+        \frac{\sum_i (y_i - \hat{y}_i)^2}{\sum_i (y_i - \bar{y}_i)^2}
+    $$
+
+    Parameters
+    ----------
+    predicted : Sequence
+        Predicted values
+    observed : Sequence
+        Observed values
+    norm : bool
+        True to return the normalized Nash-Sutcliffe efficiency
+        (Default: False)
+
+    Returns
+    -------
+    float
+    &#39;&#39;&#39;
+    nse = 1 - (np.nansum(np.power(observed - predicted, 2)) /\
+        np.nansum(np.power(observed - np.nanmean(observed), 2)))
+    if norm:
+        return 1 / (2 - nse) # Return normalized NSE
+    return nse
+
+
+
+def ordinals365(dates: Sequence) -&gt; Sequence:
+    &#39;&#39;&#39;
+    Returns a length-T sequence of ordinals on [1,365]. Can be used for
+    indexing a 365-day climatology; see `climatology365()`.
+
+    Parameters
+    ----------
+    dates : list or tuple
+        Sequence of datetime.datetime or datetime.date instances
+
+    Returns
+    -------
+    list
+    &#39;&#39;&#39;
+    return [
+        t - 1 if (year % 4 == 0 and t &gt;= 60) else t
+        for t, year in [(int(t.strftime(&#39;%j&#39;)), t.year) for t in dates]
+    ]</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="mod17.science.climatology365"><code class="name flex">
+<span>def <span class="ident">climatology365</span></span>(<span>series: Sequence[+T_co], dates: Sequence[+T_co]) ‑> Sequence[+T_co]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Computes a 365-day climatology for different locations from a time series
+of length T. Ignores leap days. The climatology could then be indexed
+using ordinals generated by <code><a title="mod17.science.ordinals365" href="#mod17.science.ordinals365">ordinals365()</a></code>.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>series</code></strong> :&ensp;<code>numpy.ndarray</code></dt>
+<dd>T x &hellip; array of data</dd>
+<dt><strong><code>dates</code></strong> :&ensp;<code>list</code> or <code>tuple</code></dt>
+<dd>Sequence of datetime.datetime or datetime.date instances</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>numpy.ndarray</code></dt>
+<dd>&nbsp;</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def climatology365(series: Sequence, dates: Sequence) -&gt; Sequence:
+    &#39;&#39;&#39;
+    Computes a 365-day climatology for different locations from a time series
+    of length T. Ignores leap days. The climatology could then be indexed
+    using ordinals generated by `ordinals365()`.
+
+    Parameters
+    ----------
+    series : numpy.ndarray
+        T x ... array of data
+    dates : list or tuple
+        Sequence of datetime.datetime or datetime.date instances
+
+    Returns
+    -------
+    numpy.ndarray
+    &#39;&#39;&#39;
+    # Get first and last day of the year (DOY)
+    ordinal = np.array([
+        # Finally, subtract 1 from each day in a leap year after Leap Day
+        (doy - 1) if ((dates[i].year % 4 == 0) and doy &gt;= 60) else doy
+        for i, doy in enumerate([
+            # Next, fill in 0 wherever Leap Day occurs
+            0 if (dates[i].year % 4 == 0 and doy == 60) else doy
+            for i, doy in enumerate([
+                # First, convert datetime.datetime to ordinal day-of-year (DOY)
+                int(dt.strftime(&#39;%j&#39;)) for dt in dates
+            ])
+        ])
+    ])
+    with warnings.catch_warnings():
+        warnings.simplefilter(&#39;ignore&#39;)
+        return np.array([
+            np.nanmean(series[ordinal == day,...], axis = 0)
+            for day in range(1, 366)
+        ])</code></pre>
+</details>
+</dd>
+<dt id="mod17.science.daynight_partition"><code class="name flex">
+<span>def <span class="ident">daynight_partition</span></span>(<span>arr_24hr, updown, reducer='mean', missing=(0, 0))</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Partitions a 24-hour time series array into daytime and nighttime values,
+then calculates the mean in each group. Daytime is defined as when the sun
+is above the horizon; nighttime is the complement.</p>
+<p>NOTE: If the sun never rises, the "daytime" average is computed over 24
+hours, anyway. In these cases, "nighttime" average is identical to the
+"daytime" average (i.e., 24 hours of night). If the sun is always above
+the horizon (i.e., sun never sets) on a given day, the "daytime" average
+is computed as expected (over 24 hours) and the nighttime average is
+missing and is instead filled with the second element of the <code>missing</code>
+argument's sequence.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>arr_24hr</code></strong> :&ensp;<code>numpy.ndarray</code></dt>
+<dd>A size (24 x &hellip;) array; the first axis must have 24 elements
+corresponding to the measurement in each hour</dd>
+<dt><strong><code>updown</code></strong> :&ensp;<code>numpy.ndarray</code></dt>
+<dd>A size (2 x &hellip;) array, compatible with arr_24hr, where the first axis
+has the hour of sunrise and sunset, in that order, for each element</dd>
+<dt><strong><code>reducer</code></strong> :&ensp;<code>str</code></dt>
+<dd>One of "mean" or "sum" indicating whether an average or a total of the
+daytime/ nighttime values should be calculated; e.g., for "mean", the
+hourly values from daytime hours are added up and divided by the
+length of the day (in hours).</dd>
+<dt><strong><code>missing</code></strong> :&ensp;<code>tuple</code></dt>
+<dd>Values to use when the sun is always below or above the horizon for 24
+hours (i.e., never rises or never sets); first value is ignored (may
+be used to fill missing daylight hours in some future version), and
+the second value is used to fill in missing nighttime hours
+(Default: <code>(0, 0)</code>).</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>numpy.ndarray</code></dt>
+<dd>A size (2 x &hellip;) array where the first axis enumerates the daytime and
+nighttime mean values, respectively</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def daynight_partition(arr_24hr, updown, reducer = &#39;mean&#39;, missing = (0, 0)):
+    &#39;&#39;&#39;
+    Partitions a 24-hour time series array into daytime and nighttime values,
+    then calculates the mean in each group. Daytime is defined as when the sun
+    is above the horizon; nighttime is the complement.
+
+    NOTE: If the sun never rises, the &#34;daytime&#34; average is computed over 24
+    hours, anyway. In these cases, &#34;nighttime&#34; average is identical to the
+    &#34;daytime&#34; average (i.e., 24 hours of night). If the sun is always above
+    the horizon (i.e., sun never sets) on a given day, the &#34;daytime&#34; average
+    is computed as expected (over 24 hours) and the nighttime average is
+    missing and is instead filled with the second element of the `missing`
+    argument&#39;s sequence.
+
+    Parameters
+    ----------
+    arr_24hr : numpy.ndarray
+        A size (24 x ...) array; the first axis must have 24 elements
+        corresponding to the measurement in each hour
+    updown: numpy.ndarray
+        A size (2 x ...) array, compatible with arr_24hr, where the first axis
+        has the hour of sunrise and sunset, in that order, for each element
+    reducer : str
+        One of &#34;mean&#34; or &#34;sum&#34; indicating whether an average or a total of the
+        daytime/ nighttime values should be calculated; e.g., for &#34;mean&#34;, the
+        hourly values from daytime hours are added up and divided by the
+        length of the day (in hours).
+    missing : tuple
+        Values to use when the sun is always below or above the horizon for 24
+        hours (i.e., never rises or never sets); first value is ignored (may
+        be used to fill missing daylight hours in some future version), and
+        the second value is used to fill in missing nighttime hours
+        (Default: `(0, 0)`).
+
+    Returns
+    -------
+    numpy.ndarray
+        A size (2 x ...) array where the first axis enumerates the daytime and
+        nighttime mean values, respectively
+    &#39;&#39;&#39;
+    assert reducer in (&#39;mean&#39;, &#39;sum&#39;),\
+        &#39;Argument &#34;reducer&#34; must be one of: &#34;mean&#34;, &#34;sum&#34;&#39;
+    # Prepare single-valued output array
+    arr_daytime = np.zeros(arr_24hr.shape[1:])
+    arr_nighttime = arr_daytime.copy()
+    daylight_hrs = arr_daytime.copy().astype(np.int16)
+    # Do sunrise and sunset define an interval? (Sunset &gt; Sunrise)?
+    inside_interval = np.apply_along_axis(lambda x: x[1] &gt; x[0], 0, updown)
+    # Or is the sun never up?
+    never_up = np.logical_and(updown[0,...] == -1, updown[1,...] == -1)
+    # Iteratively sum daytime VPD and temperature values
+    for hr in range(0, 24):
+        # Given only hour of sunrise/set on a 24-hour clock...
+        #   if sun rises and sets on same day: SUNRISE &lt;= HOUR &lt;= SUNSET;
+        #   if sun sets on next day: either SUNRISE &lt;= HOUR or HOUR &lt;= SUNSET;
+        sun_is_up = np.logical_or( # Either...
+            np.logical_and(inside_interval, # ...Rises and sets same day
+                np.logical_and(updown[0,...] &lt;= hr, hr &lt;= updown[1,...])),
+            np.logical_and(~inside_interval, # ...Sets on next day
+                np.logical_or(updown[0,...] &lt;= hr, hr &lt;= updown[1,...])))
+        # For simplicity, compute a 24-hour mean even if the sun never rises;
+        #   there&#39;s no way to know what the &#34;correct&#34; daytime value is
+        mask = np.logical_or(never_up, sun_is_up)
+        np.add(np.where(
+            mask, arr_24hr[hr,...], 0), arr_daytime, out = arr_daytime)
+        np.add(np.where(
+            ~mask, arr_24hr[hr,...], 0), arr_nighttime, out = arr_nighttime)
+        # Keep track of the denominator (hours) for calculating the mean;
+        #   note that this over-estimates actual daylight hours by 1 hour
+        #   but results in the correct denominator for the sums above
+        np.add(np.where(mask, 1, 0), daylight_hrs, out = daylight_hrs)
+    arr_24hr = None
+    # Calculate mean quantities
+    if reducer == &#39;mean&#39;:
+        arr_daytime = np.divide(arr_daytime, daylight_hrs)
+        arr_nighttime = np.divide(arr_nighttime, 24 - daylight_hrs)
+        # For sites where the sun is always above/ below the horizon, set missing
+        #   nighttime values to zero
+        arr_nighttime[~np.isfinite(arr_nighttime)] = missing[1]
+    return np.stack((arr_daytime, arr_nighttime))</code></pre>
+</details>
+</dd>
+<dt id="mod17.science.degree_lengths"><code class="name flex">
+<span>def <span class="ident">degree_lengths</span></span>(<span>phi, a=6378137, b=6356752.3142)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Returns the approximate length of degrees of latitude and longitude.</p>
+<h2 id="source">Source</h2>
+<p><a href="https://en.wikipedia.org/wiki/Latitude">https://en.wikipedia.org/wiki/Latitude</a></p>
+<p>phi : Number
+Latitude, in degrees
+a : Number
+Radius of the Earth (major axis) in meters
+b : Number
+Length of minor axis of the Earth in meters</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>tuple</code></dt>
+<dd>Length of a degree of (longitude, latitude), respectively</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def degree_lengths(phi, a = 6378137, b = 6356752.3142):
+    &#39;&#39;&#39;
+    Returns the approximate length of degrees of latitude and longitude.
+    Source:
+
+        https://en.wikipedia.org/wiki/Latitude
+
+    phi : Number
+        Latitude, in degrees
+    a : Number
+        Radius of the Earth (major axis) in meters
+    b : Number
+        Length of minor axis of the Earth in meters
+
+    Returns
+    -------
+    tuple
+        Length of a degree of (longitude, latitude), respectively
+    &#39;&#39;&#39;
+    e2 = ((a**2) - (b**2)) / (a**2)
+    # Approximate length of a degree of latitude
+    lat_m = 111132.954 - (559.822 * np.cos(2 * np.deg2rad(phi))) +\
+        (1.175 * np.cos(4 * np.deg2rad(phi)))
+    lng_m = (np.pi * a * np.cos(np.deg2rad(phi))) / (
+        180 * np.sqrt(1 - (e2 * np.sin(np.deg2rad(phi))**2)))
+    return (lng_m, lat_m)</code></pre>
+</details>
+</dd>
+<dt id="mod17.science.nash_sutcliffe"><code class="name flex">
+<span>def <span class="ident">nash_sutcliffe</span></span>(<span>predicted: Sequence[+T_co], observed: Sequence[+T_co], norm: bool = False) ‑> float</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Computes the Nash-Sutcliffe efficiency of a model's predictions.</p>
+<p><span><span class="MathJax_Preview">
+\mathrm{NSE} = 1 -
+rac{\sum_i (y_i - \hat{y}_i)^2}{\sum_i (y_i - ar{y}_i)^2}
+</span><script type="math/tex; mode=display">
+\mathrm{NSE} = 1 -
+rac{\sum_i (y_i - \hat{y}_i)^2}{\sum_i (y_i - ar{y}_i)^2}
+</script></span></p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>predicted</code></strong> :&ensp;<code>Sequence</code></dt>
+<dd>Predicted values</dd>
+<dt><strong><code>observed</code></strong> :&ensp;<code>Sequence</code></dt>
+<dd>Observed values</dd>
+<dt><strong><code>norm</code></strong> :&ensp;<code>bool</code></dt>
+<dd>True to return the normalized Nash-Sutcliffe efficiency
+(Default: False)</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>float</code></dt>
+<dd>&nbsp;</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def nash_sutcliffe(
+        predicted: Sequence, observed: Sequence, norm: bool = False) -&gt; float:
+    &#39;&#39;&#39;
+    Computes the Nash-Sutcliffe efficiency of a model&#39;s predictions.
+
+    $$
+    \mathrm{NSE} = 1 -
+        \frac{\sum_i (y_i - \hat{y}_i)^2}{\sum_i (y_i - \bar{y}_i)^2}
+    $$
+
+    Parameters
+    ----------
+    predicted : Sequence
+        Predicted values
+    observed : Sequence
+        Observed values
+    norm : bool
+        True to return the normalized Nash-Sutcliffe efficiency
+        (Default: False)
+
+    Returns
+    -------
+    float
+    &#39;&#39;&#39;
+    nse = 1 - (np.nansum(np.power(observed - predicted, 2)) /\
+        np.nansum(np.power(observed - np.nanmean(observed), 2)))
+    if norm:
+        return 1 / (2 - nse) # Return normalized NSE
+    return nse</code></pre>
+</details>
+</dd>
+<dt id="mod17.science.ordinals365"><code class="name flex">
+<span>def <span class="ident">ordinals365</span></span>(<span>dates: Sequence[+T_co]) ‑> Sequence[+T_co]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Returns a length-T sequence of ordinals on [1,365]. Can be used for
+indexing a 365-day climatology; see <code><a title="mod17.science.climatology365" href="#mod17.science.climatology365">climatology365()</a></code>.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>dates</code></strong> :&ensp;<code>list</code> or <code>tuple</code></dt>
+<dd>Sequence of datetime.datetime or datetime.date instances</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>list</code></dt>
+<dd>&nbsp;</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def ordinals365(dates: Sequence) -&gt; Sequence:
+    &#39;&#39;&#39;
+    Returns a length-T sequence of ordinals on [1,365]. Can be used for
+    indexing a 365-day climatology; see `climatology365()`.
+
+    Parameters
+    ----------
+    dates : list or tuple
+        Sequence of datetime.datetime or datetime.date instances
+
+    Returns
+    -------
+    list
+    &#39;&#39;&#39;
+    return [
+        t - 1 if (year % 4 == 0 and t &gt;= 60) else t
+        for t, year in [(int(t.strftime(&#39;%j&#39;)), t.year) for t in dates]
+    ]</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="mod17" href="index.html">mod17</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="mod17.science.climatology365" href="#mod17.science.climatology365">climatology365</a></code></li>
+<li><code><a title="mod17.science.daynight_partition" href="#mod17.science.daynight_partition">daynight_partition</a></code></li>
+<li><code><a title="mod17.science.degree_lengths" href="#mod17.science.degree_lengths">degree_lengths</a></code></li>
+<li><code><a title="mod17.science.nash_sutcliffe" href="#mod17.science.nash_sutcliffe">nash_sutcliffe</a></code></li>
+<li><code><a title="mod17.science.ordinals365" href="#mod17.science.ordinals365">ordinals365</a></code></li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>
