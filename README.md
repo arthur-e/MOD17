@@ -14,6 +14,12 @@ MOD17 consists of three potentially independent sub-models:
 8-day composite products are given the designation MOD17A2H, for Terra MODIS, or MYD17A2H, for Aqua MODIS. Annual products, including annual GPP (the sum of one year's 8-day GPP composites), are carried by MOD17A3H (or MYD17A3H). The new VIIRS products would be designated VNP17A2H and VNP17A3H. GPP is calculated using a classic light-use efficiency (LUE) approach (Running et al. 2004, Yuan et al. 2014, Madani et al. 2017), where the carbon (C) uptake by plants is assumed to be proportional to canopy absorbed photosynthetically active radiation (APAR) under prevailing daytime environmental conditions for diel or longer time scales. Low temperatures or high vapor pressure deficit (VPD) reduce the efficiency of photosynthetic C uptake, thus, MOD17 GPP is described as a product of APAR, the light-use efficiency under optimal conditions ($\varepsilon_{\mathrm{max}}$), and environmental scalars.
 
 
+Documentation
+-------------
+
+[Read the documentation here.](https://arthur-e.github.io/MOD17/)
+
+
 Installation
 ------------
 
