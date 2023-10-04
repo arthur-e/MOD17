@@ -96,7 +96,7 @@ Citation
 
 **And cite the following paper:**
 
-Endsley, K.A., M. Zhao, J.S. Kimball, S. Devadiga. In Review. Continuity of global MODIS terrestrial primary productivity estimates in the VIIRS era using model-data fusion. *Journal of Geophysical Research: Biogeosciences.*
+Endsley, K.A., M. Zhao, J.S. Kimball, S. Devadiga. 2023. [Continuity of global MODIS terrestrial primary productivity estimates in the VIIRS era using model-data fusion.](https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2023JG007457) *Journal of Geophysical Research: Biogeosciences,* **128**(9).
 
 
 
