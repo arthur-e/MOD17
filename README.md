@@ -29,6 +29,12 @@ Within the `MOD17` repository's root directory:
 pip install .
 ```
 
+To install the dependencies required for model calibration:
+
+```sh
+pip install .[calibration]
+```
+
 Tests can be run with:
 
 ```sh
