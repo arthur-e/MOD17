@@ -46,7 +46,7 @@ import numpy as np
 import h5py
 import arviz as az
 import pymc as pm
-import aesara.tensor as at
+import pytensor.tensor as pt
 import mod17
 from functools import partial
 from multiprocessing import get_context, set_start_method
@@ -63,7 +63,7 @@ MOD17_DIR = os.path.dirname(mod17.__file__)
 pyplot.rcParams['figure.constrained_layout.use'] = True
 
 
-class BlackBoxLikelihood(at.Op):
+class BlackBoxLikelihood(pt.Op):
     '''
     A custom Theano operator that calculates the "likelihood" of model
     parameters; it takes a vector of values (the parameters that define our
@@ -86,8 +86,8 @@ class BlackBoxLikelihood(at.Op):
         Name of the objective (or "loss") function to use, one of
         ('rmsd', 'gaussian', 'kge'); defaults to "rmsd"
     '''
-    itypes = [at.dvector] # Expects a vector of parameter values when called
-    otypes = [at.dscalar] # Outputs a single scalar value (the log likelihood)
+    itypes = [pt.dvector] # Expects a vector of parameter values when called
+    otypes = [pt.dscalar] # Outputs a single scalar value (the log likelihood)
 
     def __init__(
             self, model: Callable, observed: Sequence, x: Sequence = None,
@@ -668,7 +668,7 @@ class MOD17StochasticSampler(StochasticSampler):
                 upper = drivers[2].max().round(0))
             # Convert model parameters to a tensor vector
             params_list = [LUE_max, tmin0, tmin1, vpd0, vpd1]
-            params = at.as_tensor_variable(params_list)
+            params = pt.as_tensor_variable(params_list)
             # Key step: Define the log-likelihood as an added potential
             pm.Potential('likelihood', log_likelihood(params))
         return model
@@ -737,7 +737,7 @@ class MOD17StochasticSampler(StochasticSampler):
                 Q10_livewood, Q10_froot, froot_leaf_ratio, livewood_leaf_ratio,
                 leaf_mr_base, froot_mr_base, livewood_mr_base
             ]
-            params = at.as_tensor_variable(params_list)
+            params = pt.as_tensor_variable(params_list)
             # Key step: Define the log-likelihood as an added potential
             pm.Potential('likelihood', log_likelihood(params))
         return model
