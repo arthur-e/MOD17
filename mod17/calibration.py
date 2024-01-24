@@ -477,11 +477,6 @@ class StochasticSampler(AbstractSampler):
             backend: str = None, weights: Sequence = None,
             model_name: str = None):
         self.backend = backend
-        # Convert the BOUNDS into nested dicts for easy use
-        self.bounds = dict([
-            (key, dict([('lower', b[0]), ('upper', b[1])]))
-            for key, b in config['optimization']['bounds'].items()
-        ])
         self.config = config
         self.model = model
         if hasattr(model, '__name__'):
@@ -656,15 +651,14 @@ class MOD17StochasticSampler(StochasticSampler):
         #   code block...are added to the model behind the scenes."
         with pm.Model() as model:
             # (Stochstic) Priors for unknown model parameters
-            LUE_max = pm.TruncatedNormal('LUE_max',
-                **self.prior['LUE_max'], **self.bounds['LUE_max'])
+            LUE_max = pm.TruncatedNormal('LUE_max', **self.prior['LUE_max'])
             # NOTE: tmin0, vpd0 are fixed at Collection 6.1 values
             tmin0 = self.params['tmin0']
-            tmin1 = pm.Uniform('tmin1', **self.bounds['tmin1'])
+            tmin1 = pm.Uniform('tmin1', **self.prior['tmin1'])
             # NOTE: Upper bound on `vpd1` is set by the maximum observed VPD
             vpd0 = self.params['vpd0']
             vpd1 = pm.Uniform('vpd1',
-                lower = self.bounds['vpd1']['lower'],
+                lower = self.prior['vpd1']['lower'],
                 upper = drivers[2].max().round(0))
             # Convert model parameters to a tensor vector
             params_list = [LUE_max, tmin0, tmin1, vpd0, vpd1]
