@@ -27,7 +27,7 @@ eliminate autocorrelation, e.g., in Python:
 A thinned posterior can be exported from the command line:
 
 ```py
-$ python calibration.py export-bplut output.csv --burn=1000 --thin=10
+$ python calibration.py export-posterior output.csv --burn=1000 --thin=10
 ```
 
 References:
@@ -278,9 +278,12 @@ class AbstractSampler(object):
             az.plot_autocorr(trace, **kwargs)
         else:
             burn = 0 if burn is None else burn
-            az.plot_autocorr(
-                trace.sel(draw = slice(burn, None, thin))['posterior'],
-                **kwargs)
+            try:
+                az.plot_autocorr(
+                    trace.sel(draw = slice(burn, None, thin))['posterior'],
+                    **kwargs)
+            except ZeroDivisionError:
+                raise ValueError('Cannot burn that many simples; reduce the burn-in')
         pyplot.show()
 
     def plot_forest(self, **kwargs):
@@ -501,7 +504,7 @@ class StochasticSampler(AbstractSampler):
             draws = 1000, chains = 3, tune = 'lambda',
             scaling: float = 1e-3, prior: dict = dict(),
             check_shape: bool = False, save_fig: bool = False,
-            var_names: Sequence = None) -> None:
+            show_fig: bool = True, var_names: Sequence = None) -> None:
         '''
         Fits the model using DE-MCMCz approach. `tune="lambda"` (default) is
         recommended; lambda is related to the scale of the jumps learned from
@@ -532,6 +535,8 @@ class StochasticSampler(AbstractSampler):
         save_fig : bool
             True to save figures to files instead of showing them
             (Default: False)
+        show_fig: bool
+            True to show the trace plot at the end of a run (Default: True)
         var_names : Sequence
             One or more variable names to show in the plot
         '''
@@ -575,7 +580,7 @@ class StochasticSampler(AbstractSampler):
                 az.plot_trace(trace, var_names = var_names)
             if save_fig:
                 pyplot.savefig('.'.join(self.backend.split('.')[:-1]) + '.png')
-            else:
+            elif show_fig:
                 pyplot.show()
 
 
@@ -901,8 +906,6 @@ class CalibrationAPI(object):
         if not all([p.shape == post[0].shape for p in post]):
             max_len = max([p.shape for p in post])[0]
             # ...Reshape all posteriors to match the greatest sample size
-            import ipdb
-            ipdb.set_trace()#FIXME
             post = [
                 np.pad(
                     p.astype(np.float32), (0, max_len - p.size),
@@ -1249,9 +1252,9 @@ class CalibrationAPI(object):
                 # And make sure to subset to the chosen PFT!
                 for arg in prior[key].keys():
                     prior[key][arg] = prior[key][arg][pft]
-            sampler.run(
+            sampler.run( # Only show the trace plot if not using k-folds
                 observed_npp, drivers, prior = prior, save_fig = save_fig,
-                **kwargs)
+                show_fig = (k_folds == 1), **kwargs)
 
 
 if __name__ == '__main__':
