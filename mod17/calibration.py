@@ -257,7 +257,8 @@ class AbstractSampler(object):
             return trace
         return trace.sel(draw = slice(burn, None, thin))
 
-    def plot_autocorr(self, thin: int = None, burn: int = None, **kwargs):
+    def plot_autocorr(
+            self, thin: int = None, burn: int = None, title = None, **kwargs):
         '''
         Auto-correlation plot for an MCMC sample.
 
@@ -284,6 +285,8 @@ class AbstractSampler(object):
                     **kwargs)
             except ZeroDivisionError:
                 raise ValueError('Cannot burn that many simples; reduce the burn-in')
+        if title is not None:
+            pyplot.title(title)
         pyplot.show()
 
     def plot_forest(self, **kwargs):
