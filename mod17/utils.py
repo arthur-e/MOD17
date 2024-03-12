@@ -415,7 +415,9 @@ def sites_by_record_length(
         # Shuffle the years within each site
         for c in choices:
             np.random.shuffle(c)
-        results[p,0:len(idx)] = [c[0] for c in choices[0:len(idx)]]
+        results[p,0:len(idx)] = [
+            c[0] if c.size > 0 else 0 for c in choices[0:len(idx)]
+        ]
     return (results_sites, results)
 
 
