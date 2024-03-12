@@ -85,13 +85,23 @@ class BlackBoxLikelihood(pt.Op):
     objective : str
         Name of the objective (or "loss") function to use, one of
         ('rmsd', 'gaussian', 'kge'); defaults to "rmsd"
+    constraints : Sequence or None
+        Sequence of one or more Callables (function) that return a competing
+        value of the objective function (e.g., an RMSE). If there is more than
+        one Callable, they are each called and the largest value is retained.
+        If the (final) return value is greater than the value of the original
+        objective function, than that value is returned instead. This is a way
+        to tell the sampler that certain conditions are associated, e.g., with
+        very high RMSE. The call signature of each Callable should be the same
+        as `model`.
     '''
     itypes = [pt.dvector] # Expects a vector of parameter values when called
     otypes = [pt.dscalar] # Outputs a single scalar value (the log likelihood)
 
     def __init__(
             self, model: Callable, observed: Sequence, x: Sequence = None,
-            weights: Sequence = None, objective: str = 'rmsd'):
+            weights: Sequence = None, objective: str = 'rmsd',
+            constraints: Sequence = None):
         '''
         Initialise the Op with various things that our log-likelihood function
         requires. The observed data ("observed") and drivers ("x") must be
@@ -101,6 +111,7 @@ class BlackBoxLikelihood(pt.Op):
         self.observed = observed
         self.x = x
         self.weights = weights
+        self.constraints = constraints
         if objective in ('rmsd', 'rmse'):
             self._loglik = self.loglik
         elif objective == 'gaussian':
@@ -135,9 +146,16 @@ class BlackBoxLikelihood(pt.Op):
         '''
         predicted = self.model(params, *x)
         if self.weights is not None:
-            return -np.sqrt(
+            result = -np.sqrt(
                 np.nanmean(((predicted - observed) * self.weights) ** 2))
-        return -np.sqrt(np.nanmean(((predicted - observed)) ** 2))
+        else:
+            result = -np.sqrt(np.nanmean(((predicted - observed)) ** 2))
+        if self.constraints is not None:
+            constrained_result = np.max(np.array([
+                func(params, *x) for func in self.constraints
+            ]))
+            return np.max([result, constrained_result])
+        return result
 
     def loglik_gaussian(
             self, params: Sequence, observed: Sequence,
@@ -477,13 +495,23 @@ class StochasticSampler(AbstractSampler):
     weights : Sequence or None
         Optional sequence of weights applied to the model residuals (as in
         weighted least squares)
+    constraints : Sequence or None
+        Sequence of one or more Callables (function) that return a competing
+        value of the objective function (e.g., an RMSE). If there is more than
+        one Callable, they are each called and the largest value is retained.
+        If the (final) return value is greater than the value of the original
+        objective function, than that value is returned instead. This is a way
+        to tell the sampler that certain conditions are associated, e.g., with
+        very high RMSE. The call signature of each Callable should be the same
+        as `model`.
     '''
     def __init__(
             self, config: dict, model: Callable, params_dict: dict = None,
             backend: str = None, weights: Sequence = None,
-            model_name: str = None):
+            model_name: str = None, constraints: Sequence = None):
         self.backend = backend
         self.config = config
+        self.constraints = constraints
         self.model = model
         if hasattr(model, '__name__'):
             self.name = model.__name__.strip('_').upper() # "_gpp" = "GPP"
