@@ -518,7 +518,8 @@ class StochasticSampler(AbstractSampler):
         else:
             self.name = model_name
         self.params = params_dict
-        # Set the model's prior distribution assumptions
+        # Set the model's prior distribution assumptions and any fixed values
+        self.fixed = dict()
         self.prior = dict()
         for key in self.required_parameters[self.name]:
             # NOTE: This is the default only for LUE_max; other parameters,
@@ -532,8 +533,8 @@ class StochasticSampler(AbstractSampler):
 
     def run(
             self, observed: Sequence, drivers: Sequence,
-            draws = 1000, chains = 3, tune = 'lambda',
-            scaling: float = 1e-3, prior: dict = dict(),
+            draws = 1000, chains = 3, tune = 'lambda', scaling: float = 1e-3,
+            prior: dict = dict(), fixed: dict = dict(),
             check_shape: bool = False, save_fig: bool = False,
             show_fig: bool = True, var_names: Sequence = None) -> None:
         '''
@@ -560,6 +561,11 @@ class StochasticSampler(AbstractSampler):
         scaling : float
             Initial scale factor for epsilon (Default: 1e-3)
         prior : dict
+            Dictionary of parameters and their prior values;
+            should be of the form `{parameter: value}`
+        fixed : dict
+            Dictionary of parameters for which a fixed value should be used;
+            should be of the form `{parameter: value}`
         check_shape : bool
             True to require that input driver datasets have the same shape as
             the observed values (Default: False)
@@ -576,8 +582,8 @@ class StochasticSampler(AbstractSampler):
         assert len(drivers) == len(self.required_drivers[self.name]),\
             'Did not receive expected number of driver datasets!'
         assert tune in ('lambda', 'scaling') or tune is None
-        # Update prior assumptions
-        self.prior.update(prior)
+        self.fixed.update(fixed) # Update parameters with fixed values
+        self.prior.update(prior) # Update prior assumptions
         # Generate an initial goodness-of-fit score
         predicted = self.model([
             self.params[p] for p in self.required_parameters[self.name]

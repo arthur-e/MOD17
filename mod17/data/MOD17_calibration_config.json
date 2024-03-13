@@ -18,6 +18,7 @@
     "tune": "scaling",
     "scaling": 1e-3,
     "objective": "RMSE",
+    "fixed": {},
     "bounds": {
       "LUE_max": [0, 0.005],
       "tmin0": [-35, 0],
