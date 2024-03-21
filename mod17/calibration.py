@@ -49,12 +49,13 @@ import pymc as pm
 import pytensor.tensor as pt
 import mod17
 from functools import partial
-from multiprocessing import get_context, set_start_method
+from multiprocessing import get_context
 from numbers import Number
 from typing import Callable, Sequence
 from pathlib import Path
 from matplotlib import pyplot
 from scipy import signal
+from scipy.stats import gmean
 from mod17 import MOD17, PFT_VALID
 from mod17.utils import pft_dominant, restore_bplut, write_bplut, rmsd
 
@@ -92,8 +93,8 @@ class BlackBoxLikelihood(pt.Op):
         If the (final) return value is greater than the value of the original
         objective function, than that value is returned instead. This is a way
         to tell the sampler that certain conditions are associated, e.g., with
-        very high RMSE. The call signature of each Callable should be the same
-        as `model`.
+        very high RMSE. Each Callable should take one argument: a vector of
+        model predictions.
     '''
     itypes = [pt.dvector] # Expects a vector of parameter values when called
     otypes = [pt.dscalar] # Outputs a single scalar value (the log likelihood)
@@ -112,11 +113,13 @@ class BlackBoxLikelihood(pt.Op):
         self.x = x
         self.weights = weights
         self.constraints = constraints
-        if objective in ('rmsd', 'rmse'):
+        if objective.lower() in ('rmsd', 'rmse'):
             self._loglik = self.loglik
-        elif objective == 'gaussian':
+        elif objective.lower() in ('nrmsd', 'nrmse'):
+            self._loglik = self.loglik_norm
+        elif objective.lower() == 'gaussian':
             self._loglik = self.loglik_gaussian
-        elif objective == 'kge':
+        elif objective.lower() == 'kge':
             self._loglik = self.loglik_kge
         else:
             raise ValueError('Unknown "objective" function specified')
@@ -152,9 +155,48 @@ class BlackBoxLikelihood(pt.Op):
             result = -np.sqrt(np.nanmean(((predicted - observed)) ** 2))
         if self.constraints is not None:
             constrained_result = np.max(np.array([
-                func(params, *x) for func in self.constraints
+                func(predicted) for func in self.constraints
             ]))
             return np.max([result, constrained_result])
+        return result
+
+    def loglik_norm(
+            self, params: Sequence, observed: Sequence,
+            x: Sequence = None) -> Number:
+        '''
+        Pseudo-log likelihood, based on the normalized root-mean squared
+        deviation (nRMSD, %). The sign of then RMSD is forced to be negative
+        so as to allow for maximization of this objective function.
+
+        Parameters
+        ----------
+        params : Sequence
+            One or more model parameters
+        observed : Sequence
+            The observed values
+        x : Sequence or None
+            Input driver data
+
+        Returns
+        -------
+        Number
+            The (negative) root-mean squared deviation (RMSD) between the
+            predicted and observed values
+        '''
+        predicted = self.model(params, *x)
+        if self.weights is not None:
+            result = -np.sqrt(
+                np.nanmean(((predicted - observed) * self.weights) ** 2))
+        else:
+            result = -np.sqrt(np.nanmean(((predicted - observed)) ** 2))
+        # Normalize RMSE by the range of the observed
+        result = 100 * (result / (np.nanmax(observed) - np.nanmin(observed)))
+        if self.constraints is not None:
+            constrained_result = np.max(np.array([
+                func(predicted) for func in self.constraints
+            ]))
+            # Geometric mean requires positive numbers
+            return -gmean([-result, -constrained_result])
         return result
 
     def loglik_gaussian(
@@ -502,8 +544,8 @@ class StochasticSampler(AbstractSampler):
         If the (final) return value is greater than the value of the original
         objective function, than that value is returned instead. This is a way
         to tell the sampler that certain conditions are associated, e.g., with
-        very high RMSE. The call signature of each Callable should be the same
-        as `model`.
+        very high RMSE. Each Callable should take one argument: a vector of
+        model predictions.
     '''
     def __init__(
             self, config: dict, model: Callable, params_dict: dict = None,
