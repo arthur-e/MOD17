@@ -154,10 +154,11 @@ class BlackBoxLikelihood(pt.Op):
         else:
             result = -np.sqrt(np.nanmean(((predicted - observed)) ** 2))
         if self.constraints is not None:
-            constrained_result = np.max(np.array([
-                func(predicted) for func in self.constraints
-            ]))
-            return np.max([result, constrained_result])
+            if len(self.constraints) > 0:
+                constrained_result = np.max(np.array([
+                    func(predicted) for func in self.constraints
+                ]))
+                return np.max([result, constrained_result])
         return result
 
     def loglik_norm(
@@ -192,11 +193,12 @@ class BlackBoxLikelihood(pt.Op):
         # Normalize RMSE by the range of the observed
         result = 100 * (result / (np.nanmax(observed) - np.nanmin(observed)))
         if self.constraints is not None:
-            constrained_result = np.max(np.array([
-                func(predicted) for func in self.constraints
-            ]))
-            # Geometric mean requires positive numbers
-            return -gmean([-result, -constrained_result])
+            if len(self.constraints) > 0:
+                constrained_result = np.max(np.array([
+                    func(predicted) for func in self.constraints
+                ]))
+                # Geometric mean requires positive numbers
+                return -gmean([-result, -constrained_result])
         return result
 
     def loglik_gaussian(
