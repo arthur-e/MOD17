@@ -234,7 +234,8 @@ class BlackBoxLikelihood(pt.Op):
             self, params: Sequence, observed: Sequence,
             x: Sequence = None) -> Number:
         r'''
-        Kling-Gupta efficiency.
+        Kling-Gupta efficiency. The best possible score is 1 and valid
+        scores may be any smaller number (including negative numbers).
 
         $$
         KGE = 1 - \sqrt{(r - 1)^2 + (\alpha - 1)^2 + (\beta - 1)^2}
@@ -255,9 +256,10 @@ class BlackBoxLikelihood(pt.Op):
             The Kling-Gupta efficiency
         '''
         predicted = self.model(params, *x)
-        r = np.corrcoef(predicted, observed)[0, 1]
-        alpha = np.std(predicted) / np.std(observed)
-        beta = np.sum(predicted) / np.sum(observed)
+        mask = np.isnan(observed)
+        r = np.corrcoef(predicted[~mask], observed[~mask])[0, 1]
+        alpha = np.nanstd(predicted) / np.nanstd(observed)
+        beta = np.nanmean(predicted) / np.nanmean(observed)
         return 1 - np.sqrt((r - 1)**2 + (alpha - 1)**2 + (beta - 1)**2)
 
     def perform(self, node, inputs, outputs):
