@@ -117,6 +117,8 @@ class BlackBoxLikelihood(pt.Op):
             self._loglik = self.loglik
         elif objective.lower() in ('nrmsd', 'nrmse'):
             self._loglik = self.loglik_norm
+        elif objective.lower() in ('weighted_nrmsd', 'weighted_nrmse'):
+            self._loglik = self.loglik_norm_weighted
         elif objective.lower() == 'gaussian':
             self._loglik = self.loglik_gaussian
         elif objective.lower() == 'kge':
@@ -199,6 +201,50 @@ class BlackBoxLikelihood(pt.Op):
                 ]))
                 # Geometric mean requires positive numbers
                 return -gmean([-result, -constrained_result])
+        return result
+
+    def loglik_norm_weighted(
+            self, params: Sequence, observed: Sequence,
+            x: Sequence = None) -> Number:
+        '''
+        Pseudo-log likelihood, based on the (weighted) normalized root-mean
+        squared deviation (nRMSD, %). The sign of then RMSD is forced to be
+        negative so as to allow for maximization of this objective function.
+        If constraints are not provided, the result is the same as
+        `loglik_norm()`; otherwise, a weight on the constraint cost is
+        applied, and the weight is assumed to be the last parameter of the
+        input `params` Sequence.
+
+        Parameters
+        ----------
+        params : Sequence
+            One or more model parameters
+        observed : Sequence
+            The observed values
+        x : Sequence or None
+            Input driver data
+
+        Returns
+        -------
+        Number
+            The (negative) root-mean squared deviation (RMSD) between the
+            predicted and observed values
+        '''
+        predicted = self.model(params[:-1], *x)
+        if self.weights is not None:
+            result = -np.sqrt(
+                np.nanmean(((predicted - observed) * self.weights) ** 2))
+        else:
+            result = -np.sqrt(np.nanmean(((predicted - observed)) ** 2))
+        # Normalize RMSE by the range of the observed
+        result = 100 * (result / (np.nanmax(observed) - np.nanmin(observed)))
+        if self.constraints is not None:
+            if len(self.constraints) > 0:
+                weight = params[-1] # The weight to put on joint constraints
+                constrained_result = np.max(np.array([
+                    func(predicted) for func in self.constraints
+                ]))
+                return -result + (weight * -constrained_result)
         return result
 
     def loglik_gaussian(
