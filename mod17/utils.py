@@ -370,6 +370,8 @@ def sites_by_record_length(
         'Data array and dates array should have the same number of time points'
     assert array.shape[1] == pft_map.shape[0],\
         'Data array and PFT map should have the same number of sites'
+    assert hasattr(dates, 'size'), '"dates" should be a numpy.ndarray'
+    assert hasattr(sites, 'size'), '"sites" should be a numpy.ndarray'
     all_years = np.unique(dates[:,0])
     site_years = np.zeros((len(all_years), pft_map.shape[0]))
     for y, year in enumerate(all_years.ravel()):
@@ -407,7 +409,9 @@ def sites_by_record_length(
         idx = np.argwhere(np.in1d(sites, top[0:n_returned])).ravel()
         # Choose a random year in the top n_returned years, unless it is
         #   PFT 3, in which case we just take the best site-year available
-        _cutoff = 0 if pft in pft_passed else cutoff
+        _cutoff = cutoff
+        if pft_passed is not None:
+            _cutoff = 0 if pft in pft_passed else cutoff
         choices = [
             all_years[site_years[:,idx][:,i] > _cutoff]
             for i in range(0, len(idx))
