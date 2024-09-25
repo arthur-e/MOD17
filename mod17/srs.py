@@ -88,6 +88,11 @@ def modis_from_wgs84(coords: Sequence) -> Sequence:
     Given longitude-latitude coordinates, return the coordinates on the
     sinusoidal projection plane.
 
+    This function is vectorized such that `coords` (a 2-element sequence),
+    can contain one number each (a single coordinate pair) or multiple
+    numbers; i.e., the first element is a vector of (multiple) longitudes and
+    the second element is a vector of latitudes of the same length.
+
     Parameters
     ----------
     coords : tuple or list or numpy.ndarray
@@ -154,6 +159,11 @@ def modis_row_col_from_wgs84(
     Given longitude-latitude coordinates, return the corresponding row-column
     coordinates within a MODIS tile. NOTE: You'll need to determine which
     MODIS tile contains this row-column index with `modis_tile_from_wgs84()`.
+
+    This function is vectorized such that `coords` (a 2-element sequence),
+    can contain one number each (a single coordinate pair) or multiple
+    numbers; i.e., the first element is a vector of (multiple) longitudes and
+    the second element is a vector of latitudes of the same length.
 
     Parameters
     ----------
