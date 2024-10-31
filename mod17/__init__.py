@@ -31,6 +31,8 @@ import numpy as np
 from typing import Callable, Sequence, Tuple, Union, Iterable
 from numbers import Number
 
+__version__ = '1.0.0'
+
 PFT_VALID = (1,2,3,4,5,6,7,8,9,10,12)
 
 class MOD17(object):
